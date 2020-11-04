@@ -21,4 +21,6 @@ public interface MapperClient {
     List<Client> getByUser(@Param("loginUser") String loginUser);
 
     List<Client> getAll();
+
+    List<Client> getByRegistrationCity(@Param("registrationCity") String registrationCity);
 }

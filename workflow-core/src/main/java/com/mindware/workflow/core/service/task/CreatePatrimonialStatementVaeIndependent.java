@@ -247,9 +247,13 @@ public class CreatePatrimonialStatementVaeIndependent {
         Double maxValue = listTotalsBuys.stream().max(Comparator.naturalOrder()).get();
 
         List<SummarySalesDto> summarySalesDtoList = patrimonialStatementSalesHistoryDto.getListSummary();
-        if(summarySalesDtoList!=null) {
-            SummarySalesDto summarySalesDto = summarySalesDtoList.get(7);
+        SummarySalesDto summarySalesDto = new SummarySalesDto();
+        if(summarySalesDtoList==null || summarySalesDtoList.equals("[]")) {
 
+            summarySalesDto.setTotal(0.0);
+        }else {
+            summarySalesDto = summarySalesDtoList.get(7);
+        }
             listEarningExpenses.add(newSummaryAmount("Total ingreso x ventas", minValue));
             listEarningExpenses.add(newSummaryAmount("Margen Bruto Ponderado", mubp * 100.0));
             listEarningExpenses.add(newSummaryAmount("Total costo x ventas", maxValue));
@@ -267,8 +271,7 @@ public class CreatePatrimonialStatementVaeIndependent {
             operativeEarning = Math.round(operativeEarning * 100.0) / 100.0;
             listEarningExpenses.add(newSummaryAmount("Utilidad Operativa", operativeEarning));
             return listEarningExpenses;
-        }
-        return null;
+
     }
 
     private SummaryAmount newSummaryAmount(String name, Double amount){

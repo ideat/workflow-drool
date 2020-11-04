@@ -15,14 +15,21 @@ import java.util.UUID;
 @Setter
 public class NoOwnGuarantee {
     private UUID id;
+
     private String description;
+
     private Double mortgageValue;
+
     private Double commercialValue;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate appraisalDate;
+
     private Double guaranteeAmount;
+
     private String mortgageDegree;
+
+    private String proficient;
 }

@@ -18,6 +18,8 @@
         <result property="loginUser" column="login_user"/>
         <result property="typePerson" column="type_person"/>
         <result property="typeClient" column="type_client"/>
+        <result property="registrationCity" column="registration_city"/>
+        <result property="typeService" column="type_service"/>
     </resultMap>
 
     <insert id="add" parameterType="com.mindware.workflow.core.entity.comercial.client.Client">
@@ -37,7 +39,10 @@
         address_work,
         login_user,
         type_person,
-        type_client)
+        type_client,
+        registration_city,
+        description,
+        type_service)
         values (
         #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
         #{names},
@@ -54,7 +59,10 @@
         #{addressWork},
         #{loginUser},
         #{typePerson},
-        #{typeClient}
+        #{typeClient},
+        #{registrationCity},
+        #{description},
+        #{typeService}
         )
     </insert>
 
@@ -73,9 +81,10 @@
             email = #{email},
             address_home = #{addressHome},
             address_work = #{addressWork},
-            login_user = #{loginUser},
             type_person = #{typePerson},
-            type_client = #{typeClient}
+            type_client = #{typeClient},
+            description = #{description},
+            type_service = #{typeService}
         where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
 
     </update>
@@ -103,4 +112,9 @@
         where login_user = #{loginUser}
     </select>
 
+    <select id="getByRegistrationCity" resultMap="ClientMap" parameterType="map">
+        select *
+        from comercial.client
+        where registration_city = #{registrationCity}
+    </select>
 </mapper>

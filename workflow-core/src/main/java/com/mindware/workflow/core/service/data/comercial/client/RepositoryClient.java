@@ -18,4 +18,6 @@ public interface RepositoryClient {
     List<Client> getByUser(String loginUser);
 
     List<Client> getAll();
+
+    List<Client> getByRegistrationCity(String registrationCity);
 }

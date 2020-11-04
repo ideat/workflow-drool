@@ -17,4 +17,12 @@ public class DocumentSubmittedDto {
     private Integer thirdYear;
 
     private String originalPhotocoyThirdYear;
+
+    private Integer fourthYear;
+
+    private String originalPhotocopyFourthYear;
+
+    private Integer fiftyYear;
+
+    private String originalPhotocopyFiftyYear;
 }

@@ -56,4 +56,9 @@ public class RepositoryClientMybatis implements RepositoryClient {
     public List<Client> getAll() {
         return mapper.getAll();
     }
+
+    @Override
+    public List<Client> getByRegistrationCity(String registrationCity) {
+        return mapper.getByRegistrationCity(registrationCity);
+    }
 }
