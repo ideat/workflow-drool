@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="salaryAnalysis" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3e33f214-c5c7-493d-98b8-e2128af6ff56">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="typeClient" class="java.lang.String"/>
+	<field name="salary1" class="java.lang.Double"/>
+	<field name="lawDiscounts1" class="java.lang.Double"/>
+	<field name="otherDiscounts1" class="java.lang.Double"/>
+	<field name="otherIncomes1" class="java.lang.Double"/>
+	<field name="availableSalary1" class="java.lang.Double"/>
+	<field name="month2" class="java.lang.String"/>
+	<field name="salary2" class="java.lang.Double"/>
+	<field name="lawDiscounts2" class="java.lang.Double"/>
+	<field name="otherDiscounts2" class="java.lang.Double"/>
+	<field name="otherIncomes2" class="java.lang.Double"/>
+	<field name="availableSalary2" class="java.lang.Double"/>
+	<field name="month3" class="java.lang.String"/>
+	<field name="salary3" class="java.lang.Double"/>
+	<field name="lawDiscounts3" class="java.lang.Double"/>
+	<field name="otherDiscounts3" class="java.lang.Double"/>
+	<field name="otherIncomes3" class="java.lang.Double"/>
+	<field name="availableSalary3" class="java.lang.Double"/>
+	<field name="mountlyAverage" class="java.lang.Double"/>
+	<group name="GroupTypeClient">
+		<groupExpression><![CDATA[$F{typeClient}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<textField>
+					<reportElement x="10" y="10" width="435" height="15" uuid="c4c8d0a9-95b0-4786-99b1-350710072ff2"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{typeClient}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="94" splitType="Stretch">
+			<textField pattern="#,###.00#">
+				<reportElement x="90" y="13" width="60" height="10" uuid="7aa57ec9-90bc-483f-bffe-2f57407ea7c3"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salary1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="13" width="80" height="10" uuid="dab84056-6a37-4636-bd05-58a313e9c832"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Salario Bruto]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="90" y="23" width="60" height="10" uuid="e650f9d4-0a0b-416d-8b34-55b106268054"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lawDiscounts1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="23" width="80" height="10" uuid="4d506f02-3255-4dd2-8fa0-839da07868ea"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(-) Descuentos de Ley]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="90" y="33" width="60" height="10" uuid="8767e69e-6c42-4b38-86bf-d6219d6fbeea"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otherDiscounts1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="33" width="80" height="10" uuid="83d8a8b3-9927-4fc7-85d8-308b2743a66d"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(-) Otros descuentos]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="90" y="43" width="60" height="10" uuid="5a3c4a96-2916-426c-bfe3-f641a1092e5b"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otherIncomes1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="43" width="80" height="10" uuid="ec665612-5867-4ce8-9d3d-0c77ad60762c"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(+)  Otros ingresos]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="90" y="53" width="60" height="10" uuid="edc34326-7972-4e67-8fe9-5c5fa4ccadbc"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{availableSalary1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="53" width="80" height="10" uuid="5c053f46-54eb-45db-bfcf-2136e03ea264"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liquido disponible]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="2" width="140" height="11" uuid="de452ce4-e044-453e-ae58-414267adc9f1"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Mes 1]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="238" y="13" width="60" height="10" uuid="abe9033c-22ec-45cd-9f7b-23e99cf821af"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salary2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="13" width="80" height="10" uuid="5bd4fd6f-695a-4461-bf07-59eac119ed2a"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Salario Bruto]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="238" y="23" width="60" height="10" uuid="416bd3f4-683e-482e-bde3-5d12394a0d32"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lawDiscounts2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="23" width="80" height="10" uuid="70811821-b11c-41d5-bd19-741aa8f3abc4"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(-) Descuentos de Ley]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="238" y="33" width="60" height="10" uuid="15144ca6-3204-4d05-b228-36fabe20acd3"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otherDiscounts2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="33" width="80" height="10" uuid="0b4d25ba-6b2f-4368-a8b1-49c0b513ca9b"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(-) Otros descuentos]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="238" y="43" width="60" height="10" uuid="08c51193-1973-4cdd-b348-1e254323de9f"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otherIncomes2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="43" width="80" height="10" uuid="b0a9294f-718c-4a57-9617-0288541598ea"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(+)  Otros ingresos]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="238" y="53" width="60" height="10" uuid="705f1ce8-a0e8-4a96-8e8e-3939737fa48f"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{availableSalary2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="53" width="80" height="10" uuid="de0837d9-a648-4854-b633-cc908bfcf575"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liquido disponible]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="2" width="140" height="11" uuid="7d895175-bfe7-459f-9ead-1e9aa13a7bd6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Mes 2]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="385" y="13" width="60" height="10" uuid="e6abcd29-ca73-4327-9a41-7ff436a2465a"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salary3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="13" width="80" height="10" uuid="4ce06516-3c44-4e60-8c18-4e6b6183945c"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Salario Bruto]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="385" y="23" width="60" height="10" uuid="a7fde38b-6969-4c47-b0cc-39bd92386ae5"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lawDiscounts3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="23" width="80" height="10" uuid="971494b2-591a-466e-bc0c-304dd444c4cc"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(-) Descuentos de Ley]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="385" y="33" width="60" height="10" uuid="07eff6d5-d2eb-41f6-943f-2cc65a14412a"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otherDiscounts3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="33" width="80" height="10" uuid="a396b640-fb14-4a78-a03d-e94eff312302"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(-) Otros descuentos]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="385" y="43" width="60" height="10" uuid="9b5c302d-fee0-4c06-adcc-d407df47caf4"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otherIncomes3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="43" width="80" height="10" uuid="386c18d3-6189-45e3-86b5-d309a99791c0"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(+)  Otros ingresos]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="385" y="53" width="60" height="10" uuid="d87865e6-0f22-4df9-859f-fc5bf8e31eed"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{availableSalary3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="53" width="80" height="10" uuid="79dd4ebf-d4b1-4195-933a-436ff0a8f6fe"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liquido disponible]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="2" width="140" height="11" uuid="da5c3320-2673-451c-bd69-8e5bfb416b63"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Mes 3]]></text>
+			</staticText>
+			<textField pattern="#,###.00#">
+				<reportElement x="90" y="74" width="60" height="10" uuid="78b56182-5103-4108-a640-ba1a3ca2c3be">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mountlyAverage}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="74" width="80" height="10" uuid="e2c44957-d609-4472-8056-5894e1351a20"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Double" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Promedio Mensual]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>

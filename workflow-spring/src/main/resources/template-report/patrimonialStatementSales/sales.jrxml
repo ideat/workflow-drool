@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sales" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="772" leftMargin="10" rightMargin="10" topMargin="12" bottomMargin="0" uuid="5c85fb62-676f-4ad8-bac3-820ab97d9873">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="path_subreport" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="fullName" class="java.lang.String"/>
+	<field name="activity" class="java.lang.String"/>
+	<field name="date" class="java.util.Date"/>
+	<field name="typeChange" class="java.lang.Double"/>
+	<field name="listMonth1" class="java.util.List"/>
+	<field name="listMonth2" class="java.util.List"/>
+	<field name="listMonth3" class="java.util.List"/>
+	<field name="listMonth4" class="java.util.List"/>
+	<field name="listMonth5" class="java.util.List"/>
+	<field name="listMonth6" class="java.util.List"/>
+	<field name="listSummary" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="240" y="10" width="250" height="20" uuid="eebcbafb-4675-46f2-ae39-c78a88fffb2b"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tabla de Ventas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="3" y="7" width="105" height="29" uuid="2afa6e42-561e-47a4-90cb-cecaa760af27"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="120" y="1" width="290" height="15" uuid="bf37a1a4-d997-4f75-bdd3-664d42b109b9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{fullName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="1" width="74" height="15" uuid="ef03ff10-c530-4bd0-877b-ab5aa2260d1c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="118" y="17" width="242" height="15" uuid="8199c30f-f594-4814-ab2f-ab18bd9ecf3b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{activity}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="17" width="74" height="15" uuid="c28496e1-124f-431e-aef4-3d2ced68b99c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACTIVIDAD:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" x="10" y="0" width="125" height="34" uuid="e5a66402-fb0a-4a70-9b04-8506db78059c">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listMonth1})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "sales_month.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="135" y="0" width="125" height="34" uuid="ee218e7d-e73d-4fd6-8726-6ecef33b07e4">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listMonth2})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "sales_month.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="260" y="0" width="125" height="34" uuid="ee069a72-4197-4d07-a254-011575a3b936">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listMonth3})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "sales_month.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="385" y="0" width="125" height="34" uuid="4af8881a-6afa-48eb-bfaa-455c3028775d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listMonth4})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "sales_month.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="510" y="0" width="125" height="34" uuid="53cc767e-1733-404e-b810-ad4220d0d138">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listMonth5})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "sales_month.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="635" y="0" width="128" height="34" uuid="50b38cec-c40f-4b53-825a-e630f323e984">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listMonth6})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "sales_month.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="86" splitType="Stretch">
+			<subreport>
+				<reportElement x="20" y="2" width="310" height="33" uuid="42380452-e470-4e51-860f-d3d1ef94df1d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listSummary})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "summary_sales.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

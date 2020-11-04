@@ -1,0 +1,10 @@
+package rules;
+import com.mindware.workflow.core.entity.stageHistory.StageHistory;
+import com.mindware.workflow.core.entity.config.RequestStage;
+dialect  "mvel"
+
+rule "valid stage"
+    when
+
+    then
+end

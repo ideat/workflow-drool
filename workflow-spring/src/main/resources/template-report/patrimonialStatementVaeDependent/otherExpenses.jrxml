@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="otherExpenses" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f758cc2b-716a-4053-835e-c610f5c009a1">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="fieldText1" class="java.lang.String"/>
+	<field name="fieldDate1" class="java.time.LocalDate"/>
+	<field name="fieldDouble1" class="java.lang.Double"/>
+	<variable name="totalOtherExpenses" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{fieldDouble1}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="30" width="168" height="10" uuid="029e3c96-17e8-4c39-b2a7-704e89da5a50">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c782275a-3f12-49fb-9b3b-58d77715d7bd"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="30" width="75" height="10" uuid="07d00023-2e48-45be-b05d-16c3665c16dd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f08119c-88a5-420f-8da0-ce08f4d9637c"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha vencimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="30" width="60" height="10" uuid="7bcbdb25-e2fc-4642-8ba4-de281e9f62c5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fae7bbb8-9242-46ee-9dbd-ca794c6725a8"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pago mensual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="17" width="178" height="12" uuid="1fd268a2-4026-42c5-a070-0368560ae967">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Otros Pagos/Deudas/Tarjetas Credito]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="12" y="0" width="168" height="12" uuid="d424a0bc-4439-4c3c-a888-c3580f84a423">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c782275a-3f12-49fb-9b3b-58d77715d7bd"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fieldText1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="180" y="0" width="75" height="12" uuid="86eb90e1-d1bc-480e-8185-75bfee3de457">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f08119c-88a5-420f-8da0-ce08f4d9637c"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fieldDate1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.00#">
+				<reportElement x="255" y="0" width="60" height="12" uuid="1150c3ed-1cd3-4eab-927b-03b607394160">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fae7bbb8-9242-46ee-9dbd-ca794c6725a8"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fieldDouble1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band height="15" splitType="Stretch">
+			<textField pattern="#,###.00#">
+				<reportElement x="255" y="0" width="60" height="12" uuid="bcb67f91-de37-44fb-b774-90421a7e69ed">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalOtherExpenses}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="0" width="64" height="12" uuid="896ed04e-e940-4109-a95c-fddafca8c0ad">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total pagos]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

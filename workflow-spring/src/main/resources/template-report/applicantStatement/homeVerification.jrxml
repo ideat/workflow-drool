@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="homeVerification" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="10" uuid="04b49f0f-7773-4afd-b150-41b5b9f7aa59">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="logo" class="java.lang.String" evaluationTime="Early"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="typeApplicant" class="java.lang.String"/>
+	<field name="city" class="java.lang.String"/>
+	<field name="block" class="java.lang.String"/>
+	<field name="homeAddress" class="java.lang.String"/>
+	<field name="typeHome" class="java.lang.String"/>
+	<field name="workAddress" class="java.lang.String"/>
+	<field name="workzone" class="java.lang.String"/>
+	<group name="groupTypeApplicant">
+		<groupExpression><![CDATA[$F{typeApplicant}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image>
+				<reportElement x="0" y="1" width="105" height="29" uuid="3716e972-3c3d-4b05-8dd1-af52562b2411"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="30" width="555" height="20" backcolor="#B3B1B1" uuid="9aeb9b9b-69a6-4ede-94e5-1b51daa56744">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMULARIO DE VERIFICACION DOMICILIARIA Y LABORAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="266" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<frame>
+				<reportElement x="1" y="5" width="555" height="250" isRemoveLineWhenBlank="true" uuid="8d091f08-adca-4827-8601-002d858191f8">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textField>
+					<reportElement mode="Opaque" x="0" y="0" width="550" height="10" backcolor="#BDBBBB" uuid="911dce8f-ce48-49fa-8046-763d09546aca">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{typeApplicant}.equals("1deudor") ?"PLANO DOMICILIO SOLICITANTE":
+$F{typeApplicant}.equals("2conyuge")  ?"PLANO DOMICILIO CONYUGE":
+$F{typeApplicant}.equals("3codeudor")?"PLANO DOMICILIO CODEUDOR":
+$F{typeApplicant}.equals("4garante")?"PLANO DOMICILIO GARANTE":""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="27" y="220" width="86" height="10" uuid="3184f5bb-ee39-40ba-b473-bf4f5c5b8b4b">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="220" width="27" height="10" uuid="d756db8b-ce7b-4c59-a3a1-a6a99c24f489">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ciudad:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="35" y="230" width="385" height="10" uuid="f322cded-ed76-4d6d-8916-736801bffc39">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{homeAddress}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="230" width="35" height="10" uuid="98def3a6-8fab-4bdb-b1aa-6054eb22642c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Direccion:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="188" y="220" width="362" height="10" uuid="e52ff4b9-9ab4-435d-a35f-0d0b5f490721">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{block}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="113" y="220" width="75" height="10" uuid="13a595ae-2222-4a37-96c6-1502f7eb687b">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Zona/Barrio/Manzano:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="485" y="230" width="65" height="10" uuid="1f724d8a-05ae-4a95-9785-f63dc7781330">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{typeHome}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="420" y="230" width="65" height="10" uuid="1ff05b46-68f8-4f51-af9d-25a64ff9bd64">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo de Vivienda:]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="0" y="10" width="550" height="210" uuid="8e549cc4-032d-483a-8c39-0a643d726e5d"/>
+				</rectangle>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="261" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="-5" width="555" height="254" isRemoveLineWhenBlank="true" uuid="023b745a-a99b-4101-acd2-f6fc16e01e32">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textField>
+					<reportElement mode="Opaque" x="1" y="0" width="550" height="10" backcolor="#BDBBBB" uuid="ed8c9623-8bd5-4165-96b4-39100be25352">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{typeApplicant}.equals("1deudor")  ?"PLANO OFICINA/NEGOCIO/ACTIVIDAD ECONOMICA (SOLICITANTE)":
+$F{typeApplicant}.equals("2conyuge")  ?"PLANO OFICINA/NEGOCIO/ACTIVIDAD ECONOMICA (CONYUGE)":
+$F{typeApplicant}.equals("3codeudor")?"PLANO OFICINA/NEGOCIO/ACTIVIDAD ECONOMICA (CODEUDOR)":
+$F{typeApplicant}.equals("4garante")?"PLANO OFICINA/NEGOCIO/ACTIVIDAD ECONOMICA (GARANTE)":""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="27" y="220" width="86" height="10" uuid="1dceb161-bf8d-4b85-adfc-98ac5a213b43">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="220" width="27" height="10" uuid="f58cb838-33b2-4dbb-b80d-df8c68f192ca">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ciudad:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="35" y="230" width="515" height="10" uuid="4b43d7c9-0d88-42d8-968a-b2dbdd4f8ff3">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{workAddress}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="230" width="35" height="10" uuid="5225ff2b-ad3d-4fc2-ad93-d29bddf020b1">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Direccion:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="188" y="220" width="362" height="10" uuid="b8263607-c044-439f-af8a-44ea00aaa25b">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{workzone}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="113" y="220" width="75" height="10" uuid="ea200e65-3159-4dcd-8bf8-793c43950286">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Zona/Barrio/Manzano:]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="0" y="10" width="550" height="210" uuid="3817a844-84ab-4fd1-94f7-e786f85d417b"/>
+				</rectangle>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="168" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<frame>
+				<reportElement positionType="Float" x="7" y="6" width="542" height="140" uuid="1483ffc5-5e41-4ae9-ada2-03e2fdda2f39"/>
+				<textField>
+					<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="29" y="50" width="150" height="10" backcolor="#BDBBBB" uuid="f28286a7-eefc-42c4-9ec8-b03c1942a0ca">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{typeApplicant}.equals("1deudor") || $F{typeApplicant}.equals("2conyuge")  ?"Firma del Solicitante":
+$F{typeApplicant}.equals("3codeudor")?"Firma del Codeudor":
+$F{typeApplicant}.equals("4garante")?"Firma del Garante":""]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="231" y="50" width="150" height="10" isRemoveLineWhenBlank="true" backcolor="#BDBBBB" uuid="4668c3da-8a35-46cd-b772-6becceda7074">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{typeApplicant}.equals("2conyuge")  ?"Firma del Conyuge":""]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="0" y="0" width="537" height="39" uuid="619a7b71-b99d-474d-8e55-21f40c24dc40"/>
+					<graphicElement>
+						<pen lineWidth="0.0" lineColor="rgba(0, 0, 0, 0.0)"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="30" y="121" width="148" height="18" uuid="bf0392ad-d22b-4ec1-9975-46194393756a"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Firma Verificación Oficial de Negocios ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="231" y="121" width="148" height="18" uuid="e4876951-0388-4909-9011-4cc6ec3b58a3"/>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha verificado:            /               /]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="389" y="50" width="148" height="14" uuid="71ff84a2-d32d-4ee9-a2dd-a56ee02e25f1"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="6" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Fecha declarado:            /               /]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="-1" y="64" width="537" height="45" uuid="c51a68a7-04ad-43d6-809b-ca13630416e8"/>
+					<graphicElement>
+						<pen lineWidth="0.0" lineColor="rgba(0, 0, 0, 0.0)"/>
+					</graphicElement>
+				</rectangle>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

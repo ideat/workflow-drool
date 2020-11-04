@@ -1,0 +1,61 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.paymentPlan.MapperPaymentPlan">
+    <resultMap id="PaymentPlanMap" type="com.mindware.workflow.core.entity.PaymentPlan">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="quotaNumber" column="quota_number"/>
+        <result property="paymentDate" column="payment_date"/>
+        <result property="capital" column="capital"/>
+        <result property="interest" column="interest"/>
+        <result property="secureCharge" column="secure_charge"/>
+        <result property="otherCharge" column="other_charge"/>
+        <result property="fee" column="fee"/>
+        <result property="residue" column="residue"/>
+        <result property="itf" column="itf"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.PaymentPlan">
+        insert into workflow.payment_plan(
+            id,
+            number_request,
+            quota_number,
+            payment_date,
+            capital,
+            interest,
+            secure_charge,
+            other_charge,
+            fee,
+            residue,
+            itf)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{numberRequest},
+                   #{quotaNumber},
+                   #{paymentDate},
+                   #{capital},
+                   #{interest},
+                   #{secureCharge},
+                   #{otherCharge},
+                   #{fee},
+                   #{residue},
+                   #{itf}
+               )
+    </insert>
+
+
+    <select id="getPaymentPlanByNumberRequest" resultMap="PaymentPlanMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.payment_plan
+        where number_request = #{numberRequest}
+        order by quota_number
+        ]]>
+    </select>
+
+   <delete id="delete" parameterType="map">
+       delete from workflow.payment_plan
+       where number_request = #{numberRequest}
+   </delete>
+
+</mapper>

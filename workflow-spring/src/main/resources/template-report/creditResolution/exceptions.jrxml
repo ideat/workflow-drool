@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="exceptions" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="009f5248-0a63-406e-b31e-bc556577b69d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="politicalNumber" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="50" height="10" uuid="d1c81744-6ed6-4bac-a40f-444bf599bea5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52a69922-f791-49ca-952e-20e3cd08c035"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cod. Excepcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="12" width="500" height="10" uuid="00a0b135-e04b-43a4-9200-60c8d4baee14">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aff144bf-b9ac-486b-9949-811e61049763"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Excepcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="300" height="10" uuid="01aa09ab-f893-4120-ad30-c36cd8e23c65">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[9. EXCEPCIONES PERMANENTES:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="36" uuid="655d6976-6219-40c1-8cb7-b28f6c0ec249">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52a69922-f791-49ca-952e-20e3cd08c035"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{politicalNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="500" height="36" uuid="12258f59-586d-4498-af9f-6720e1fa5b9f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aff144bf-b9ac-486b-9949-811e61049763"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

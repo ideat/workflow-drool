@@ -1,0 +1,29 @@
+package com.mindware.workflow.drools;
+import com.mindware.workflow.core.entity.stageHistory.StageHistory;
+import com.mindware.workflow.core.entity.config.RequestStage;
+import com.mindware.workflow.core.entity.config.States;
+
+rule "verify state stage is observed or not finished"
+    dialect  "mvel"
+    agenda-group "verify all Stage finished"
+    when
+        StageHistory(state=="OBSERVADO");
+    then
+        insert(Boolean.FALSE)
+end
+
+rule "verify state stage is finish state"
+    dialect  "mvel"
+    agenda-group "verify all Stage finished"
+    when
+        States(!isFinished() )
+
+    then
+        insert(Boolean.FALSE);
+end
+
+
+
+
+
+

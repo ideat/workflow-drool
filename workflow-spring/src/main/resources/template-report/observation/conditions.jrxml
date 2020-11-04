@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conditions" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1989511b-820c-478f-9392-ddefbceb0645">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="category" class="java.lang.String"/>
+	<field name="condition" class="java.lang.String"/>
+	<field name="observation" class="java.lang.String"/>
+	<group name="GroupCategory">
+		<groupExpression><![CDATA[$F{category}]]></groupExpression>
+		<groupHeader>
+			<band height="34">
+				<textField>
+					<reportElement x="0" y="0" width="360" height="30" uuid="384c04e8-c195-4a6c-a470-f58dbbdd5102"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="160" height="30" backcolor="#D9D9D9" uuid="5ddd6bbe-516e-414f-a5f8-cf62cf6396fe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="953bcc9f-f255-4877-a513-d3998f72a7a9"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{condition}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="0" width="384" height="30" uuid="2d2b94f4-662c-4b11-8110-de303e3bc0b1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="569397d0-378b-4fac-96a1-bb0b8b4e97f4"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observation}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="10" width="180" height="30" uuid="c98a38e6-1049-42c4-9686-e95a8abe2e93"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Nota: Las frases con numeración corresponden a observaciones.  Las frases con (*) corresponden a: recomendaciones, comentarios y/o consultas. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="50" width="70" height="10" uuid="9df78f70-c009-4735-94ad-6ea47860b2d9"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORA FIN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="60" width="70" height="10" uuid="9d20aed3-e035-408b-9acd-f6ef9ac7daa0"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DEVOLUCION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="50" width="30" height="20" uuid="09bea7ef-c403-4ec9-a5ee-37a68a867e6e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRMA SELLO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="230" y="60" width="169" height="1" uuid="91f00f47-36fd-4cfe-a9ca-9348fd6984ea"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

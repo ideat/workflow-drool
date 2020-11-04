@@ -1,0 +1,91 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.exceptions.MapperExceptionsApplicantCreditRequestDto">
+    <resultMap id="ExceptionsApplicantCreditRequestDtotMap" type="com.mindware.workflow.core.service.data.exceptions.dto.ExceptionsApplicantCreditRequestDto">
+
+        <result property="numberRequest" column="number_request"/>
+        <result property="namesApplicant" column="names_applicant"/>
+        <result property="lastNamesApplicant" column="last_names_applicant"/>
+        <result property="amount" column="amount"/>
+        <result property="currency" column="currency"/>
+        <result property="city" column="city"/>
+        <result property="typeCredit" column="type_credit"/>
+        <result property="typeGuarantee" column="type_guarantee"/>
+        <result property="codeException" column="code_exception"/>
+        <result property="description" column="description"/>
+        <result property="justification" column="justification"/>
+        <result property="daysElapsed" column="days_elapsed"/>
+        <result property="limitTime" column="limit_time"/>
+        <result property="remainingDays" column="remaining_days"/>
+        <result property="loginUser" column="login_user"/>
+        <result property="email" column="email"/>
+        <result property="riskType" column="risk_type"/>
+    </resultMap>
+
+
+    <select id="getAll" resultMap="ExceptionsApplicantCreditRequestDtotMap" parameterType="map">
+        <![CDATA[
+        SELECT c.number_request, (a.first_name || ' ' || a.second_name) as names_applicant,
+               (a.last_name || ' ' || a.mother_last_name) as last_names_applicant, c.amount,
+               c.currency, o.city, c.type_credit, c.type_guarantee,ec.code_exception, e.description, ec.justification,
+               (CURRENT_DATE - ec.register) as days_elapsed, e.limit_time, (limit_time - (CURRENT_DATE - ec.register)) as remaining_days,
+               c.login_user, u.email, e.risk_type
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (c.id_office = o.internal_code)
+                 inner join workflow.exceptions_creditrequest ec on (ec.number_request=c.number_request)
+                 inner join workflow.exceptions e on (ec.code_exception=e.internal_code)
+                 inner join public.users u on (u.login = c.login_user)
+        where ca.type_relation = 'deudor'
+          and ec.state not in ('REGULARIZADA','RECHAZADA')
+          and e.type_exception = 'TEMPORAL'
+        order by c.number_request
+        ]]>
+    </select>
+
+    <select id="getByCity" resultMap="ExceptionsApplicantCreditRequestDtotMap">
+        <![CDATA[
+        SELECT c.number_request, (a.first_name || ' ' || a.second_name) as names_applicant,
+               (a.last_name || ' ' || a.mother_last_name) as last_names_applicant, c.amount,
+               c.currency, o.city, c.type_credit, c.type_guarantee,ec.code_exception, e.description, ec.justification,
+               (CURRENT_DATE - ec.register) as days_elapsed, e.limit_time, (limit_time - (CURRENT_DATE - ec.register)) as remaining_days,
+               c.login_user, u.email, e.risk_type
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (c.id_office = o.internal_code)
+                 inner join workflow.exceptions_creditrequest ec on (ec.number_request=c.number_request)
+                 inner join workflow.exceptions e on (ec.code_exception=e.internal_code)
+                 inner join public.users u on (u.login = c.login_user)
+        where ca.type_relation = 'deudor'
+          and ec.state not in ('REGULARIZADA','RECHAZADA')
+          and e.type_exception = 'TEMPORAL'
+          and o.city = #{city}
+        order by c.number_request
+        ]]>
+    </select>
+
+    <select id="getByUser" resultMap="ExceptionsApplicantCreditRequestDtotMap" parameterType="map">
+        <![CDATA[
+        SELECT c.number_request, (a.first_name || ' ' || a.second_name) as names_applicant,
+               (a.last_name || ' ' || a.mother_last_name) as last_names_applicant, c.amount,
+               c.currency, o.city, c.type_credit, c.type_guarantee,ec.code_exception, e.description, ec.justification,
+               (CURRENT_DATE - ec.register) as days_elapsed, e.limit_time, (limit_time - (CURRENT_DATE - ec.register)) as remaining_days,
+               c.login_user, u.email, e.risk_type
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (c.id_office = o.internal_code)
+                 inner join workflow.exceptions_creditrequest ec on (ec.number_request=c.number_request)
+                 inner join workflow.exceptions e on (ec.code_exception=e.internal_code)
+                 inner join public.users u on (u.login = c.login_user)
+        where ca.type_relation = 'deudor'
+          and ec.state not in ('REGULARIZADA','RECHAZADA')
+          and e.type_exception = 'TEMPORAL'
+          and c.login_user = #{user}
+        order by c.number_request
+        ]]>
+    </select>
+
+</mapper>

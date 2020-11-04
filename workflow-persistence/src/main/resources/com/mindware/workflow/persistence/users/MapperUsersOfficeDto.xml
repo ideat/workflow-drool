@@ -1,0 +1,69 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.users.MapperUsersOfficeDto">
+    <resultMap id="UserOfficeMap" type="com.mindware.workflow.core.service.data.users.dto.UsersOfficeDto">
+        <result property="nameUser" column="name_user"/>
+        <result property="stateUser" column="state_user"/>
+        <result property="rol" column="rol"/>
+        <result property="email" column="email"/>
+        <result property="loginUser" column="login_user"/>
+        <result property="city" column="city"/>
+        <result property="province" column="province"/>
+        <result property="typeOffice" column="type_office"/>
+        <result property="signatorie" column="signatorie"/>
+        <result property="internalCodeOffice" column="internal_code_office"/>
+
+    </resultMap>
+
+
+    <select id="getByCity" resultMap="UserOfficeMap">
+        <![CDATA[
+        select  u.names as name_user, u.state as state_user, u.rol, u.email
+             , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
+        from public.users u
+                inner join public.office o on (u.code_office = o.internal_code)
+        where o.city = #{city}
+        ]]>
+    </select>
+
+    <select id="getByInternalCodeOffice" resultMap="UserOfficeMap" parameterType="map">
+        <![CDATA[
+        select  u.names as name_user, u.state as state_user, u.rol, u.email
+             , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+        where o.internal_code = #{internalCodeOffice}
+        ]]>
+    </select>
+
+    <select id="getByRol" resultMap="UserOfficeMap" parameterType="map">
+        <![CDATA[
+        select  u.names as name_user, u.state as state_user, u.rol, u.email
+             , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+        where u.rol = #{rol}
+        ]]>
+    </select>
+
+    <select id="getAll" resultMap="UserOfficeMap" parameterType="map">
+        <![CDATA[
+        select  u.names as name_user, u.state as state_user, u.rol, u.email
+             , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+        ]]>
+    </select>
+
+    <select id="getByCityAndRol" resultMap="UserOfficeMap" parameterType="map">
+        <![CDATA[
+        select  u.names as name_user, u.state as state_user, u.rol, u.email
+             , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+        where u.rol = #{rol}
+        and o.city = #{city}
+        ]]>
+    </select>
+
+</mapper>

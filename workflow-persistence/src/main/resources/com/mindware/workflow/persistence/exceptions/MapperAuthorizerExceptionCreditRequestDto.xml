@@ -1,0 +1,146 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.exceptions.MapperAuthorizerExceptionCreditRequestDto">
+    <resultMap id="AuthorizerExceptionsCreditRequestMap" type="com.mindware.workflow.core.service.data.exceptions.dto.AuthorizerExceptionsCreditRequestDto">
+
+        <result property="numberRequest" column="number_request"/>
+        <result property="numberApplicant" column="number_applicant"/>
+        <result property="amount" column="amount"/>
+        <result property="currency" column="currency"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="stateCreditRequest" column="state_creditrequest"/>
+        <result property="totalExceptionsProposal" column="total_exceptions_proposal"/>
+        <result property="totalExceptionsRejected" column="total_exceptions_rejected"/>
+        <result property="totalExceptionsApproved" column="total_exceptions_approved"/>
+        <result property="city" column="city"/>
+        <result property="loginUser" column="login_user"/>
+    </resultMap>
+
+
+    <select id="getByCity" resultMap="AuthorizerExceptionsCreditRequestMap" parameterType="map">
+        <![CDATA[
+        select distinct ca.number_applicant, ec.number_request,c.amount, c.currency, (a.first_name || ' ' || a.second_name) as first_name
+             , (a.last_name || ' ' || a.mother_last_name) as last_name, c.state as state_creditrequest
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request) as total_exceptions
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'APROBADA') AS total_exceptions_approved
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'RECHAZADA') AS total_exceptions_rejected
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'PROPUESTA')  AS total_exceptions_proposal, o.city, c.login_user
+        from workflow.creditrequest c
+                 inner join workflow.exceptions_creditrequest ec on (c.number_request = ec.number_request)
+                 INNER JOIN workflow.creditrequest_applicant ca on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 INNER join workflow.applicant a on (ca.number_applicant = a.number_applicant)
+                 INNER JOIN public.office o on (c.id_office = o.internal_code)
+        where o.city = #{city}
+        ]]>
+    </select>
+
+    <select id="getAll" resultMap="AuthorizerExceptionsCreditRequestMap">
+        <![CDATA[
+        select distinct ca.number_applicant, ec.number_request,c.amount, c.currency, (a.first_name || ' ' || a.second_name) as first_name
+             , (a.last_name || ' ' || a.mother_last_name) as last_name, c.state as state_creditrequest
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request) as total_exceptions
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'APROBADA') AS total_exceptions_approved
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'RECHAZADA') AS total_exceptions_rejected
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'PROPUESTA')  AS total_exceptions_proposal, o.city, c.login_user
+        from workflow.creditrequest c
+                 inner join workflow.exceptions_creditrequest ec on (c.number_request = ec.number_request)
+                 INNER JOIN workflow.creditrequest_applicant ca on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 INNER join workflow.applicant a on (ca.number_applicant = a.number_applicant)
+                 INNER JOIN public.office o on (c.id_office = o.internal_code)
+        ]]>
+    </select>
+
+    <select id="getByUser" resultMap="AuthorizerExceptionsCreditRequestMap" parameterType="map">
+        <![CDATA[
+        select distinct ca.number_applicant, ec.number_request,c.amount, c.currency, (a.first_name || ' ' || a.second_name) as first_name
+             , (a.last_name || ' ' || a.mother_last_name) as last_name, c.state as state_creditrequest
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request) as total_exceptions
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'APROBADA') AS total_exceptions_approved
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'RECHAZADA') AS total_exceptions_rejected
+             , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'PROPUESTA')  AS total_exceptions_proposal, o.city, c.login_user
+        from workflow.creditrequest c
+                 inner join workflow.exceptions_creditrequest ec on (c.number_request = ec.number_request)
+                 INNER JOIN workflow.creditrequest_applicant ca on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 INNER join workflow.applicant a on (ca.number_applicant = a.number_applicant)
+                 INNER JOIN public.office o on (c.id_office = o.internal_code)
+        where c.login_user = #{loginUser}
+        ]]>
+    </select>
+
+    <select id="getByCityCurrencyAmounts" resultMap="AuthorizerExceptionsCreditRequestMap" parameterType="map">
+        <![CDATA[
+        select distinct ca.number_applicant, ec.number_request,c.amount, c.currency, (a.first_name || ' ' || a.second_name) as first_name
+                      , (a.last_name || ' ' || a.mother_last_name) as last_name, c.state as state_creditrequest
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request) as total_exceptions
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'APROBADA') AS total_exceptions_approved
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'RECHAZADA') AS total_exceptions_rejected
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'PROPUESTA')  AS total_exceptions_proposal, o.city, c.login_user
+        from workflow.creditrequest c
+                 inner join workflow.exceptions_creditrequest ec on (c.number_request = ec.number_request)
+                 INNER JOIN workflow.creditrequest_applicant ca on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 INNER join workflow.applicant a on (ca.number_applicant = a.number_applicant)
+                 INNER JOIN public.office o on (c.id_office = o.internal_code)
+        where o.city = #{city} and c.currency = #{currency} and c.amount >= #{minimum} and c.amount<= #{maximum}
+        ]]>
+    </select>
+
+    <select id="getByCurrencyAmounts" resultMap="AuthorizerExceptionsCreditRequestMap" parameterType="map">
+        <![CDATA[
+        select distinct ca.number_applicant, ec.number_request,c.amount, c.currency, (a.first_name || ' ' || a.second_name) as first_name
+                      , (a.last_name || ' ' || a.mother_last_name) as last_name, c.state as state_creditrequest
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request) as total_exceptions
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'APROBADA') AS total_exceptions_approved
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'RECHAZADA') AS total_exceptions_rejected
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'PROPUESTA')  AS total_exceptions_proposal, o.city, c.login_user
+        from workflow.creditrequest c
+                 inner join workflow.exceptions_creditrequest ec on (c.number_request = ec.number_request)
+                 INNER JOIN workflow.creditrequest_applicant ca on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 INNER join workflow.applicant a on (ca.number_applicant = a.number_applicant)
+                 INNER JOIN public.office o on (c.id_office = o.internal_code)
+        where c.currency = #{currency} and c.amount >= #{minimum} and c.amount<= #{maximum}
+        ]]>
+    </select>
+
+    <select id="getByRiskType" resultMap="AuthorizerExceptionsCreditRequestMap" parameterType="map">
+
+        select distinct ca.number_applicant, ec.number_request,c.amount, c.currency, (a.first_name || ' ' || a.second_name) as first_name
+                      , (a.last_name || ' ' || a.mother_last_name) as last_name, c.state as state_creditrequest
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request) as total_exceptions
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'APROBADA') AS total_exceptions_approved
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'RECHAZADA') AS total_exceptions_rejected
+                      , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'PROPUESTA')  AS total_exceptions_proposal, o.city, c.login_user
+        from workflow.creditrequest c
+                 inner join workflow.exceptions_creditrequest ec on (c.number_request = ec.number_request)
+                 INNER JOIN workflow.creditrequest_applicant ca on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 INNER join workflow.applicant a on (ca.number_applicant = a.number_applicant)
+                 INNER JOIN public.office o on (c.id_office = o.internal_code)
+        where ec.risk_type in
+        <foreach item="item" index="index" collection="riskType"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getByRiskTypeCity" resultMap="AuthorizerExceptionsCreditRequestMap" parameterType="map">
+
+        select distinct ca.number_applicant, ec.number_request,c.amount, c.currency, (a.first_name || ' ' || a.second_name) as first_name
+        , (a.last_name || ' ' || a.mother_last_name) as last_name, c.state as state_creditrequest
+        , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request) as total_exceptions
+        , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'APROBADA') AS total_exceptions_approved
+        , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'RECHAZADA') AS total_exceptions_rejected
+        , (select count(*) from workflow.exceptions_creditrequest ec1 where ec1.number_request = ec.number_request and ec1.state = 'PROPUESTA')  AS total_exceptions_proposal, o.city, c.login_user
+        from workflow.creditrequest c
+        inner join workflow.exceptions_creditrequest ec on (c.number_request = ec.number_request)
+        INNER JOIN workflow.creditrequest_applicant ca on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+        INNER join workflow.applicant a on (ca.number_applicant = a.number_applicant)
+        INNER JOIN public.office o on (c.id_office = o.internal_code)
+        where ec.risk_type in
+        <foreach item="item" index="index" collection="riskType"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and o.city = #{city}
+    </select>
+
+</mapper>

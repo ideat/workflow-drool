@@ -1,0 +1,106 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.comercial.client.MapperClient">
+    <resultMap id="ClientMap" type="com.mindware.workflow.core.entity.comercial.client.Client">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="names" column="names"/>
+        <result property="lastNames" column="last_names"/>
+        <result property="idCard" column="id_card"/>
+        <result property="extension" column="extension"/>
+        <result property="registerDate" column="register_date"/>
+        <result property="cellPhone" column="cell_phone"/>
+        <result property="homePhone" column="home_phone"/>
+        <result property="size" column="size"/>
+        <result property="caedec" column="caedec"/>
+        <result property="email" column="email"/>
+        <result property="addressHome" column="address_home"/>
+        <result property="addressWork" column="address_work" />
+        <result property="loginUser" column="login_user"/>
+        <result property="typePerson" column="type_person"/>
+        <result property="typeClient" column="type_client"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.comercial.client.Client">
+        insert into comercial.client(
+        id,
+        names,
+        last_names,
+        id_card,
+        extension,
+        register_date,
+        cell_phone,
+        home_phone,
+        size,
+        caedec,
+        email,
+        address_home,
+        address_work,
+        login_user,
+        type_person,
+        type_client)
+        values (
+        #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+        #{names},
+        #{lastNames},
+        #{idCard},
+        #{extension},
+        #{registerDate},
+        #{cellPhone},
+        #{homePhone},
+        #{size},
+        #{caedec},
+        #{email},
+        #{addressHome},
+        #{addressWork},
+        #{loginUser},
+        #{typePerson},
+        #{typeClient}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.comercial.client.Client">
+        update comercial.client
+        set
+            names = #{names},
+            last_names = #{lastNames},
+            id_card = #{idCard},
+            extension = #{extension},
+            register_date = #{registerDate},
+            cell_phone = #{cellPhone},
+            home_phone = #{homePhone},
+            size = #{size},
+            caedec = #{caedec},
+            email = #{email},
+            address_home = #{addressHome},
+            address_work = #{addressWork},
+            login_user = #{loginUser},
+            type_person = #{typePerson},
+            type_client = #{typeClient}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getAll" resultMap="ClientMap">
+        select *
+        from comercial.client
+    </select>
+
+    <select id="getById" resultMap="ClientMap" parameterType="map">
+        select *
+        from comercial.client
+        where id = #{id,typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </select>
+
+    <select id="getByIdCardComplete" resultMap="ClientMap" parameterType="map">
+        select *
+        from comercial.client
+        where id_card = #{idCard} and extension = #{extension}
+    </select>
+
+    <select id="getByUser" resultMap="ClientMap" parameterType="map">
+        select *
+        from comercial.client
+        where login_user = #{loginUser}
+    </select>
+
+</mapper>

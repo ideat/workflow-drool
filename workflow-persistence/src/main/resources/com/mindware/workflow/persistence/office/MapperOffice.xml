@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.office.MapperOffice">
+    <resultMap id="OfficeMap" type="com.mindware.workflow.core.entity.config.Office">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="idRoot" column="id_root"  typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="name" column="name"/>
+        <result property="internalCode" column="internal_code"/>
+        <result property="address" column="address"/>
+        <result property="phone" column="phone"/>
+        <result property="city" column="city"/>
+        <result property="province" column="province"/>
+        <result property="typeOffice" column="type_office"/>
+        <result property="signatorie" column="signatorie"/>
+    </resultMap>
+
+
+
+    <insert id="addOffice" parameterType="com.mindware.workflow.core.entity.config.Office">
+        insert into public.office(
+            id,
+            id_root,
+            internal_code,
+            name,
+            address,
+            phone,
+            city,
+            province,
+            type_office,
+            signatorie)
+        values (
+            #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+            #{idRoot, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+            #{internalCode},
+            #{name},
+            #{address},
+            #{phone},
+            #{city},
+            #{province},
+            #{typeOffice},
+            #{signatorie}::json
+         )
+    </insert>
+
+    <update id="updateOffice" parameterType="com.mindware.workflow.core.entity.config.Office">
+        update public.office
+        set
+            name = #{name},
+            address = #{address},
+            city = #{city},
+            type_office = #{typeOffice},
+            province = #{province},
+            phone = #{phone},
+            internal_code = #{internalCode},
+            id_root = #{idRoot, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </update>
+
+    <update id="updateOfficeSignatorie" parameterType="com.mindware.workflow.core.entity.config.Office">
+        update public.office
+        set
+            signatorie = #{signatorie}::json
+
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </update>
+
+    <select id="getOfficeByInternalCode" parameterType="map" resultMap="OfficeMap">
+        <![CDATA[
+            select *
+            from public.office
+            where internal_code = #{internalCode}
+        ]]>
+    </select>
+
+    <select id="getOfficeById" parameterType="map" resultMap="OfficeMap">
+        <![CDATA[
+        select *
+        from public.office
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getAllOffices" resultMap="OfficeMap">
+        <![CDATA[
+        select *
+        from public.office
+
+        ]]>
+    </select>
+
+    <select id="getOfficeCity" resultMap="OfficeMap">
+        <![CDATA[
+        select distinct city
+        from public.office
+        ]]>
+    </select>
+</mapper>

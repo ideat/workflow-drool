@@ -1,0 +1,70 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.config.MapperCityProvince">
+    <resultMap id="CityProvinceMap" type="com.mindware.workflow.core.entity.config.CityProvince">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="city" column="city"/>
+        <result property="provinces" column="provinces"/>
+        <result property="externalCode" column="external_code"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.config.CityProvince">
+        insert into public.city_provinces(
+            id,
+            city,
+            provinces,
+            external_code)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{city},
+                   #{provinces}::json,
+                   #{externalCode}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.config.CityProvince">
+        update public.city_provinces
+        set
+            city = #{city},
+            provinces = #{provinces}::json,
+            external_code = #{externalCode}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getAll" resultMap="CityProvinceMap" parameterType="map">
+
+        select *
+        from public.city_provinces
+        order by city
+    </select>
+
+    <select id="getByCity" resultMap="CityProvinceMap" parameterType="map">
+        <![CDATA[
+        select *
+        from public.city_provinces
+        where city = #{city}
+        ]]>
+    </select>
+
+    <select id="getByExternalCode" resultMap="CityProvinceMap" parameterType="map">
+        <![CDATA[
+        select *
+        from public.city_provinces
+        where external_code = #{externalCode}
+        ]]>
+    </select>
+
+    <select id="getById" resultMap="CityProvinceMap" parameterType="map">
+        <![CDATA[
+        select *
+        from public.city_provinces
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <delete id="delete" parameterType="map">
+        delete from public.city_provinces
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </delete>
+</mapper>

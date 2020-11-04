@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.creditRequestApplicantDto.MapperCreditRequestApplicantDto">
+    <resultMap id="CreditRequestApplicantDtoMap" type="com.mindware.workflow.core.service.data.creditRequest.dto.CreditRequestApplicantdto">
+        <result property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="idCreditRequest" column="id_credit_request" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="idApplicant" column="id_applicant" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="amount" column="amount"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="currency" column="currency"/>
+        <result property="requestDate" column="request_date"/>
+        <result property="state" column="state"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="homeaddress" column="home_address"/>
+        <result property="idCard" column="id_card"/>
+        <result property="idCardExpedition" column="id_card_expedition"/>
+        <result property="civilStatus" column="civil_status"/>
+        <result property="workaddress" column="workaddress"/>
+        <result property="profession" column="profession"/>
+        <result property="city" column="city"/>
+        <result property="province" column="province"/>
+        <result property="block" column="block"/>
+        <result property="typeHome" column="type_home"/>
+
+        <result property="loginUser" column="login_user"/>
+        <result property="numberApplicant" column="number_applicant"/>
+        <result property="typeRelation" column="type_relation"/>
+        <result property="numberApplicantSpouse" column="number_applicant_spouse"/>
+        <result property="firstNameSpouse" column="first_name_spouse"/>
+        <result property="lastNameSpouse" column="last_name_spouse"/>
+        <result property="homeaddressSpouse" column="home_address_spouse"/>
+        <result property="idCardSpouse" column="id_card_spouse"/>
+        <result property="idCardExpeditionSpouse" column="id_card_expedition_spouse"/>
+        <result property="civilStatusSpouse" column="civil_status_spouse"/>
+        <result property="workaddressSpouse" column="workaddress_spouse"/>
+        <result property="professionSpouse" column="profession_spouse"/>
+        <result property="citySpouse" column="city_spouse"/>
+        <result property="provinceSpouse" column="province_spouse"/>
+        <result property="blockSpouse" column="block_spouse"/>
+        <result property="typeHomeSpouse" column="type_home_spouse"/>
+        <result property="cityOffice" column="city_office"/>
+        <result property="nameOffice" column="name_office"/>
+        <result property="codeOffice" column="code_office"/>
+        <result property="typeCredit" column="type_credit"/>
+        <result property="objectCredit" column="object_credit"/>
+    </resultMap>
+
+
+    <select id="getAll" resultMap="CreditRequestApplicantDtoMap">
+        select c.id as id_credit_request, a.id as id_applicant
+        , c.amount, c.number_request, c.request_date, c.state
+        , trim(a.first_name|| ' ' || a.second_name) as first_name
+        , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+        , a.home_address, a.id_card, a.id_card_expedition, a.civil_status
+        , a.workaddress, a.profession, a.city, a.province, a.block, a.type_home
+        , c.login_user, a.number_applicant, c.currency,ca.type_relation
+        , ca.id,a.number_applicant_spouse
+        , trim(a1.first_name|| ' ' || a1.second_name) as first_name_spouse
+        , trim( a1.last_name || ' ' || a1.mother_last_name) as last_name_spouse
+        , a1.home_address as home_address_spouse, a1.id_card as id_card_spouse
+        , a1.id_card_expedition as id_card_expedition_spouse, a1.civil_status as civil_status_spouse
+        , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
+        , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
+        , a1.type_home as type_home_spouse, c.type_credit, c.object_credit
+        from workflow.creditrequest_applicant ca
+        inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+        inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+        LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+        order by c.number_request
+    </select>
+
+    <select id="getAllByCity" resultMap="CreditRequestApplicantDtoMap" parameterType="map">
+        select c.id as id_credit_request, a.id as id_applicant
+             , c.amount, c.number_request, c.request_date, c.state
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , a.home_address, a.id_card, a.id_card_expedition, a.civil_status
+             , a.workaddress, a.profession, a.city, a.province, a.block, a.type_home
+             , c.login_user, a.number_applicant, c.currency,ca.type_relation
+             , ca.id,a.number_applicant_spouse
+             , trim(a1.first_name|| ' ' || a1.second_name) as first_name_spouse
+             , trim( a1.last_name || ' ' || a1.mother_last_name) as last_name_spouse
+             , a1.home_address as home_address_spouse, a1.id_card as id_card_spouse
+             , a1.id_card_expedition as id_card_expedition_spouse, a1.civil_status as civil_status_spouse
+             , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
+             , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
+             , a1.type_home as type_home_spouse, c.type_credit, c.object_credit,o.city as city_office
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+                 INNER JOIN public.users u on (c.login_user = u.login)
+                 INNER join public.office o on (u.code_office = o.internal_code)
+        Where o.city = #{cityOffice}
+        order by c.number_request
+    </select>
+
+
+    <select id="getByLoginUser" resultMap="CreditRequestApplicantDtoMap" parameterType="map">
+        select c.id as id_credit_request, a.id as id_applicant
+             , c.amount, c.number_request, c.request_date, c.state
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , a.home_address, a.id_card, a.id_card_expedition, a.civil_status
+             , a.workaddress, a.profession, a.city, a.province, a.block, a.type_home
+             , c.login_user, a.number_applicant, c.currency,ca.type_relation
+             , ca.id,a.number_applicant_spouse
+             , trim(a1.first_name|| ' ' || a1.second_name) as first_name_spouse
+             , trim( a1.last_name || ' ' || a1.mother_last_name) as last_name_spouse
+             , a1.home_address as home_address_spouse, a1.id_card as id_card_spouse
+             , a1.id_card_expedition as id_card_expedition_spouse, a1.civil_status as civil_status_spouse
+             , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
+             , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
+             , a1.type_home as type_home_spouse, c.type_credit, c.object_credit
+             , o.city as city_office, o.name as name_office, o.internal_code as code_office
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+                 INNER JOIN public.users u on (c.login_user = u.login)
+                 INNER join public.office o on (u.code_office = o.internal_code)
+        where c.login_user = #{loginUser}
+        order by c.number_request
+    </select>
+
+    <select id="getByLoginUserNumberRequest" resultMap="CreditRequestApplicantDtoMap" parameterType="map">
+        select c.id as id_credit_request, a.id as id_applicant
+             , c.amount, c.number_request, c.request_date, c.state
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , a.home_address, a.id_card, a.id_card_expedition, a.civil_status
+             , a.workaddress, a.profession, a.city, a.province, a.block, a.type_home
+             , c.login_user, a.number_applicant, c.currency,ca.type_relation
+             , ca.id,a.number_applicant_spouse
+             , trim(a1.first_name|| ' ' || a1.second_name) as first_name_spouse
+             , trim( a1.last_name || ' ' || a1.mother_last_name) as last_name_spouse
+             , a1.home_address as home_address_spouse, a1.id_card as id_card_spouse
+             , a1.id_card_expedition as id_card_expedition_spouse, a1.civil_status as civil_status_spouse
+             , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
+             , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
+             , a1.type_home as type_home_spouse, c.type_credit, c.object_credit
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+        where c.login_user = #{loginUser} and ca.number_request = #{numberRequest}
+    </select>
+
+    <select id="getByNumberRequest" resultMap="CreditRequestApplicantDtoMap" parameterType="map">
+        select c.id as id_credit_request, a.id as id_applicant
+             , c.amount, c.number_request, c.request_date, c.state
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , a.home_address, a.id_card, a.id_card_expedition, a.civil_status
+             , a.workaddress, a.profession, a.city, a.province, a.block, a.type_home
+             , c.login_user, a.number_applicant, c.currency,ca.type_relation
+             , ca.id,a.number_applicant_spouse
+             , trim(a1.first_name|| ' ' || a1.second_name) as first_name_spouse
+             , trim( a1.last_name || ' ' || a1.mother_last_name) as last_name_spouse
+             , a1.home_address as home_address_spouse, a1.id_card as id_card_spouse
+             , a1.id_card_expedition as id_card_expedition_spouse, a1.civil_status as civil_status_spouse
+             , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
+             , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
+             , a1.type_home as type_home_spouse, c.type_credit, c.object_credit
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+        where  ca.number_request = #{numberRequest}
+    </select>
+
+
+    <select id="getByLoginUserTypeRelation" resultMap="CreditRequestApplicantDtoMap" parameterType="map">
+        select c.id as id_credit_request, a.id as id_applicant
+             , c.amount, c.number_request, c.request_date, c.state
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , a.home_address, a.id_card, a.id_card_expedition, a.civil_status
+             , a.workaddress, a.profession, a.city, a.province, a.block, a.type_home
+             , c.login_user, a.number_applicant, c.currency,ca.type_relation
+             , ca.id,a.number_applicant_spouse
+             , trim(a1.first_name|| ' ' || a1.second_name) as first_name_spouse
+             , trim( a1.last_name || ' ' || a1.mother_last_name) as last_name_spouse
+             , a1.home_address as home_address_spouse, a1.id_card as id_card_spouse
+             , a1.id_card_expedition as id_card_expedition_spouse, a1.civil_status as civil_status_spouse
+             , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
+             , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
+             , a1.type_home as type_home_spouse, c.type_credit, c.object_credit
+             , o.city as city_office, o.name as name_office, o.internal_code as code_office
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+                 INNER JOIN public.users u on (c.login_user = u.login)
+                 INNER join public.office o on (u.code_office = o.internal_code)
+        where c.login_user like #{loginUser} and ca.type_relation = #{typeRelation}
+        order by c.number_request
+    </select>
+
+    <select id="getByNumberRequestTypeRelation" resultMap="CreditRequestApplicantDtoMap" parameterType="map">
+        select c.id as id_credit_request, a.id as id_applicant
+             , c.amount, c.number_request, c.request_date, c.state
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , a.home_address, a.id_card, a.id_card_expedition, a.civil_status
+             , a.workaddress, a.profession, a.city, a.province, a.block, a.type_home
+             , c.login_user, a.number_applicant, c.currency,ca.type_relation
+             , ca.id,a.number_applicant_spouse
+             , trim(a1.first_name|| ' ' || a1.second_name) as first_name_spouse
+             , trim( a1.last_name || ' ' || a1.mother_last_name) as last_name_spouse
+             , a1.home_address as home_address_spouse, a1.id_card as id_card_spouse
+             , a1.id_card_expedition as id_card_expedition_spouse, a1.civil_status as civil_status_spouse
+             , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
+             , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
+             , a1.type_home as type_home_spouse, c.type_credit, c.object_credit
+             , o.city as city_office, o.name as name_office, o.internal_code as code_office
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+                 INNER JOIN public.users u on (c.login_user = u.login)
+                 INNER join public.office o on (u.code_office = o.internal_code)
+        where ca.number_request = #{numberRequest} and ca.type_relation = #{typeRelation}
+        order by c.number_request
+    </select>
+
+</mapper>

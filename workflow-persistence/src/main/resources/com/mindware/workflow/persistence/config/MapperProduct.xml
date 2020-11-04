@@ -1,0 +1,63 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.config.MapperProduct">
+    <resultMap id="ProductMap" type="com.mindware.workflow.core.entity.config.Product">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="name" column="value"/>
+        <result property="interesRate" column="interes_rate"/>
+        <result property="documentsRequirements" column="documents_requirements"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <insert id="addProduct" parameterType="com.mindware.workflow.core.entity.config.Product">
+        insert into workflow.product(
+            id,
+            name,
+            interes_rate,
+            documents_requirements,
+            state)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{name},
+                   #{interesRate}::json,
+                   #{documentsRequirements}::json,
+                   #{state}
+               )
+    </insert>
+
+    <update id="updateProduct" parameterType="com.mindware.workflow.core.entity.config.Product">
+        update workflow.product
+        set
+            name = #{name},
+            interes_rate = #{interestRate}::json,
+            documents_requirements = #{documentsRequirements}::json,
+            state = #{state}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+
+    <select id="getAllProducts" resultMap="ProductMap">
+        <![CDATA[
+        select *
+        from workflow.product
+        ]]>
+    </select>
+
+    <select id="getProductById" resultMap="ProductMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.product
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getProductByName" resultMap="ProductMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.product
+        where name = #{name}
+        ]]>
+    </select>
+
+</mapper>

@@ -1,0 +1,81 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.config.MapperExchangeRate">
+    <resultMap id="ExchangeRateMap" type="com.mindware.workflow.core.entity.config.ExchangeRate">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="currency" column="currency"/>
+        <result property="exchange" column="exchange"/>
+        <result property="startValidity" column="start_validity"/>
+        <result property="endValidity" column="end_validity"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.config.ExchangeRate">
+        insert into workflow.exchange_rate(
+            id,
+            currency,
+            exchange,
+            start_validity,
+            end_validity,
+            state)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{currency},
+                   #{exchange},
+                   #{startValidity},
+                   #{endValidity},
+                   #{state}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.config.ExchangeRate">
+        update workflow.exchange_rate
+        set
+            currency = #{currency},
+            exchange = #{exchange},
+            start_validity = #{startValidity},
+            end_validity = #{endValidity},
+            state = #{state}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getAll" resultMap="ExchangeRateMap" >
+
+        select *
+        from workflow.exchange_rate
+        order by start_validity;
+
+    </select>
+
+    <select id="getByValidityDate" resultMap="ExchangeRateMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.exchange_rate
+        where start_validity = #{startValidity}
+          and end_validity = #{endValidity}
+        ]]>
+    </select>
+
+    <select id="getActiveExchangeRateByCurrency" resultMap="ExchangeRateMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.exchange_rate
+        where state ='ACTIVO'
+        and currency = #{currency}
+        ]]>
+    </select>
+
+    <select id="getById" resultMap="ExchangeRateMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.exchange_rate
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <delete id="delete" parameterType="map">
+        delete from workflow.exchange_rate
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </delete>
+</mapper>

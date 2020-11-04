@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="lastPage" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="b86a1464-1df8-499c-b795-4079290cfb94">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="469" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="90" height="10" uuid="52605186-acc7-4330-a487-77ff582ece16">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[9. NIVEL DE APROBACION:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="40" width="70" height="15" uuid="83dae4de-61f7-4a27-8967-12f89f17fac7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMITE REGIONAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="60" width="70" height="15" uuid="2db36b0e-33df-4b34-aeb4-bae199af6dea"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMITE NIVEL 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="40" width="70" height="15" uuid="6d596b5d-bc1b-4a55-a3ab-40d2ce9edfd1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMITE NIVEL 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="60" width="70" height="15" uuid="3903748e-5407-46ce-8c37-67b2de018be9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMITE NIVEL 1]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="170" y="40" width="50" height="15" uuid="ca3d4e9f-73c7-4c2c-a64d-736a0ea1cd60">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="170" y="60" width="50" height="15" uuid="1c9bbd05-b9ae-4269-93b1-557e09eb022f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="360" y="40" width="50" height="15" uuid="e750701a-bf4f-4042-adfe-033c2010e518">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="360" y="60" width="50" height="15" uuid="74fc9f8a-1ea4-4364-abe1-1c55f5da1381">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="100" width="90" height="10" uuid="bc7dea87-3c74-47c2-a246-d414a7eb76c1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[10. FIRMAS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="120" width="520" height="340" uuid="73b29968-55b0-41e3-9d7c-fc384f6df7d2"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
