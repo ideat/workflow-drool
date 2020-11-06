@@ -22,4 +22,12 @@ public class DocumentSubmitted {
     private Integer thirdYear;
 
     private String originalPhotocopyThirdYear;
+
+    private Integer fourthYear;
+
+    private String originalPhotocopyFourthYear;
+
+    private Integer fiftyYear;
+
+    private String originalPhotocopyFiftyYear;
 }

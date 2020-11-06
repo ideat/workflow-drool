@@ -70,4 +70,6 @@ public class LegalInformationReportDto {
 
     private LocalDate creationDate;
 
+    private List<PublicWritingList> listPublicWritingList;
+
 }

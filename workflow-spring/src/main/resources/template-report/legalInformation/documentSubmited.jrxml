@@ -19,6 +19,10 @@
 	<field name="originalPhotocopySecondYear" class="java.lang.String"/>
 	<field name="thirdYear" class="java.lang.Integer"/>
 	<field name="originalPhotocopyThirdYear" class="java.lang.String"/>
+	<field name="fourthYear" class="java.lang.Integer"/>
+	<field name="originalPhotocopyFourthYear" class="java.lang.String"/>
+	<field name="fiftyYear" class="java.lang.Integer"/>
+	<field name="originalPhotocopyFiftyYear" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -33,10 +37,11 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="26" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement x="2" y="12" width="65" height="10" uuid="517558a9-f34a-4886-8f9a-998f6e87afb9">
+				<reportElement x="2" y="12" width="50" height="10" uuid="517558a9-f34a-4886-8f9a-998f6e87afb9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="0.5"/>
@@ -47,8 +52,9 @@
 				<textFieldExpression><![CDATA[$F{firstYear}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="67" y="12" width="65" height="10" uuid="72ce7921-9ed8-4e81-8dee-cdbcc5c214c8">
+				<reportElement x="52" y="12" width="55" height="10" uuid="72ce7921-9ed8-4e81-8dee-cdbcc5c214c8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="0.5"/>
@@ -59,8 +65,9 @@
 				<textFieldExpression><![CDATA[$F{originalPhotocopyFirstYear}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="132" y="12" width="65" height="10" uuid="b6842e5e-c2a6-4977-9f96-485f4a5cf45b">
+				<reportElement x="107" y="12" width="50" height="10" uuid="b6842e5e-c2a6-4977-9f96-485f4a5cf45b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="0.5"/>
@@ -71,7 +78,7 @@
 				<textFieldExpression><![CDATA[$F{secondYear}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="197" y="12" width="65" height="10" uuid="f44ac28f-3cfd-4a07-bcd9-2e55c6585b7e">
+				<reportElement x="157" y="12" width="55" height="10" uuid="f44ac28f-3cfd-4a07-bcd9-2e55c6585b7e">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
@@ -83,7 +90,7 @@
 				<textFieldExpression><![CDATA[$F{originalPhotocopySecondYear}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="262" y="12" width="65" height="10" uuid="a99d7336-c869-4f5e-9601-477ec88f2838">
+				<reportElement x="212" y="12" width="50" height="10" uuid="a99d7336-c869-4f5e-9601-477ec88f2838">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -96,7 +103,7 @@
 				<textFieldExpression><![CDATA[$F{thirdYear}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="327" y="12" width="65" height="10" uuid="aba1141d-d590-4153-9c8b-4aaaa0240934">
+				<reportElement x="262" y="12" width="55" height="10" uuid="aba1141d-d590-4153-9c8b-4aaaa0240934">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -113,8 +120,59 @@
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[FORMULARIO DE IMPUESTOS DE LAS TRES ULTIMAS GESTIONES]]></text>
+				<text><![CDATA[FORMULARIO DE IMPUESTOS DE LAS CINCO ULTIMAS GESTIONES]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="472" y="12" width="55" height="10" uuid="e02a3f48-c1c1-47cf-a1a2-d75ba2aa4380">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{originalPhotocopyFiftyYear}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="12" width="50" height="10" uuid="0336c6e5-7741-4d8b-8c73-4fb850bae6cd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fiftyYear}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="12" width="55" height="10" uuid="41770ccb-e438-424f-a960-9c01d595ebb0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{originalPhotocopyFourthYear}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="12" width="50" height="10" uuid="798f4817-6a6c-4616-b47e-103ed56a2151">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fourthYear}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>

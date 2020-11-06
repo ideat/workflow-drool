@@ -41,6 +41,12 @@ public class Client {
 
     private String loginUser;
 
+    private String registrationCity;
+
+    private String description;
+    
+    private String typeService;
+
     public String getFullName(){
         return this.names + " " + this.lastNames;
     }

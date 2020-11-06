@@ -29,6 +29,7 @@
         <result property="creationDate" column="creation_date"/>
         <result property="reportNumber" column="report_number"/>
         <result property="createdBy" column="created_by"/>
+        <result property="publicWritingList" column="public_writing_list"/>
     </resultMap>
 
     <insert id="add" parameterType="com.mindware.workflow.core.entity.legal.LegalInformation">
@@ -55,7 +56,8 @@
             details,
             creation_date,
             report_number,
-            created_by
+            created_by,
+            public_writing_list
         )
         VALUES(
                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
@@ -79,7 +81,8 @@
                   #{details}::json,
                   #{creationDate},
                   #{reportNumber},
-                  #{createdBy}
+                  #{createdBy},
+                  #{publicWritingList}::json
               )
     </insert>
 
@@ -105,7 +108,8 @@
             data_document = #{dataDocument}::json,
             details = #{details}::json,
             creation_date = #{creationDate},
-            report_number = #{reportNumber}
+            report_number = #{reportNumber},
+            public_writing_list = #{publicWritingList}::json
         where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
 
     </update>

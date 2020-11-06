@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class CreateLegalInformationReportDto {
 
     public static LegalInformationReportDto generate(LegalInformation legalInformation, CreditRequest creditRequest, Applicant applicant, Map<String,String> names) throws IOException {
+
         LegalInformationReportDto legalInformationReportDto = new LegalInformationReportDto();
 
 //        LegalInformationCreditRequestDto legalInformationCreditRequestDto = new LegalInformationCreditRequestDto();
@@ -32,16 +33,45 @@ public class CreateLegalInformationReportDto {
         legalInformationReportDto.setSouth(legalInformation.getSouth());
         legalInformationReportDto.setEast(legalInformation.getEast());
         legalInformationReportDto.setWest(legalInformation.getWest());
-        legalInformationReportDto.setListOwners((List<Owners>) getObject(legalInformation.getOwners(),"owner"));
+
+        if(legalInformation.getPublicWritingList()==null || legalInformation.getPublicWritingList().equals("[]") || legalInformation.getPublicWritingList().equals("")){
+            List<PublicWritingList> pw = new ArrayList<>();
+            legalInformationReportDto.setListPublicWritingList(pw);
+        }else{
+            legalInformationReportDto.setListPublicWritingList((List<PublicWritingList>) getObject(legalInformation.getPublicWritingList(),"publicWritingList"));
+        }
+
+        if(legalInformation.getOwners()==null || legalInformation.getOwners().equals("[]") || legalInformation.getOwners().equals("") ){
+            List<Owners> l = new ArrayList<>();
+            legalInformationReportDto.setListOwners(l);
+        }else {
+            legalInformationReportDto.setListOwners((List<Owners>) getObject(legalInformation.getOwners(), "owner"));
+        }
         legalInformationReportDto.setTypeTitle(legalInformation.getTypeTitle());
         legalInformationReportDto.setPublicDeed(legalInformation.getPublicDeed());
         legalInformationReportDto.setDateDeed(legalInformation.getDateDeed());
         legalInformationReportDto.setGivenBy(legalInformation.getGivenBy());
-        legalInformationReportDto.setListRegistrationSeat((List<Seat>)getObject(legalInformation.getRegistrationSeat(),"seat"));
-        legalInformationReportDto.setListDocumentSubmitted((List<DocumentSubmitted>) getObject(legalInformation.getDocumentsSubmitted(),"documentSubmitted"));
-        legalInformationReportDto.setListDataDocument((List<DataDocument>) getObject(legalInformation.getDataDocument(),"dataDocument"));
-        List<GenericItem> genericItemList = (List<GenericItem>) getObject(legalInformation.getDetails(),"generic");
 
+        if(legalInformation.getRegistrationSeat()==null || legalInformation.getRegistrationSeat().equals("[]") || legalInformation.getRegistrationSeat().equals("")){
+            List<Seat> seatList = new ArrayList<>();
+            legalInformationReportDto.setListRegistrationSeat(seatList);
+        }else {
+            legalInformationReportDto.setListRegistrationSeat((List<Seat>) getObject(legalInformation.getRegistrationSeat(), "seat"));
+        }
+        legalInformationReportDto.setListDocumentSubmitted((List<DocumentSubmitted>) getObject(legalInformation.getDocumentsSubmitted(),"documentSubmitted"));
+
+        if(legalInformation.getDataDocument()==null || legalInformation.getDataDocument().equals("[]") || legalInformation.getDataDocument().equals("")){
+            List<DataDocument> dataDocuments = new ArrayList<>();
+            legalInformationReportDto.setListDataDocument(dataDocuments);
+        }else {
+            legalInformationReportDto.setListDataDocument((List<DataDocument>) getObject(legalInformation.getDataDocument(), "dataDocument"));
+        }
+        List<GenericItem> genericItemList = new ArrayList<>();
+        if(legalInformation.getDetails()==null || legalInformation.getDetails().equals("[]") || legalInformation.getDetails().equals("")) {
+
+        }else{
+            genericItemList = (List<GenericItem>) getObject(legalInformation.getDetails(), "generic");
+        }
         legalInformationReportDto.setListObservations(genericItemList.stream().filter(value -> value.getTypeItem()
                 .equals("Observacion")).collect(Collectors.toList()));
         legalInformationReportDto.setListMissingDocumentation(genericItemList.stream().filter(value -> value.getTypeItem()

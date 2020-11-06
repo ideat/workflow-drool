@@ -27,6 +27,7 @@ public class ClientController {
 
     private String loginUser;
     private UUID id;
+    private String registrationCity;
 
     @PostMapping(value = "/v1/comercial/client/add", name = "Crear Cliente")
     ResponseEntity<Client> create(@RequestBody Client client, HttpServletRequest request){
@@ -51,6 +52,15 @@ public class ClientController {
             if(key.equals("login-user")) loginUser = value;
         });
         List<Client> clientList = repository.getByUser(loginUser);
+        return new ResponseEntity<>(clientList,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/v1/comercial/client/getByRegistrationCity", name = "Obtiene cliente de una ciudad")
+    ResponseEntity<Collection<Client>> getByRegistrationCity(@RequestHeader Map<String,String> headers){
+        headers.forEach((key,value) ->{
+            if(key.equals("registration-city")) registrationCity = value;
+        });
+        List<Client> clientList = repository.getByRegistrationCity(registrationCity);
         return new ResponseEntity<>(clientList,HttpStatus.OK);
     }
 }

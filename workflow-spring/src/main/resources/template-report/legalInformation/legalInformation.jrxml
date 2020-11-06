@@ -35,6 +35,7 @@
 	<field name="listConclusion" class="java.util.List"/>
 	<field name="listClarifications" class="java.util.List"/>
 	<field name="creationDate" class="java.time.LocalDate"/>
+	<field name="listPublicWritingList" class="java.util.List"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -360,132 +361,63 @@
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listOwners})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "owners.jasper"]]></subreportExpression>
 			</subreport>
-			<frame>
-				<reportElement positionType="Float" x="1" y="91" width="553" height="29" uuid="e26281b3-5079-40a9-91c8-1e5c5ee5aed3"/>
-				<textField>
-					<reportElement x="24" y="9" width="151" height="10" uuid="0127d2ae-aa80-44d8-a950-86d822f84958">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4237bd71-803a-470f-aac8-7ee22c8f978e"/>
-					</reportElement>
-					<box>
-						<pen lineWidth="0.5"/>
-					</box>
-					<textElement>
-						<font size="6"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{typeTitle}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="0" y="-1" width="90" height="10" uuid="2804ae19-b1b5-4867-b6a9-e0357c575cd7"/>
-					<textElement>
-						<font size="6" isBold="true"/>
-					</textElement>
-					<text><![CDATA[TITULO DE PROPIEDAD:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="9" width="24" height="10" uuid="d327cc01-be23-40d2-a563-d6f286d022c4"/>
-					<textElement>
-						<font size="6" isBold="true"/>
-					</textElement>
-					<text><![CDATA[TIPO]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="248" y="9" width="54" height="10" uuid="ce2b446f-ae33-42fc-af00-3239649840e5">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4237bd71-803a-470f-aac8-7ee22c8f978e"/>
-					</reportElement>
-					<box>
-						<pen lineWidth="0.5"/>
-					</box>
-					<textElement>
-						<font size="6"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{publicDeed}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="175" y="9" width="73" height="10" uuid="063b123c-a94c-48ef-a0cd-083a8d460adc">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement>
-						<font size="6" isBold="true"/>
-					</textElement>
-					<text><![CDATA[ESCRITURA PUBLICA]]></text>
-				</staticText>
-				<textField pattern="dd/MM/yyyy">
-					<reportElement x="332" y="9" width="50" height="10" uuid="6f6a6063-8318-4d8d-9703-5907853643e7">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4237bd71-803a-470f-aac8-7ee22c8f978e"/>
-					</reportElement>
-					<box>
-						<pen lineWidth="0.5"/>
-					</box>
-					<textElement>
-						<font size="6"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{dateDeed}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="302" y="9" width="30" height="10" uuid="99c1125c-ab28-49ed-9c8c-7e81f596d6e1">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement>
-						<font size="6" isBold="true"/>
-					</textElement>
-					<text><![CDATA[FECHA:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="1" y="19" width="64" height="10" uuid="58b79f2f-5ae3-4165-bd2e-b3fb7fa9320a"/>
-					<textElement>
-						<font size="6" isBold="true"/>
-					</textElement>
-					<text><![CDATA[OTORGADO POR:]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="65" y="19" width="409" height="10" uuid="47e3b84c-994f-4e11-80d3-8b9c7ae3434a">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4237bd71-803a-470f-aac8-7ee22c8f978e"/>
-					</reportElement>
-					<box>
-						<pen lineWidth="0.5"/>
-					</box>
-					<textElement>
-						<font size="6"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{givenBy}]]></textFieldExpression>
-				</textField>
-			</frame>
 			<subreport>
-				<reportElement positionType="Float" x="0" y="126" width="551" height="19" uuid="ce997161-9c5c-4fbb-963a-eb624e31c743">
+				<reportElement positionType="Float" x="0" y="111" width="554" height="19" uuid="ce997161-9c5c-4fbb-963a-eb624e31c743">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listDataDocument})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "dataDocument.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="2" y="147" width="541" height="30" uuid="bbde290e-7610-48c4-a9f4-052aa7da8d97"/>
+				<reportElement positionType="Float" x="0" y="132" width="554" height="30" uuid="bbde290e-7610-48c4-a9f4-052aa7da8d97">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listDocumentSubmitted})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "documentSubmited.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="2" y="178" width="541" height="30" uuid="382b2d85-f903-4425-8f5f-23c8a7ed7a56"/>
+				<reportElement positionType="Float" x="0" y="163" width="554" height="30" uuid="382b2d85-f903-4425-8f5f-23c8a7ed7a56">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listObservations})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "observations.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="2" y="209" width="541" height="30" uuid="d03113c1-d273-46c1-b909-860beeea0e68"/>
+				<reportElement positionType="Float" x="0" y="194" width="554" height="30" uuid="d03113c1-d273-46c1-b909-860beeea0e68">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listMissingDocumentation})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "missingDocumentation.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="2" y="239" width="541" height="30" uuid="5b782852-b988-4033-9d16-8b9040e8b1ca"/>
+				<reportElement positionType="Float" x="0" y="224" width="554" height="30" uuid="5b782852-b988-4033-9d16-8b9040e8b1ca">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listContractRequirements})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "contractRequiriments.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="2" y="269" width="541" height="30" uuid="848d0358-b08e-4f2b-b069-3dddcd1564a9"/>
+				<reportElement positionType="Float" x="0" y="254" width="554" height="30" uuid="848d0358-b08e-4f2b-b069-3dddcd1564a9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listConclusion})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "conclusion.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="2" y="299" width="541" height="30" uuid="680dd58d-163e-4dd6-962b-560a0f102d12"/>
+				<reportElement positionType="Float" x="0" y="284" width="554" height="30" uuid="680dd58d-163e-4dd6-962b-560a0f102d12">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listClarifications})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport} + "clarifications.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="90" width="554" height="19" uuid="de37a713-ca23-43d7-bdaa-b1bdfc302546">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listPublicWritingList})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport} + "publicWritingList.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

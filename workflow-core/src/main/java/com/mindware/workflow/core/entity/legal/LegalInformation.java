@@ -54,4 +54,6 @@ public class LegalInformation {
     private String reportNumber;
 
     private String createdBy;
+
+    private String publicWritingList; //json
 }
