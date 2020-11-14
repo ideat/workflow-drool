@@ -49,7 +49,7 @@ public class PatrimonialStatementDtoController {
     private String product;
     private Integer numberRequest;
     private String typeClient;
-
+    private Integer frecuency;
 
     @Autowired
     ResourceLoader resourceLoader;
@@ -97,6 +97,9 @@ public class PatrimonialStatementDtoController {
         Map<String,Object> params = new WeakHashMap<>();
         params.put("logo",pathLogo);
         params.put("path_subreport", pathSubreport);
+
+
+
         Collection<PatrimonialStatementSalesHistoryDto> collection = new ArrayList<>();
         collection.add(patrimonialStatementSalesHistoryDto);
         byte[] b = PrinterReportJasper.imprimirComoPdf(stream,collection,params);
@@ -124,9 +127,11 @@ public class PatrimonialStatementDtoController {
 //        String pathSubreport = getClass().getResource("template-report/patrimonialStatementVaeIndependent/").getPath();
         String pathSubreport = "template-report/patrimonialStatementVaeIndependent/";
 
+        frecuency = pvae.getFrecuency();
         Map<String,Object> params = new WeakHashMap<>();
         params.put("logo",pathLogo);
         params.put("path_subreport", pathSubreport);
+        params.put("frecuency",frecuency);
 
         Collection<PatrimonialStatementVaeIndependentDto> collection = new ArrayList<>();
         collection.add(pvae);

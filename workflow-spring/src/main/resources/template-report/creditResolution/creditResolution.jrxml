@@ -57,6 +57,8 @@
 	<field name="creditDestination" class="java.lang.String"/>
 	<field name="creditRequestRelevantInformation" class="java.lang.String"/>
 	<field name="typeCreditDescription" class="java.lang.String"/>
+	<field name="nameOfficer" class="java.lang.String"/>
+	<field name="numberCreditRequest" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -71,7 +73,7 @@
 				<text><![CDATA[RESOLUCION DE CREDITO]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="480" y="15" width="50" height="10" uuid="20c588e3-f885-4bbe-b23f-c6f01123c2cc">
+				<reportElement x="452" y="36" width="50" height="10" uuid="20c588e3-f885-4bbe-b23f-c6f01123c2cc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -80,7 +82,7 @@
 				<textFieldExpression><![CDATA[$F{creditNumber}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="450" y="5" width="24" height="10" uuid="7e28ab3c-7f26-4438-91e1-067175966b13">
+				<reportElement x="422" y="5" width="30" height="10" uuid="7e28ab3c-7f26-4438-91e1-067175966b13">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -93,7 +95,7 @@
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="480" y="5" width="50" height="10" uuid="44d4ab33-8409-45c6-bdac-e43baeb5be4e">
+				<reportElement x="452" y="5" width="50" height="10" uuid="44d4ab33-8409-45c6-bdac-e43baeb5be4e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -102,7 +104,7 @@
 				<textFieldExpression><![CDATA[$F{creditResolutionDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="424" y="15" width="50" height="10" uuid="c242feb0-a612-4b7a-b2e9-c252a90c4932">
+				<reportElement x="396" y="36" width="56" height="10" uuid="c242feb0-a612-4b7a-b2e9-c252a90c4932">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -713,6 +715,42 @@
 					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{typeCreditDescription}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="15" width="52" height="10" uuid="e83d2f40-6084-451b-8b7c-1c6df733e663">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre oficial:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="452" y="15" width="98" height="10" uuid="689546a5-dd81-439f-9f46-4fed85381d2c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nameOfficer}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="25" width="52" height="10" uuid="30895033-ea45-481e-8174-d4cabba7ba4d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro. solicitud:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="452" y="25" width="50" height="10" uuid="be948a32-518c-405e-9a1e-519c4d365ade">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numberCreditRequest}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

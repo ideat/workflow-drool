@@ -93,4 +93,9 @@ public class CreditResolutionCreditRequestApplicant {
     private String markLevel1;
 
     private String creditRequestRelevantInformation;
+
+    private String nameOfficer;
+
+    private Integer numberCreditRequest;
+
 }

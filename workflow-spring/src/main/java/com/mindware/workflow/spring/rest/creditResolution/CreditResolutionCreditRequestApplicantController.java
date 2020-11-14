@@ -3,6 +3,7 @@ package com.mindware.workflow.spring.rest.creditResolution;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mindware.workflow.core.entity.Applicant;
+import com.mindware.workflow.core.entity.Users;
 import com.mindware.workflow.core.entity.config.ExchangeRate;
 import com.mindware.workflow.core.entity.config.TypeCredit;
 import com.mindware.workflow.core.entity.creditRequest.CreditRequest;
@@ -25,6 +26,7 @@ import com.mindware.workflow.core.service.data.patrimonialStatement.RepositoryPa
 import com.mindware.workflow.core.service.data.paymentPlan.RepositoryPaymentPlan;
 import com.mindware.workflow.core.service.data.paymentPlan.dto.PaymentPlanDto;
 import com.mindware.workflow.core.service.data.paymentPlan.report.RepositoryPaymentPlanDto;
+import com.mindware.workflow.core.service.data.users.RepositoryUsers;
 import com.mindware.workflow.core.service.task.CreateCreditResolutionCreditRequest;
 import com.mindware.workflow.core.service.task.UtilPaymentPlan;
 import com.mindware.workflow.util.PrinterReportJasper;
@@ -50,6 +52,7 @@ public class CreditResolutionCreditRequestApplicantController {
     private Integer numberRequest;
     private Integer numberApplicant;
     private UUID idCreditRequestApplicant;
+    private Integer frecuency;
 
     @Autowired
     RepositoryApplicant repositoryApplicant;
@@ -78,6 +81,9 @@ public class CreditResolutionCreditRequestApplicantController {
     @Autowired
     RepositoryTypeCredit repositoryTypeCredit;
 
+    @Autowired
+    RepositoryUsers repositoryUsers;
+
     @GetMapping(value = "/v1/creditResolutionReport", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public @ResponseBody  byte[] getCreditResolutionReport(@RequestHeader Map<String,String> headers) throws IOException, JRException {
         headers.forEach((key,value) -> {
@@ -93,6 +99,8 @@ public class CreditResolutionCreditRequestApplicantController {
         List<PatrimonialStatement> patrimonialStatementList = repositoryPatrimonialStatement.getByIdCreditRequestApplicant(idCreditRequestApplicant);
         CreditResolution creditResolution = repositoryCreditResolution.getByNumberRequest(numberRequest).get();
         CreditRequest creditRequest = repositoryCreditRequest.getCreditRequestByNumberRequest(numberRequest).get();
+
+        Users users = repositoryUsers.getUserByIdUser(creditRequest.getLoginUser()).get();
 
         int factor = creditRequest.getPaymentPeriod()/30;
         TypeCredit typeCredit = repositoryTypeCredit.getByExternalCode(creditRequest.getTypeCredit()).get();
@@ -113,6 +121,9 @@ public class CreditResolutionCreditRequestApplicantController {
         result.setPatrimony(getPatrimony(idCreditRequestApplicant));
         result.setGuarantorResolutionList(getGuarantors(numberRequest));
 
+        result.setNumberCreditRequest(numberRequest);
+        result.setNameOfficer(users.getFullName());
+
         List<GuaranteesResolution> guaranteesResolutionList = getGuarantees(numberRequest);
         guaranteesResolutionList.addAll(getNoOwnGuarantee(creditRequest.getNoOwnGuarantee()));
         result.setGuaranteesResolutionList(guaranteesResolutionList);
@@ -127,6 +138,7 @@ public class CreditResolutionCreditRequestApplicantController {
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();
 //        String pathSubreport = getClass().getResource("/template-report/creditResolution/").getPath();
         String pathSubreport = "template-report/creditResolution/";
+
         Map<String,Object> params = new WeakHashMap<>();
         params.put("logo",pathLogo);
         params.put("path_subreport", pathSubreport);

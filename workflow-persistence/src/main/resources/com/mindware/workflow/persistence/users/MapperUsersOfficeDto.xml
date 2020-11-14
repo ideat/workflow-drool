@@ -3,6 +3,7 @@
 <mapper namespace="com.mindware.workflow.persistence.users.MapperUsersOfficeDto">
     <resultMap id="UserOfficeMap" type="com.mindware.workflow.core.service.data.users.dto.UsersOfficeDto">
         <result property="nameUser" column="name_user"/>
+        <result property="lastNameUser" column="last_name_user"/>
         <result property="stateUser" column="state_user"/>
         <result property="rol" column="rol"/>
         <result property="email" column="email"/>
@@ -18,7 +19,7 @@
 
     <select id="getByCity" resultMap="UserOfficeMap">
         <![CDATA[
-        select  u.names as name_user, u.state as state_user, u.rol, u.email
+        select  u.names as name_user, u.last_names as last_name_user, u.state as state_user, u.rol, u.email
              , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
         from public.users u
                 inner join public.office o on (u.code_office = o.internal_code)
@@ -28,7 +29,7 @@
 
     <select id="getByInternalCodeOffice" resultMap="UserOfficeMap" parameterType="map">
         <![CDATA[
-        select  u.names as name_user, u.state as state_user, u.rol, u.email
+        select  u.names as name_user, u.last_names as last_name_user, u.state as state_user, u.rol, u.email
              , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
         from public.users u
                  inner join public.office o on (u.code_office = o.internal_code)
@@ -38,7 +39,7 @@
 
     <select id="getByRol" resultMap="UserOfficeMap" parameterType="map">
         <![CDATA[
-        select  u.names as name_user, u.state as state_user, u.rol, u.email
+        select  u.names as name_user, u.last_names as last_name_user, u.state as state_user, u.rol, u.email
              , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
         from public.users u
                  inner join public.office o on (u.code_office = o.internal_code)
@@ -48,7 +49,7 @@
 
     <select id="getAll" resultMap="UserOfficeMap" parameterType="map">
         <![CDATA[
-        select  u.names as name_user, u.state as state_user, u.rol, u.email
+        select  u.names as name_user, u.last_names as last_name_user, u.state as state_user, u.rol, u.email
              , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
         from public.users u
                  inner join public.office o on (u.code_office = o.internal_code)
@@ -57,7 +58,7 @@
 
     <select id="getByCityAndRol" resultMap="UserOfficeMap" parameterType="map">
         <![CDATA[
-        select  u.names as name_user, u.state as state_user, u.rol, u.email
+        select  u.names as name_user, u.last_names as last_name_user, u.state as state_user, u.rol, u.email
              , u.login as login_user, o.city, o.province, o.type_office, o.signatorie, o.internal_code as internal_code_office
         from public.users u
                  inner join public.office o on (u.code_office = o.internal_code)

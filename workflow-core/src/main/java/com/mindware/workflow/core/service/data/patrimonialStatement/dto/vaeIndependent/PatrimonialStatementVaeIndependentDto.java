@@ -14,6 +14,8 @@ public class PatrimonialStatementVaeIndependentDto {
 
     private Double typeChangeDollar;
 
+    private Integer frecuency;
+
     private List<SalesProjection> listSaleDaily;
 
     private List<SalesProjection> listSaleWeek;

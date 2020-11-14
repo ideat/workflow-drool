@@ -9,6 +9,8 @@ import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditReq
 import com.mindware.workflow.core.service.data.legal.RepositoryLegalInformation;
 import com.mindware.workflow.core.service.data.legal.dto.LegalInformationReportDto;
 import com.mindware.workflow.core.service.data.users.RepositoryUsers;
+import com.mindware.workflow.core.service.data.users.RepositoryUsersOfficeDto;
+import com.mindware.workflow.core.service.data.users.dto.UsersOfficeDto;
 import com.mindware.workflow.core.service.task.CreateLegalInformationReportDto;
 import com.mindware.workflow.util.PrinterReportJasper;
 import net.sf.jasperreports.engine.JRException;
@@ -42,6 +44,9 @@ public class LegalInformationReportController {
     @Autowired
     RepositoryLegalInformation repositoryLegalInformation;
 
+    @Autowired
+    RepositoryUsersOfficeDto repositoryUsersOfficeDto;
+
     @GetMapping(value = "/v1/legalInformationReport",  produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public @ResponseBody byte[] getLegalInformationReport(@RequestHeader Map<String,String> headers) throws IOException, JRException {
         headers.forEach((key,value) -> {
@@ -61,8 +66,10 @@ public class LegalInformationReportController {
         names.put("nameOfficer",users.getFullName());
         users = repositoryUsers.getUserByIdUser(createdBy).get();
         names.put("nameLegalAdviser",users.getFullName());
-        users = repositoryUsers.getUserByIdUser(createdBy).get();
-        names.put("legalAnalyst",users.getFullName());
+
+        UsersOfficeDto usersOfficeDto = repositoryUsersOfficeDto.getByRol("LEGAL_NACIONAL").get(0);
+        names.put("legalAnalyst",usersOfficeDto.getFullName());
+
         LegalInformationReportDto legalInformationReportDto = CreateLegalInformationReportDto.generate(legalInformation,
                 creditRequest,applicant,names);
 

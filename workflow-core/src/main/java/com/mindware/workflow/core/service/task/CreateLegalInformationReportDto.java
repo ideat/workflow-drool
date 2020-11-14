@@ -106,6 +106,8 @@ public class CreateLegalInformationReportDto {
             objectList = Arrays.asList(mapper.readValue(json,DataDocument[].class));
         }else if(type.equals("generic")){
             objectList = Arrays.asList(mapper.readValue(json,GenericItem[].class));
+        }else if(type.equals("publicWritingList")){
+            objectList = Arrays.asList(mapper.readValue(json,PublicWritingList[].class));
         }
         return objectList;
     }

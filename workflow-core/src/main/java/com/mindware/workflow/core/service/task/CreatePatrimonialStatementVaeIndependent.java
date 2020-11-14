@@ -49,6 +49,7 @@ public class CreatePatrimonialStatementVaeIndependent {
 
         List<SalesProjection> listSaleDaily = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("DIARIA")
                 && !p.getTypeSale().equals("")).collect(Collectors.toList());
+
         List<SalesProjection> listSaleWeek = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("SEMANAL")
                 && !p.getTypeSale().equals("")).collect(Collectors.toList());
         List<SalesProjection> listSaleMonth = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("MENSUAL")
@@ -56,6 +57,7 @@ public class CreatePatrimonialStatementVaeIndependent {
 
         List<SalesProjection> listAmountDaily = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("DIARIA")
                 && p.getTypeSale().equals("")).collect(Collectors.toList());
+
         List<SalesProjection> listAmountWeek = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("SEMANAL")
                 && p.getTypeSale().equals("")).collect(Collectors.toList());
         List<SalesProjection> listAmountMonth = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("MENSUAL")
@@ -100,6 +102,7 @@ public class CreatePatrimonialStatementVaeIndependent {
         pvae.setListSummaryWeek(summaryWeek);
         pvae.setListSummaryMonth(summaryMonth);
         pvae.setListEarningExpenses(getEarningExpensesSummary());
+        pvae.setFrecuency(frecuency);
 
         return pvae;
     }
@@ -266,7 +269,11 @@ public class CreatePatrimonialStatementVaeIndependent {
             Double totalOperativeExpenses = listOperativeExpenses.stream()
                     .map(b -> b.getAmount())
                     .reduce(0.0, Double::sum);
-            listEarningExpenses.add(newSummaryAmount("Utilidad Operativa segun MUB", summarySalesDto.getTotal() - auxAmount - totalOperativeExpenses));
+            Double value = 0.0;
+            if(summarySalesDto.getTotal()>0){
+                value = summarySalesDto.getTotal() - auxAmount - totalOperativeExpenses;
+            }
+            listEarningExpenses.add(newSummaryAmount("Utilidad Operativa segun MUB", value));
             Double operativeEarning = minValue - maxValue - totalOperativeExpenses;
             operativeEarning = Math.round(operativeEarning * 100.0) / 100.0;
             listEarningExpenses.add(newSummaryAmount("Utilidad Operativa", operativeEarning));

@@ -118,7 +118,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="3" y="2" width="207" height="9" backcolor="#BDB5B5" uuid="6d01cd8f-f951-4626-9823-e8fc597a8b23"/>
 				<textElement>
-					<font size="6" isBold="true"/>
+					<font size="6" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[FORMULARIO DE IMPUESTOS DE LAS CINCO ULTIMAS GESTIONES]]></text>
 			</staticText>

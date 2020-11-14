@@ -38,7 +38,7 @@
 				<reportElement mode="Opaque" x="0" y="16" width="120" height="10" backcolor="#C9C2C1" uuid="7bdd1fed-05e5-4725-bcda-564219cb4dcb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f4928425-8c94-4554-a33d-800f5f4800c6"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left">
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Titulo de Propiedad]]></text>
@@ -47,7 +47,7 @@
 				<reportElement mode="Opaque" x="120" y="16" width="80" height="10" backcolor="#C9C2C1" uuid="5550fab3-9d53-4498-892b-7b7c54f9f051">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="981b8b0a-e1b6-48e3-ac24-dfdc6d96001b"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left">
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Escritura publica]]></text>
@@ -56,16 +56,16 @@
 				<reportElement mode="Opaque" x="200" y="16" width="61" height="10" backcolor="#C9C2C1" uuid="97dadc1e-ca0c-42b3-97f9-601358f5b934">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1037b7b0-16d3-4676-9b14-8d13892f24ef"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left">
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[dateDeed]]></text>
+				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="261" y="16" width="294" height="10" backcolor="#C9C2C1" uuid="c972e287-c011-46a1-9ce5-bb631dc155d5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6739d92-371c-4d3b-8fc9-fbfbd7b5685e"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Left">
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Otorgado por]]></text>
@@ -74,8 +74,8 @@
 				<reportElement mode="Opaque" x="0" y="1" width="91" height="15" backcolor="#C4BDBC" uuid="118a4525-61d9-465c-9c97-c8e54771f049">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="6" isBold="true"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
+					<font size="6" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[TITULOS DE PROPIEDAD]]></text>
 			</staticText>
@@ -101,14 +101,14 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{publicDeed}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="200" y="0" width="61" height="10" uuid="9d02928b-c801-491c-ab12-57771edd11dc">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1037b7b0-16d3-4676-9b14-8d13892f24ef"/>
 				</reportElement>
 				<textElement>
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dateDeed}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{dateDeed}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="261" y="0" width="294" height="20" uuid="11e589c9-60a2-4d21-b013-f25e15c9c7c6">

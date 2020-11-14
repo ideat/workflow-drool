@@ -17,4 +17,6 @@ public class CompanySizeIndicator {
     private Double indicator;
 
     private String indicatorClassification;
+
+    private String description;
 }

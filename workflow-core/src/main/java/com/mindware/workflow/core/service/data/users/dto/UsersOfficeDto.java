@@ -8,6 +8,8 @@ import lombok.Setter;
 public class UsersOfficeDto {
     private String nameUser;
 
+    private String lastNameUser;
+
     private String stateUser;
 
     private String rol;
@@ -25,5 +27,9 @@ public class UsersOfficeDto {
     private String signatorie;
 
     private Integer internalCodeOffice;
+
+    public String getFullName(){
+        return this.nameUser + ' ' + this.lastNameUser;
+    }
 
 }

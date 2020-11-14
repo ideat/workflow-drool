@@ -3,6 +3,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vaeIndependent" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1cc8da0-2b30-4d22-ba8f-0b854ca8259e">
 	<parameter name="path_subreport" class="java.lang.String"/>
 	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="frecuency" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -85,7 +86,7 @@
 		<band height="375" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<subreport>
-				<reportElement x="305" y="13" width="254" height="40" uuid="0fc11c9f-0d30-4120-8b8c-9db81adb7073">
+				<reportElement x="305" y="13" width="254" height="27" uuid="0fc11c9f-0d30-4120-8b8c-9db81adb7073">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -94,18 +95,18 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionSalesWeek.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement x="26" y="3" width="78" height="10" uuid="d98d2533-dfe0-428e-b454-0fecbd694229">
+				<reportElement x="18" y="3" width="86" height="10" uuid="d98d2533-dfe0-428e-b454-0fecbd694229">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font size="8" isBold="true"/>
+					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VENTAS DIARIAS]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="18" y="13" width="280" height="40" uuid="58caaa03-24a6-42cd-9203-994eb0475b0a">
+				<reportElement x="18" y="13" width="280" height="27" uuid="58caaa03-24a6-42cd-9203-994eb0475b0a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -120,12 +121,12 @@
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
-					<font size="8" isBold="true"/>
+					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VENTAS SEMANALES]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="440" y="60" width="140" height="40" uuid="7b81fff1-d2e1-4f51-9c9b-562041c014f3">
+				<reportElement x="441" y="47" width="140" height="40" uuid="7b81fff1-d2e1-4f51-9c9b-562041c014f3">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -135,7 +136,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionSummary.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="160" y="60" width="140" height="40" uuid="6f39aa92-a537-4c08-ad24-8d8241600869">
+				<reportElement x="161" y="47" width="140" height="40" uuid="6f39aa92-a537-4c08-ad24-8d8241600869">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -145,7 +146,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionSummary.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="305" y="60" width="130" height="40" uuid="1907453a-6775-450d-8e61-880761620fee">
+				<reportElement x="306" y="47" width="130" height="40" uuid="1907453a-6775-450d-8e61-880761620fee">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -155,28 +156,31 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionAmountDaily.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="18" y="60" width="140" height="40" uuid="7f0d57b1-7483-4f4e-9df4-dfbf3cec9b10">
+				<reportElement x="19" y="47" width="140" height="40" uuid="7f0d57b1-7483-4f4e-9df4-dfbf3cec9b10">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<subreportParameter name="frecuency">
+					<subreportParameterExpression><![CDATA[$P{frecuency}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listAmountDaily})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionAmountDaily.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement x="15" y="140" width="100" height="10" uuid="3f2568e3-aac8-4963-b6c7-ea0b9c8ad1dc">
+				<reportElement x="16" y="102" width="100" height="10" uuid="3f2568e3-aac8-4963-b6c7-ea0b9c8ad1dc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
-					<font size="8" isBold="true"/>
+					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[VENTAS MENSUALES]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="15" y="150" width="517" height="30" uuid="ba6bae0e-e36b-48ab-b9af-9465fd46983d">
+				<reportElement x="16" y="112" width="517" height="30" uuid="ba6bae0e-e36b-48ab-b9af-9465fd46983d">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -185,7 +189,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionSalesMonth.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="15" y="180" width="130" height="40" uuid="0bfc4418-7aa7-4290-a984-ba8b6a32e081">
+				<reportElement x="16" y="142" width="130" height="40" uuid="0bfc4418-7aa7-4290-a984-ba8b6a32e081">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -194,7 +198,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionAmountDaily.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="150" y="180" width="140" height="40" uuid="9fff43e7-8809-46e3-b485-3e3233eb920f">
+				<reportElement x="151" y="142" width="140" height="40" uuid="9fff43e7-8809-46e3-b485-3e3233eb920f">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -204,7 +208,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "projectionSummary.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="15" y="230" width="525" height="34" uuid="70322969-d80e-4a58-a58a-f1f136272ca5">
+				<reportElement x="16" y="192" width="525" height="34" uuid="70322969-d80e-4a58-a58a-f1f136272ca5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
@@ -212,7 +216,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "salesProducts.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement key="" positionType="Float" x="15" y="270" width="280" height="34" uuid="5b492654-7a35-426d-8d2e-266e0ab77f76">
+				<reportElement key="" positionType="Float" x="16" y="232" width="280" height="34" uuid="5b492654-7a35-426d-8d2e-266e0ab77f76">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
@@ -220,14 +224,14 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "buysProducts.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement key="" positionType="Float" x="311" y="270" width="259" height="34" uuid="6b0870c6-3bdc-4ffa-bd59-6ade64506776">
+				<reportElement key="" positionType="Float" x="312" y="232" width="259" height="34" uuid="6b0870c6-3bdc-4ffa-bd59-6ade64506776">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{listOperativeExpenses})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport}  + "operativeExpenses.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement key="" positionType="Float" x="15" y="320" width="280" height="34" uuid="c1681d82-1b2b-4dd7-b278-e4324fe2e599">
+				<reportElement key="" positionType="Float" x="16" y="282" width="280" height="34" uuid="c1681d82-1b2b-4dd7-b278-e4324fe2e599">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
