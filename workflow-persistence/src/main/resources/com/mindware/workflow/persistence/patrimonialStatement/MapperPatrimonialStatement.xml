@@ -29,6 +29,7 @@
         <result property="fieldBoolean1" column="field_boolean1"/>
         <result property="fieldBoolean2" column="field_boolean2"/>
         <result property="fieldBoolean3" column="field_boolean3"/>
+        <result property="fieldBoolean4" column="field_boolean4"/>
         <result property="fieldDouble1" column="field_double1"/>
         <result property="fieldDouble2" column="field_double2"/>
         <result property="fieldDouble3" column="field_double3"/>
@@ -41,6 +42,8 @@
 
         <result property="category" column="category"/>
         <result property="elementCategory" column="element_category"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
     </resultMap>
 
     <insert id="add" parameterType="com.mindware.workflow.core.entity.patrimonialStatement.PatrimonialStatement">
@@ -71,6 +74,7 @@
             field_boolean1,
             field_boolean2,
             field_boolean3,
+            field_boolean4,
             field_double1,
             field_double2,
             field_double3,
@@ -81,7 +85,9 @@
             field_date3,
             field_date4,
             category,
-            element_category)
+            element_category,
+            latitude,
+            longitude)
         values (
                    #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
                    #{idCreditRequestApplicant, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
@@ -109,6 +115,7 @@
                    #{fieldBoolean1},
                    #{fieldBoolean2},
                    #{fieldBoolean3},
+                   #{fieldBoolean4},
                    #{fieldDouble1},
                    #{fieldDouble2},
                    #{fieldDouble3},
@@ -119,7 +126,9 @@
                    #{fieldDate3, typeHandler =com.mindware.workflow.persistence.typehandler.LocalDateTypeHandler},
                    #{fieldDate4, typeHandler =com.mindware.workflow.persistence.typehandler.LocalDateTypeHandler},
                    #{category},
-                   #{elementCategory}
+                   #{elementCategory},
+                   #{latitude},
+                   #{longitude}
                )
     </insert>
 
@@ -150,6 +159,7 @@
             field_boolean1 = #{fieldBoolean1},
             field_boolean2 = #{fieldBoolean2},
             field_boolean3 = #{fieldBoolean3},
+            field_boolean4 = #{fieldBoolean4},
             field_double1 = #{fieldDouble1},
             field_double2 = #{fieldDouble2},
             field_double3 = #{fieldDouble3},
@@ -158,7 +168,9 @@
             field_date1 = #{fieldDate1},
             field_date2 = #{fieldDate2},
             field_date3 = #{fieldDate3},
-            field_date4 = #{fieldDate4}
+            field_date4 = #{fieldDate4},
+            latitude = #{latitude},
+            longitude = #{longitude}
 
         where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
     </update>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conditions" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1989511b-820c-478f-9392-ddefbceb0645">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString>
@@ -37,7 +37,7 @@
 	<detail>
 		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="160" height="30" backcolor="#D9D9D9" uuid="5ddd6bbe-516e-414f-a5f8-cf62cf6396fe">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="160" height="30" backcolor="#D9D9D9" uuid="5ddd6bbe-516e-414f-a5f8-cf62cf6396fe">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="953bcc9f-f255-4877-a513-d3998f72a7a9"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -46,7 +46,7 @@
 				<textFieldExpression><![CDATA[$F{condition}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="160" y="0" width="384" height="30" uuid="2d2b94f4-662c-4b11-8110-de303e3bc0b1">
+				<reportElement positionType="Float" stretchType="ContainerHeight" x="160" y="0" width="384" height="30" isPrintWhenDetailOverflows="true" uuid="2d2b94f4-662c-4b11-8110-de303e3bc0b1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="569397d0-378b-4fac-96a1-bb0b8b4e97f4"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">

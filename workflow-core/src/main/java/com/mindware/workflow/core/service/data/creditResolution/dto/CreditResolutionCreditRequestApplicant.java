@@ -98,4 +98,7 @@ public class CreditResolutionCreditRequestApplicant {
 
     private Integer numberCreditRequest;
 
+    private String nameOffice;
+
+    private List<UnsecuredGuarantee> unsecuredGuarantee;
 }

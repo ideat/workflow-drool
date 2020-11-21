@@ -16,4 +16,8 @@ public class Indicators {
     private Double indicator8;
     private Double indicator9;
     private Double indicator10;
+    private Double indicator11;
+    private Double indicator12;
+    private Double indicator13;
+    private Double indicator14;
 }

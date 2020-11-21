@@ -14,5 +14,6 @@ public class GuaranteesResolution {
     private LocalDate appraisalDate; //fecha avaluo
     private Double guaranteeAmount;
     private String mortgageGrade; //grado hipoteca
+    private String proficient;  //perito fieldtext15
 
 }

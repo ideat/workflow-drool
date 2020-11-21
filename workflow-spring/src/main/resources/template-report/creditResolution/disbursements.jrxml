@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="disbursements" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="00f5a012-4443-4fc1-9076-f3318b39be76">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="disbursements" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="00f5a012-4443-4fc1-9076-f3318b39be76">
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -23,7 +23,7 @@
 	<columnHeader>
 		<band height="32" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="21" width="170" height="10" uuid="2d46c96a-9c1a-4e4c-8cbb-134f7e8fe5e9">
+				<reportElement x="0" y="21" width="130" height="10" uuid="2d46c96a-9c1a-4e4c-8cbb-134f7e8fe5e9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4792c652-d111-4f93-bbc9-7154d2effc5c"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -32,7 +32,7 @@
 				<text><![CDATA[Descripcion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="170" y="21" width="77" height="10" uuid="83079abd-cb01-4e99-9197-ca13d74f0bda">
+				<reportElement x="130" y="21" width="70" height="10" uuid="83079abd-cb01-4e99-9197-ca13d74f0bda">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="928b0789-4d38-40fd-baca-ee1f27132cc2"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -42,7 +42,7 @@
 				<text><![CDATA[Monto desembolso]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="247" y="21" width="303" height="10" uuid="767d1c28-640d-4266-90ab-4783533aed41">
+				<reportElement x="200" y="21" width="180" height="10" uuid="767d1c28-640d-4266-90ab-4783533aed41">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d037be2a-c9ff-4568-b541-f47153d08892"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -60,10 +60,10 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="30" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="0" width="170" height="30" uuid="73d8dc76-f806-45cd-bfe9-eeba2796494f">
+				<reportElement x="0" y="0" width="130" height="30" uuid="73d8dc76-f806-45cd-bfe9-eeba2796494f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4792c652-d111-4f93-bbc9-7154d2effc5c"/>
 				</reportElement>
 				<box>
@@ -75,7 +75,7 @@
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,###.00#">
-				<reportElement x="170" y="0" width="77" height="30" uuid="83749b22-f048-4d71-97f0-6e9bcc38eea1">
+				<reportElement x="130" y="0" width="70" height="30" uuid="83749b22-f048-4d71-97f0-6e9bcc38eea1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="928b0789-4d38-40fd-baca-ee1f27132cc2"/>
 				</reportElement>
 				<box>
@@ -87,7 +87,7 @@
 				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="247" y="0" width="303" height="30" uuid="250a46ba-697f-4698-beb2-960ab20ba6b2">
+				<reportElement x="200" y="0" width="180" height="30" uuid="250a46ba-697f-4698-beb2-960ab20ba6b2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d037be2a-c9ff-4568-b541-f47153d08892"/>
 				</reportElement>
 				<box>
@@ -98,6 +98,22 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{conditions}]]></textFieldExpression>
 			</textField>
+			<rectangle>
+				<reportElement x="380" y="0" width="85" height="30" uuid="a2f8a08f-28c1-4784-ac4e-2c0dc249fe5e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="465" y="0" width="85" height="30" uuid="2db0d420-304c-4d02-adf7-e637fef6e25f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
 		</band>
 	</detail>
 	<columnFooter>

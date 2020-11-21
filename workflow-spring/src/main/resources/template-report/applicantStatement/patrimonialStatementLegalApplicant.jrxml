@@ -103,18 +103,6 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<staticText>
-					<reportElement x="0" y="0" width="500" height="15" uuid="d0f6b19c-938b-4a19-bfd8-f721497a656a">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[DECLARACION JURADA DE BIENES]]></text>
-				</staticText>
-				<staticText>
 					<reportElement x="0" y="15" width="500" height="15" uuid="87fa092e-3048-40a8-b2c0-f46ae5595a65">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -126,6 +114,13 @@
 					</textElement>
 					<text><![CDATA[ACTIVO:]]></text>
 				</staticText>
+				<textField>
+					<reportElement x="0" y="0" width="500" height="14" uuid="e286fa88-b8db-43b7-97e4-1494c5d54936"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["DECLARACION JURADA DE BIENES (Expresada en "+$F{currency}+")"]]></textFieldExpression>
+				</textField>
 			</frame>
 			<frame>
 				<reportElement positionType="Float" mode="Opaque" x="1" y="298" width="500" height="15" backcolor="#B0AEAE" uuid="6dbe2cfe-c0b8-4033-adcf-9ff61c277d66">
@@ -375,7 +370,7 @@
 				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="210" y="48" width="165" height="22" uuid="04c74091-ed0f-4b30-8eaa-98181eb3eefb">
+				<reportElement x="210" y="48" width="155" height="22" uuid="04c74091-ed0f-4b30-8eaa-98181eb3eefb">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -418,7 +413,7 @@
 				<text><![CDATA[Literal:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="430" y="48" width="60" height="23" uuid="c5b29588-6011-49c9-9e11-514623aea9a1">
+				<reportElement x="430" y="40" width="60" height="23" uuid="c5b29588-6011-49c9-9e11-514623aea9a1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -429,7 +424,7 @@
 				<textFieldExpression><![CDATA[$F{nameTypeCredit}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="380" y="48" width="50" height="10" uuid="24e9b938-27d7-4649-832c-e8a51c9727ed">
+				<reportElement x="380" y="40" width="50" height="10" uuid="24e9b938-27d7-4649-832c-e8a51c9727ed">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -498,7 +493,7 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font size="8" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[SOLICITUD DE CREDITO (PERSONA JURIDICA)]]></text>
 			</staticText>
@@ -731,16 +726,6 @@
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{earningList})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport}  + "earning.jasper"]]></subreportExpression>
 			</subreport>
-			<staticText>
-				<reportElement mode="Opaque" x="1" y="412" width="500" height="15" backcolor="#BDB3B3" uuid="d3677898-2dbe-47a7-a180-912be9123ef2">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[INGRESOS Y EGRESOS MENSUALES (Declarante y Conyuge)]]></text>
-			</staticText>
 			<frame>
 				<reportElement positionType="Float" x="1" y="493" width="500" height="45" uuid="aed192c8-422c-4981-8d23-6ba1aa8c35ab">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -817,14 +802,14 @@
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="429" y="22" width="60" height="10" uuid="01adb52b-ed7c-4124-bf0d-ee0dbe2f5cd7"/>
+				<reportElement x="429" y="29" width="60" height="10" uuid="01adb52b-ed7c-4124-bf0d-ee0dbe2f5cd7"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numberRequest}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="365" y="10" width="60" height="10" uuid="adaefa49-2398-4344-8467-25904458b21e">
+				<reportElement x="365" y="3" width="60" height="10" uuid="adaefa49-2398-4344-8467-25904458b21e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -834,7 +819,7 @@
 				<text><![CDATA[Fecha solicitud:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="365" y="22" width="60" height="10" uuid="cf7b3057-e4c7-4daa-be1c-85abf2e5993e">
+				<reportElement x="365" y="29" width="60" height="10" uuid="cf7b3057-e4c7-4daa-be1c-85abf2e5993e">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
@@ -843,7 +828,7 @@
 				<text><![CDATA[Numero solicitud:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="430" y="10" width="60" height="10" uuid="69004b34-198e-49ce-b575-8e810c94c556">
+				<reportElement x="430" y="3" width="60" height="10" uuid="69004b34-198e-49ce-b575-8e810c94c556">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -851,6 +836,21 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{requestDate}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))]]></textFieldExpression>
 			</textField>
+			<frame>
+				<reportElement positionType="Float" x="1" y="414" width="500" height="15" uuid="7a5cff4b-7962-491f-8a89-c8c652b54fa4">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textField>
+					<reportElement mode="Opaque" x="0" y="3" width="500" height="14" backcolor="#D1D1D1" uuid="adea5a39-afed-4cf8-9d92-4887d8e5e9eb"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["INGRESOS Y EGRESOS MENSUALES (Declarante Expresado en "+$F{currency}+")"]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</detail>
 	<columnFooter>

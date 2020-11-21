@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="guarantees" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d0782c1-937a-4633-a45d-ac8cd0daa6b8">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="guarantees" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d0782c1-937a-4633-a45d-ac8cd0daa6b8">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -11,6 +11,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="currency" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -20,6 +21,7 @@
 	<field name="appraisalDate" class="java.time.LocalDate"/>
 	<field name="guaranteeAmount" class="java.lang.Double"/>
 	<field name="mortgageGrade" class="java.lang.String"/>
+	<field name="proficient" class="java.lang.String"/>
 	<variable name="sum_mortgage" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{mortgage}]]></variableExpression>
 	</variable>
@@ -39,10 +41,10 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="31" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="0" y="12" width="200" height="19" uuid="01ac6830-7a4a-4d99-9562-513aa864b500">
+				<reportElement x="0" y="12" width="230" height="19" uuid="01ac6830-7a4a-4d99-9562-513aa864b500">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad856ab2-b491-45b1-9923-b560c0bcef8f"/>
 				</reportElement>
 				<box>
@@ -54,20 +56,7 @@
 				<text><![CDATA[Descripcion Garantia]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="12" width="70" height="19" uuid="f9776ae6-f568-4256-ada3-dca68099ee96">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac020cdf-d0c8-4851-b079-5c143516cc3a"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<box>
-					<pen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center">
-					<font size="6" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Valor hipotecario]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="270" y="12" width="70" height="19" uuid="d7b8e76a-e370-4108-b2a5-8deae6f92a6b">
+				<reportElement x="230" y="12" width="60" height="19" uuid="d7b8e76a-e370-4108-b2a5-8deae6f92a6b">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="956d24d7-d57d-4812-a1f1-ec37234aba58"/>
 				</reportElement>
 				<box>
@@ -79,7 +68,7 @@
 				<text><![CDATA[Valor Comercial]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="340" y="12" width="68" height="19" uuid="9b3ee899-7037-46d8-8fd5-e740535e0897">
+				<reportElement x="290" y="12" width="50" height="19" uuid="9b3ee899-7037-46d8-8fd5-e740535e0897">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b40cbcf-85e5-4bb8-b916-4f3bef7c7544"/>
 				</reportElement>
 				<box>
@@ -91,7 +80,7 @@
 				<text><![CDATA[Fecha Avaluo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="408" y="12" width="92" height="19" uuid="1745aab0-eef8-49f6-94f9-e742da3122db">
+				<reportElement x="340" y="12" width="60" height="19" uuid="1745aab0-eef8-49f6-94f9-e742da3122db">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c712274-2f43-48b7-8c62-e6ad5d88de74"/>
 				</reportElement>
 				<box>
@@ -103,7 +92,7 @@
 				<text><![CDATA[Monto Garantia]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="500" y="12" width="54" height="19" uuid="50a422c7-ec04-43a7-9c39-6ea1a32bb167">
+				<reportElement x="400" y="12" width="54" height="19" uuid="50a422c7-ec04-43a7-9c39-6ea1a32bb167">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b32ed416-ee3f-4550-a6b3-661c32e27f35"/>
 				</reportElement>
 				<box>
@@ -114,74 +103,113 @@
 				</textElement>
 				<text><![CDATA[Hipoteca (1er.- 2do. grado)]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="0" y="2" width="200" height="8" uuid="515fff6f-b542-4031-8eb8-5a1c351869e0"/>
+			<textField>
+				<reportElement x="0" y="1" width="300" height="10" uuid="307c50fd-2645-4002-a0b5-a49b02cb438a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad856ab2-b491-45b1-9923-b560c0bcef8f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["4. GARANTIAS (Hipotecarias, prendarias, warrants) (Expresado en "+$P{currency}+")"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="454" y="12" width="106" height="19" uuid="7338001a-74e9-4915-b642-bd71d46e41f6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b32ed416-ee3f-4550-a6b3-661c32e27f35"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[4. GARANTIAS (Hipotecarias, prendarias, warrants)]]></text>
+				<text><![CDATA[Perito]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="10" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="0" width="200" height="10" uuid="dbb985c4-35b3-4fe5-94f5-712e6e695e8e">
+				<reportElement x="0" y="0" width="230" height="10" uuid="dbb985c4-35b3-4fe5-94f5-712e6e695e8e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad856ab2-b491-45b1-9923-b560c0bcef8f"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00#" isBlankWhenNull="true">
-				<reportElement x="200" y="0" width="70" height="10" uuid="d20111e2-be9f-4c0d-96ca-6ae4e7207702">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac020cdf-d0c8-4851-b079-5c143516cc3a"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Right">
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{mortgage}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00#" isBlankWhenNull="true">
-				<reportElement x="270" y="0" width="70" height="10" uuid="a2b5aaf5-88c0-486b-b0ae-ebeece1a8447">
+				<reportElement x="230" y="0" width="60" height="10" uuid="a2b5aaf5-88c0-486b-b0ae-ebeece1a8447">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="956d24d7-d57d-4812-a1f1-ec37234aba58"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement textAlignment="Right">
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{commercialValue}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00#" isBlankWhenNull="true">
-				<reportElement x="340" y="0" width="68" height="10" uuid="976cc9b1-fb63-4ed6-9d8f-21013dfee30f">
+				<reportElement x="290" y="0" width="50" height="10" uuid="976cc9b1-fb63-4ed6-9d8f-21013dfee30f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0b40cbcf-85e5-4bb8-b916-4f3bef7c7544"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{appraisalDate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{appraisalDate}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00#" isBlankWhenNull="true">
-				<reportElement x="408" y="0" width="92" height="10" uuid="c837b5fa-3302-4aa3-b73e-b780e63fd0f5">
+				<reportElement x="340" y="0" width="60" height="10" uuid="c837b5fa-3302-4aa3-b73e-b780e63fd0f5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c712274-2f43-48b7-8c62-e6ad5d88de74"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement textAlignment="Right">
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{guaranteeAmount}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="500" y="0" width="54" height="10" uuid="1a2775e0-68eb-43cd-9350-29e37bb98425">
+				<reportElement x="400" y="0" width="54" height="10" uuid="1a2775e0-68eb-43cd-9350-29e37bb98425">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b32ed416-ee3f-4550-a6b3-661c32e27f35"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{mortgageGrade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="454" y="-1" width="106" height="10" uuid="01003769-4f0f-4586-8ea3-d5b506e09334">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b32ed416-ee3f-4550-a6b3-661c32e27f35"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proficient}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -193,17 +221,8 @@
 	</pageFooter>
 	<summary>
 		<band height="13" splitType="Stretch">
-			<textField pattern="#,##0.00##;(#,##0.00##-)">
-				<reportElement x="200" y="0" width="70" height="10" uuid="713802b7-1ca7-4e26-933b-051daebf8727">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Right">
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{sum_mortgage}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00##;(#,##0.00##-)">
-				<reportElement x="270" y="0" width="70" height="10" uuid="53c716ff-6bfb-4a00-8cf9-82b40b560424">
+			<textField pattern="#,##0.00##;(#,##0.00##-)" isBlankWhenNull="true">
+				<reportElement x="230" y="0" width="60" height="10" uuid="53c716ff-6bfb-4a00-8cf9-82b40b560424">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -211,8 +230,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{sum_commercialValue}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00##;(#,##0.00##-)">
-				<reportElement x="408" y="0" width="92" height="10" uuid="7705628e-9645-466f-87a4-b4145268912a">
+			<textField pattern="#,##0.00##;(#,##0.00##-)" isBlankWhenNull="true">
+				<reportElement x="341" y="0" width="60" height="10" uuid="7705628e-9645-466f-87a4-b4145268912a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right">
@@ -221,7 +240,7 @@
 				<textFieldExpression><![CDATA[$V{sum_guaranteeAmount}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="107" y="1" width="93" height="9" uuid="6c500927-dee6-419e-9883-fb81ff30fdee"/>
+				<reportElement x="137" y="1" width="93" height="9" uuid="6c500927-dee6-419e-9883-fb81ff30fdee"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>

@@ -180,7 +180,7 @@ public class CreateCreditResolutionCreditRequest {
         ObjectCredit objectCredit = objectCreditList.stream()
                 .filter(o -> o.getExternalCode().equals(Integer.valueOf(codeObjectCredit))).findFirst().get();
         result[0] = productTypeCredit.getDescription();
-        result[1] = objectCredit.getDescription();
+        result[1] = objectCredit.getCategory();
         return result;
     }
 

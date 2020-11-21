@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mindware.workflow.core.entity.Applicant;
 import com.mindware.workflow.core.entity.Users;
 import com.mindware.workflow.core.entity.config.ExchangeRate;
+import com.mindware.workflow.core.entity.config.Office;
 import com.mindware.workflow.core.entity.config.TypeCredit;
 import com.mindware.workflow.core.entity.creditRequest.CreditRequest;
 import com.mindware.workflow.core.entity.CreditRequestApplicant;
@@ -18,10 +19,8 @@ import com.mindware.workflow.core.service.data.config.RepositoryTypeCredit;
 import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequest;
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
-import com.mindware.workflow.core.service.data.creditResolution.dto.CreditResolutionCreditRequestApplicant;
-import com.mindware.workflow.core.service.data.creditResolution.dto.GuaranteesResolution;
-import com.mindware.workflow.core.service.data.creditResolution.dto.GuarantorResolution;
-import com.mindware.workflow.core.service.data.creditResolution.dto.Indicators;
+import com.mindware.workflow.core.service.data.creditResolution.dto.*;
+import com.mindware.workflow.core.service.data.office.RepositoryOffice;
 import com.mindware.workflow.core.service.data.patrimonialStatement.RepositoryPatrimonialStatement;
 import com.mindware.workflow.core.service.data.paymentPlan.RepositoryPaymentPlan;
 import com.mindware.workflow.core.service.data.paymentPlan.dto.PaymentPlanDto;
@@ -41,6 +40,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -84,6 +84,9 @@ public class CreditResolutionCreditRequestApplicantController {
     @Autowired
     RepositoryUsers repositoryUsers;
 
+    @Autowired
+    RepositoryOffice repositoryOffice;
+
     @GetMapping(value = "/v1/creditResolutionReport", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public @ResponseBody  byte[] getCreditResolutionReport(@RequestHeader Map<String,String> headers) throws IOException, JRException {
         headers.forEach((key,value) -> {
@@ -97,9 +100,25 @@ public class CreditResolutionCreditRequestApplicantController {
         Optional<Applicant> spouse = repositoryApplicant.getApplicantByNumberApplicant(applicant.getNumberApplicantSpouse());
 
         List<PatrimonialStatement> patrimonialStatementList = repositoryPatrimonialStatement.getByIdCreditRequestApplicant(idCreditRequestApplicant);
+        patrimonialStatementList = patrimonialStatementList.stream()
+                .filter(p -> Objects.nonNull(p.getCategory().equals("ACTIVO") && p.getElementCategory().equals("CUENTAS CORRIENTE Y AHORRO"))
+                        && p.getFieldBoolean4()!=null && p.getFieldBoolean4().equals("SI"))
+                .collect(Collectors.toList());
+        Double reciprocity = patrimonialStatementList.stream()
+                .map(p -> p.getFieldDouble1()).reduce(0.0,Double::sum);
         CreditResolution creditResolution = repositoryCreditResolution.getByNumberRequest(numberRequest).get();
         CreditRequest creditRequest = repositoryCreditRequest.getCreditRequestByNumberRequest(numberRequest).get();
 
+        List<UnsecuredGuarantee> unsecuredGuarantee = new ArrayList<>();
+
+        if(creditRequest.getTypeGuarantee().equals("IPQ")) {
+            UnsecuredGuarantee unsecuredGuarantee1 = new UnsecuredGuarantee();
+            unsecuredGuarantee1.setUnsecuredGuarantee(creditRequest.getTypeGuarantee().concat(" - GARANTIA QUIROGRAFARIA - SOLA FIRMA"));
+            unsecuredGuarantee.add(unsecuredGuarantee1);
+            unsecuredGuarantee.add(unsecuredGuarantee1);
+        }
+
+        Office office = repositoryOffice.getOfficeByInternalCode(creditRequest.getIdOffice()).get();
         Users users = repositoryUsers.getUserByIdUser(creditRequest.getLoginUser()).get();
 
         int factor = creditRequest.getPaymentPeriod()/30;
@@ -117,12 +136,14 @@ public class CreditResolutionCreditRequestApplicantController {
         teac = teac/factor;
 
         CreditResolutionCreditRequestApplicant result = CreateCreditResolutionCreditRequest.generate(applicant,spouse,creditResolution,creditRequest,typeCredit);
+        result.setNameOffice(office.getName());
         result.setTeac(teac);
         result.setPatrimony(getPatrimony(idCreditRequestApplicant));
         result.setGuarantorResolutionList(getGuarantors(numberRequest));
-
+        result.setReciprocity(reciprocity);
         result.setNumberCreditRequest(numberRequest);
         result.setNameOfficer(users.getFullName());
+        result.setUnsecuredGuarantee(unsecuredGuarantee);
 
         List<GuaranteesResolution> guaranteesResolutionList = getGuarantees(numberRequest);
         guaranteesResolutionList.addAll(getNoOwnGuarantee(creditRequest.getNoOwnGuarantee()));
@@ -132,7 +153,7 @@ public class CreditResolutionCreditRequestApplicantController {
         ExchangeRate exchangeRate = repositoryExchangeRate.getActiveExchangeRateByCurrency("$us.").get();
         Double exchange = exchangeRate.getExchange();
 //        if(creditRequest.getCurrency().equals("BS"))  amount = Math.round((amount/exchange)*100.0)/100.0;
-        result.setIndicatorsList(getIndicators(amount,paymentPlanList,guaranteesResolutionList,factor,creditRequest.getTypeFee()));
+        result.setIndicatorsList(getIndicators(amount,paymentPlanList,guaranteesResolutionList,factor,creditRequest.getTypeFee(),creditResolution));
 
         InputStream stream = getClass().getResourceAsStream("/template-report/creditResolution/creditResolution.jrxml");
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();
@@ -169,7 +190,9 @@ public class CreditResolutionCreditRequestApplicantController {
                    guaranteesResolution.setAppraisalDate(p.getFieldDate2());
                    guaranteesResolution.setGuaranteeAmount(p.getFieldDouble2());
                    guaranteesResolution.setMortgageGrade(p.getFieldSelection2());
+                   guaranteesResolution.setProficient(p.getFieldText15());
                    guaranteesResolutionList.add(guaranteesResolution);
+
                 }
             }
         }
@@ -189,6 +212,7 @@ public class CreditResolutionCreditRequestApplicantController {
             guaranteesResolution.setGuaranteeAmount(n.getGuaranteeAmount());
             guaranteesResolution.setMortgage(n.getMortgageValue());
             guaranteesResolution.setMortgageGrade(n.getMortgageDegree());
+            guaranteesResolution.setProficient(n.getProficient());
             guaranteesResolutions.add(guaranteesResolution);
         }
         return guaranteesResolutions;
@@ -211,13 +235,21 @@ public class CreditResolutionCreditRequestApplicantController {
         return guaranteesResolutionList;
     }
 
-    private List<Indicators> getIndicators(Double amount, List<PaymentPlan> paymentPlanList, List<GuaranteesResolution> guaranteesResolutionList, int factor, String typeFee){
+    private List<Indicators> getIndicators(Double amount, List<PaymentPlan> paymentPlanList,
+                                           List<GuaranteesResolution> guaranteesResolutionList,
+                                           int factor, String typeFee, CreditResolution creditResolution) throws IOException {
         List<Indicators> indicatorsList = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
         Indicators indicators = new Indicators();
         List<PatrimonialStatement> patrimonialStatementList = repositoryPatrimonialStatement.getByIdCreditRequestApplicant(idCreditRequestApplicant);
-        Double totalDirectDebts = patrimonialStatementList.stream()
-                .filter(p -> p.getCategory().equals("PASIVO"))
-                .mapToDouble(PatrimonialStatement::getFieldDouble1).sum();
+//        Double totalDirectDebts = patrimonialStatementList.stream()
+//                .filter(p -> p.getCategory().equals("PASIVO"))
+//                .mapToDouble(PatrimonialStatement::getFieldDouble1).sum();
+
+        List<DirectIndirectDebts> directIndirectDebts = mapper.readValue(creditResolution.getDirectIndirectDebts(),new TypeReference<List<DirectIndirectDebts>>(){});
+        Double totalDirectDebts = directIndirectDebts.stream()
+                .filter(d -> d.getTypeDebts().equals("direct"))
+                .mapToDouble(DirectIndirectDebts::getAmount).sum();
 
         Double totalAsset = patrimonialStatementList.stream()
                 .filter(p -> p.getCategory().equals("ACTIVO"))
@@ -226,6 +258,10 @@ public class CreditResolutionCreditRequestApplicantController {
         Double totalMortageValue = guaranteesResolutionList.stream()
                 .filter(p -> p.getMortgage()!=null)
                 .mapToDouble(GuaranteesResolution::getMortgage).sum();
+
+        Double totalGuarantee = guaranteesResolutionList.stream()
+                .filter(p -> p.getGuaranteeAmount()!=null)
+                .mapToDouble(GuaranteesResolution::getGuaranteeAmount).sum();
 
         Double totalIncome = (patrimonialStatementList.stream()
                 .filter(p -> p.getCategory().equals("INGRESOS"))
@@ -251,7 +287,10 @@ public class CreditResolutionCreditRequestApplicantController {
         }
         indicators.setIndicator8(patrimony);
         indicators.setIndicator9(patrimony/totalDirectDebts);
-        indicators.setIndicator10(patrimony/amount);
+        indicators.setIndicator10(patrimony/totalDirectDebts);
+        indicators.setIndicator11(totalDirectDebts);
+        indicators.setIndicator12(totalGuarantee);
+        indicators.setIndicator13(totalGuarantee/amount);
 
 
 
