@@ -61,6 +61,8 @@ public class PatrimonialStatement {
 
     private String fieldBoolean3;
 
+    private String fieldBoolean4;
+
     private Double fieldDouble1;
 
     private Double fieldDouble2;
@@ -82,5 +84,9 @@ public class PatrimonialStatement {
     private String category;
 
     private String elementCategory;
+
+    private Double latitude;
+
+    private Double longitude;
 
 }

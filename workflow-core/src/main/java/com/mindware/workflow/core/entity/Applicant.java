@@ -135,7 +135,7 @@ public class Applicant {
         return Optional.ofNullable(this.firstName).orElse("")+" "
                 +Optional.ofNullable(this.secondName).orElse("") + " "
                 +Optional.ofNullable(this.lastName).orElse("")+ " "
-                +Optional.ofNullable(this.motherLastName).orElse("")+ " "
+//                +Optional.ofNullable(this.motherLastName).orElse("")+ " "
                 + (!mal.equals("")?"de " + mal:ml);
 
     }

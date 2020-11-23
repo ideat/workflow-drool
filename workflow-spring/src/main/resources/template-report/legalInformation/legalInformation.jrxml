@@ -202,6 +202,20 @@
 				<reportElement x="5" y="1" width="105" height="29" uuid="f9f9b9ee-d35e-46fa-8fd5-36486a9d3d0c"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="414" y="45" width="50" height="10" uuid="b8ca31fe-acc0-41dc-925b-38f90a3ec092"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numberRequest}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="350" y="45" width="64" height="10" uuid="979c1573-0e19-4098-a2f9-11716b31c3aa"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero solicitud:]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>

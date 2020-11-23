@@ -138,7 +138,8 @@
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dateDocument}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{dateDocument}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="420" y="0" width="40" height="10" uuid="4cbe398b-04e9-4be8-8c95-44a95792a75e">

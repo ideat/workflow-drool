@@ -96,11 +96,14 @@ public class ObservationCreditAnalysisController {
         Office office = repositoryOffice.getOfficeByInternalCode(creditRequest.getIdOffice()).get();
         mapData.put("agency",office.getName());
 
+        parameter = repositoryParameter.getParameterByCategoryAndValue("TIPO GARANTIA",creditRequest.getTypeGuarantee()).get();
+
         CreateObservationCreditRequestApplicant createObservationCreditRequestApplicant = new CreateObservationCreditRequestApplicant();
 
         ObservationCreditRequestApplicant result = createObservationCreditRequestApplicant.generate(observation,patrimonialStatementList,applicant,
                 users,creditRequest,mapData,paymentPlanList);
 
+        result.setTypeGuarantee(parameter.getValue() +" - "+ parameter.getDescription());
         InputStream stream = null;
         stream = getClass().getResourceAsStream("/template-report/observation/observationCreditAnalysis.jrxml");
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();

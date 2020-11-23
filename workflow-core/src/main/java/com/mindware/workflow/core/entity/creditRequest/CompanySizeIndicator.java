@@ -19,4 +19,6 @@ public class CompanySizeIndicator {
     private String indicatorClassification;
 
     private String description;
+
+    private Integer numberRequest;
 }

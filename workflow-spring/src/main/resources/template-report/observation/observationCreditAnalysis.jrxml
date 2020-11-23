@@ -35,7 +35,7 @@
 	<pageHeader>
 		<band height="136" splitType="Stretch">
 			<staticText>
-				<reportElement x="10" y="40" width="150" height="10" uuid="16e30aaa-1971-4844-a59e-bafd7d62a27a"/>
+				<reportElement x="10" y="40" width="180" height="10" uuid="16e30aaa-1971-4844-a59e-bafd7d62a27a"/>
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
@@ -166,14 +166,14 @@
 				<text><![CDATA[Nro Solicitud:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="410" y="60" width="110" height="10" uuid="c25f58f4-29c8-4cc3-8d45-d74428b46600"/>
+				<reportElement x="420" y="60" width="100" height="10" uuid="c25f58f4-29c8-4cc3-8d45-d74428b46600"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numberCredit}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="370" y="60" width="40" height="10" uuid="99d802c6-b4dd-4094-9ccd-0ce16da1bcf0">
+				<reportElement x="370" y="60" width="50" height="10" uuid="99d802c6-b4dd-4094-9ccd-0ce16da1bcf0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -190,14 +190,14 @@
 				</textElement>
 				<text><![CDATA[Tasa:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0.00%" isBlankWhenNull="true">
 				<reportElement x="300" y="70" width="220" height="10" uuid="8bf7f8e1-00cf-4e3a-bd74-5d846341a58b"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{rateInterest}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rateInterest}/100]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00#">
 				<reportElement x="300" y="80" width="70" height="10" uuid="3a9dff1d-638a-4459-998d-acadd5b93e8f"/>
 				<textElement>
 					<font size="6"/>
@@ -214,14 +214,14 @@
 				<text><![CDATA[Monto:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="410" y="80" width="110" height="10" uuid="3bdcb76d-8431-4c28-a271-69c93d9bf9bc"/>
+				<reportElement x="420" y="80" width="100" height="10" uuid="3bdcb76d-8431-4c28-a271-69c93d9bf9bc"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{currency}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="370" y="80" width="40" height="10" uuid="ad8cb312-cde2-463a-88f7-b45e0f863715">
+				<reportElement x="370" y="80" width="50" height="10" uuid="ad8cb312-cde2-463a-88f7-b45e0f863715">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>

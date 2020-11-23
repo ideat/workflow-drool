@@ -123,7 +123,7 @@
 				</textElement>
 				<text><![CDATA[(+)  Otros ingresos]]></text>
 			</staticText>
-			<textField pattern="#,###.00#">
+			<textField pattern="#,##0.00">
 				<reportElement x="90" y="53" width="60" height="10" uuid="edc34326-7972-4e67-8fe9-5c5fa4ccadbc"/>
 				<textElement textAlignment="Right">
 					<font size="6"/>
@@ -200,7 +200,7 @@
 				</textElement>
 				<text><![CDATA[(+)  Otros ingresos]]></text>
 			</staticText>
-			<textField pattern="#,###.00#">
+			<textField pattern="#,###.00">
 				<reportElement x="238" y="53" width="60" height="10" uuid="705f1ce8-a0e8-4a96-8e8e-3939737fa48f"/>
 				<textElement textAlignment="Right">
 					<font size="6"/>
@@ -277,7 +277,7 @@
 				</textElement>
 				<text><![CDATA[(+)  Otros ingresos]]></text>
 			</staticText>
-			<textField pattern="#,###.00#">
+			<textField pattern="#,###.00">
 				<reportElement x="385" y="53" width="60" height="10" uuid="d87865e6-0f22-4df9-859f-fc5bf8e31eed"/>
 				<textElement textAlignment="Right">
 					<font size="6"/>

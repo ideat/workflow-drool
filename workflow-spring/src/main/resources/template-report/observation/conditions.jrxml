@@ -37,7 +37,7 @@
 	<detail>
 		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="160" height="30" backcolor="#D9D9D9" uuid="5ddd6bbe-516e-414f-a5f8-cf62cf6396fe">
+				<reportElement positionType="Float" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="160" height="30" isPrintWhenDetailOverflows="true" backcolor="#D9D9D9" uuid="5ddd6bbe-516e-414f-a5f8-cf62cf6396fe">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="953bcc9f-f255-4877-a513-d3998f72a7a9"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -45,7 +45,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{condition}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement positionType="Float" stretchType="ContainerHeight" x="160" y="0" width="384" height="30" isPrintWhenDetailOverflows="true" uuid="2d2b94f4-662c-4b11-8110-de303e3bc0b1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="569397d0-378b-4fac-96a1-bb0b8b4e97f4"/>
 				</reportElement>

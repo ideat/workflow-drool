@@ -75,6 +75,7 @@ public class CreditRequestCompanySizeIndicatorDtoController {
         CreditRequestCompanySizeIndicatorDto creditRequestCompanySizeIndicatorDto = repository.getByNumberRequest(numberRequest).get();
         String jsonCompanySizeIndicator = creditRequestCompanySizeIndicatorDto.getCompanySizeIndicator();
         CompanySizeIndicator companySizeIndicator = mapper.readValue(jsonCompanySizeIndicator,CompanySizeIndicator.class);
+        companySizeIndicator.setNumberRequest(numberRequest);
         List<CompanySizeIndicator> companySizeIndicatorList = new ArrayList<>();
         companySizeIndicatorList.add(companySizeIndicator);
 

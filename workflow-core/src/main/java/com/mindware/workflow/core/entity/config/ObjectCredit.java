@@ -10,6 +10,8 @@ import java.util.UUID;
 public class ObjectCredit {
     private UUID id;
 
+    private String category;
+
     private String description;
 
     private Integer externalCode;
