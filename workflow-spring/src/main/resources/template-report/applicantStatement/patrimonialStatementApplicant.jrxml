@@ -46,6 +46,7 @@
 	<field name="totalEarning" class="java.lang.Double"/>
 	<field name="totalExpense" class="java.lang.Double"/>
 	<field name="balance" class="java.lang.Double"/>
+	<field name="unsecuredGuarantee" class="java.util.List"/>
 	<variable name="Variable_1" class="java.lang.String">
 		<variableExpression><![CDATA[$V{MASTER_CURRENT_PAGE} + " de " + $V{MASTER_TOTAL_PAGES}]]></variableExpression>
 	</variable>
@@ -68,7 +69,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="609" splitType="Stretch">
+		<band height="631" splitType="Stretch">
 			<subreport>
 				<reportElement positionType="Float" x="2" y="78" width="500" height="12" uuid="4b208f37-179d-4aab-90d0-73f7ef354cd4">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -76,11 +77,14 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<subreportParameter name="currency">
+					<subreportParameterExpression><![CDATA[$F{currency}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{guaranteeList})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport}  + "guaranteeDescription.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="92" width="500" height="12" isRemoveLineWhenBlank="true" uuid="fef904df-4bcb-42f5-855f-d7d5c04a095f">
+				<reportElement positionType="Float" x="1" y="111" width="500" height="12" isRemoveLineWhenBlank="true" uuid="fef904df-4bcb-42f5-855f-d7d5c04a095f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -89,7 +93,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "guarantors.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="106" width="500" height="12" isRemoveLineWhenBlank="true" uuid="f505a9a2-0395-4d8a-bacd-3eb0b412f7e1">
+				<reportElement positionType="Float" x="1" y="125" width="500" height="12" isRemoveLineWhenBlank="true" uuid="f505a9a2-0395-4d8a-bacd-3eb0b412f7e1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -98,7 +102,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "debtorCodebtors.jasper"]]></subreportExpression>
 			</subreport>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="119" width="500" height="30" backcolor="#B0AEAE" uuid="fd8344ff-098d-4e26-9f8c-f7fc8b91eafa">
+				<reportElement positionType="Float" mode="Opaque" x="1" y="140" width="500" height="30" backcolor="#B0AEAE" uuid="fd8344ff-098d-4e26-9f8c-f7fc8b91eafa">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -125,7 +129,7 @@
 				</textField>
 			</frame>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="165" width="500" height="12" isRemoveLineWhenBlank="true" uuid="4cd08039-d181-4811-b6fa-cf9c9b34ef42">
+				<reportElement positionType="Float" x="3" y="187" width="500" height="12" isRemoveLineWhenBlank="true" uuid="4cd08039-d181-4811-b6fa-cf9c9b34ef42">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -134,7 +138,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "assetBankCheckingAccount.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="180" width="500" height="12" isRemoveLineWhenBlank="true" uuid="a1779245-c1a6-4047-af11-763b7852b16b">
+				<reportElement positionType="Float" x="3" y="202" width="500" height="12" isRemoveLineWhenBlank="true" uuid="a1779245-c1a6-4047-af11-763b7852b16b">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -144,7 +148,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "assetReceivable.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="209" width="500" height="12" isRemoveLineWhenBlank="true" uuid="080596d2-aa79-4a6d-a483-0f6883b4a2b3">
+				<reportElement positionType="Float" x="3" y="231" width="500" height="12" isRemoveLineWhenBlank="true" uuid="080596d2-aa79-4a6d-a483-0f6883b4a2b3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -153,7 +157,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "assetProperty.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="224" width="500" height="12" isRemoveLineWhenBlank="true" uuid="96040234-28f2-4cd7-9bbf-6fd82c505116">
+				<reportElement positionType="Float" x="3" y="246" width="500" height="12" isRemoveLineWhenBlank="true" uuid="96040234-28f2-4cd7-9bbf-6fd82c505116">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -163,7 +167,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "assetVehicle.jasper"]]></subreportExpression>
 			</subreport>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="287" width="500" height="15" backcolor="#B0AEAE" uuid="6dbe2cfe-c0b8-4033-adcf-9ff61c277d66">
+				<reportElement positionType="Float" mode="Opaque" x="1" y="308" width="500" height="15" backcolor="#B0AEAE" uuid="6dbe2cfe-c0b8-4033-adcf-9ff61c277d66">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -183,7 +187,7 @@
 				</staticText>
 			</frame>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="304" width="500" height="12" isRemoveLineWhenBlank="true" uuid="16415d99-14e2-4f7d-933e-118672a60e2d">
+				<reportElement positionType="Float" x="1" y="325" width="500" height="12" isRemoveLineWhenBlank="true" uuid="16415d99-14e2-4f7d-933e-118672a60e2d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -193,7 +197,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "liabilityDocumentsToPay.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="318" width="500" height="12" isRemoveLineWhenBlank="true" uuid="43ffcda9-c2fb-479f-bba7-f7f1215537fc">
+				<reportElement positionType="Float" x="1" y="339" width="500" height="12" isRemoveLineWhenBlank="true" uuid="43ffcda9-c2fb-479f-bba7-f7f1215537fc">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -202,7 +206,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "liabilityCreditCards.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="333" width="500" height="12" isRemoveLineWhenBlank="true" uuid="45431608-4362-459d-bd65-59a3181f49a0">
+				<reportElement positionType="Float" x="1" y="354" width="500" height="12" isRemoveLineWhenBlank="true" uuid="45431608-4362-459d-bd65-59a3181f49a0">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -211,7 +215,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "liabilityOtherLiabilities.jasper"]]></subreportExpression>
 			</subreport>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="268" width="500" height="18" backcolor="#BAD1D6" uuid="398488d7-cfdc-41be-8e81-e6f4bd22bc91">
+				<reportElement positionType="Float" mode="Opaque" x="1" y="288" width="500" height="18" backcolor="#BAD1D6" uuid="398488d7-cfdc-41be-8e81-e6f4bd22bc91">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -242,7 +246,7 @@
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Opaque" x="1" y="348" width="500" height="18" backcolor="#BAD1D6" uuid="954cac9e-4245-4ae1-af16-d79c93ad1e8c">
+				<reportElement positionType="Float" mode="Opaque" x="1" y="369" width="500" height="18" backcolor="#BAD1D6" uuid="954cac9e-4245-4ae1-af16-d79c93ad1e8c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -273,7 +277,7 @@
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" mode="Transparent" x="1" y="371" width="500" height="30" backcolor="#BAD1D6" uuid="acedacf6-0c1f-41f8-bd90-c60269e3ecb5">
+				<reportElement positionType="Float" mode="Transparent" x="1" y="390" width="500" height="30" backcolor="#BAD1D6" uuid="acedacf6-0c1f-41f8-bd90-c60269e3ecb5">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -388,7 +392,7 @@
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" x="1" y="539" width="500" height="70" uuid="56a5d44a-3650-4fd1-9321-dd5a7d962339">
+				<reportElement positionType="Float" x="1" y="555" width="500" height="70" uuid="56a5d44a-3650-4fd1-9321-dd5a7d962339">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -600,7 +604,7 @@
 				<text><![CDATA[SOLICITUD DE CREDITO (PERSONA NATURAL)]]></text>
 			</staticText>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="238" width="500" height="12" isRemoveLineWhenBlank="true" uuid="de157c6a-921f-439e-bdac-e28c7a837939">
+				<reportElement positionType="Float" x="3" y="260" width="500" height="12" isRemoveLineWhenBlank="true" uuid="de157c6a-921f-439e-bdac-e28c7a837939">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -610,7 +614,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "machinery.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="151" width="500" height="12" isRemoveLineWhenBlank="true" uuid="b5d5883b-ff7d-4a17-bdd3-8813ff1a78b9">
+				<reportElement positionType="Float" x="3" y="173" width="500" height="12" isRemoveLineWhenBlank="true" uuid="b5d5883b-ff7d-4a17-bdd3-8813ff1a78b9">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -620,7 +624,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "cash.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="194" width="500" height="12" isRemoveLineWhenBlank="true" uuid="a18bdbc7-c3bc-41ee-9c1b-a37eb444d2db">
+				<reportElement positionType="Float" x="3" y="216" width="500" height="12" isRemoveLineWhenBlank="true" uuid="a18bdbc7-c3bc-41ee-9c1b-a37eb444d2db">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -646,7 +650,7 @@
 				<text><![CDATA[Destino del credito:]]></text>
 			</staticText>
 			<frame>
-				<reportElement positionType="Float" mode="Transparent" x="1" y="450" width="500" height="30" backcolor="#BAD1D6" uuid="d0bab840-1487-4362-9bb8-71528c8a8fef">
+				<reportElement positionType="Float" mode="Transparent" x="1" y="469" width="500" height="30" backcolor="#BAD1D6" uuid="d0bab840-1487-4362-9bb8-71528c8a8fef">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -761,7 +765,7 @@
 				</staticText>
 			</frame>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="435" width="500" height="12" isRemoveLineWhenBlank="true" uuid="04d8230e-bcec-45c1-954b-53335ab3a9fc">
+				<reportElement positionType="Float" x="1" y="454" width="500" height="12" isRemoveLineWhenBlank="true" uuid="04d8230e-bcec-45c1-954b-53335ab3a9fc">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -770,7 +774,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "expenses.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="1" y="420" width="500" height="12" isRemoveLineWhenBlank="true" uuid="74105f50-5f5e-4469-8ca5-3761f6b60ec9">
+				<reportElement positionType="Float" x="1" y="439" width="500" height="12" isRemoveLineWhenBlank="true" uuid="74105f50-5f5e-4469-8ca5-3761f6b60ec9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -780,7 +784,7 @@
 				<subreportExpression><![CDATA[$P{path_subreport}  + "earning.jasper"]]></subreportExpression>
 			</subreport>
 			<frame>
-				<reportElement positionType="Float" x="1" y="403" width="500" height="15" uuid="1cc391b1-304a-4a0a-b6e6-8d8dfb525276">
+				<reportElement positionType="Float" x="1" y="420" width="500" height="15" uuid="1cc391b1-304a-4a0a-b6e6-8d8dfb525276">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -795,7 +799,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement positionType="Float" x="1" y="482" width="500" height="55" uuid="11a5587b-4962-4a35-943b-f51b723e3920">
+				<reportElement positionType="Float" x="1" y="499" width="500" height="55" uuid="11a5587b-4962-4a35-943b-f51b723e3920">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -861,7 +865,7 @@
 				<text><![CDATA[Numero solicitud:]]></text>
 			</staticText>
 			<subreport>
-				<reportElement positionType="Float" x="3" y="252" width="500" height="12" isRemoveLineWhenBlank="true" uuid="232adaed-4f3e-407a-8df6-d7a44ae354f8">
+				<reportElement positionType="Float" x="3" y="274" width="500" height="12" isRemoveLineWhenBlank="true" uuid="232adaed-4f3e-407a-8df6-d7a44ae354f8">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -869,6 +873,15 @@
 				</reportElement>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{assetOtherAssetsList})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{path_subreport}  + "assetOtherAssets.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="93" width="500" height="12" isRemoveLineWhenBlank="true" uuid="70459065-aad7-4b77-8e6b-edb02600174d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($F{unsecuredGuarantee})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{path_subreport}  + "unsecuredGuarantee.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

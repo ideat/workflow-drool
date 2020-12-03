@@ -76,7 +76,7 @@ public class CreateVaeDependent {
         vaeDependentReportDto.setFee(calculateFee(paymentPlanList));
         vaeDependentReportDto.setRatio(Math.round((vaeDependentReportDto.getFee()/totalAverage)*10000.0)/10000.0);
 
-        Double totalExpenses = patrimonialStatementList.stream().filter(p -> !p.getElementCategory().equals("GASTOS BASICOS"))
+        Double totalExpenses = patrimonialStatementList.stream().filter(p -> p.getElementCategory().equals("PAGO DEUDAS"))
                 .mapToDouble(PatrimonialStatement::getFieldDouble1).sum();
 
         vaeDependentReportDto.setMaxFeeDulyGuarantee(vaeDependentReportDto.getDulyGuaranteed()-totalExpenses);

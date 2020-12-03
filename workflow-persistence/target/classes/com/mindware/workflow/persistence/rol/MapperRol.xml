@@ -1,0 +1,67 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.rol.MapperRol">
+    <resultMap id="RolMap" type="com.mindware.workflow.core.entity.rol.Rol">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="options" column="options"/>
+        <result property="states" column="states"/>
+        <result property="scope" column="scope"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.rol.Rol">
+        insert into public.rol(
+            id,
+            name,
+            description,
+            options,
+            states,
+            scope)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{name},
+                   #{description},
+                   #{options}::json,
+                   #{states}::json,
+                   #{scope}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.rol.Rol">
+        update public.rol
+        set
+            name = #{name},
+            description = #{description},
+            options = #{options}::json,
+            states = #{states}::json,
+            scope = #{scope}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+
+    <select id="getAll" resultMap="RolMap">
+        <![CDATA[
+        select *
+        from public.rol
+        ]]>
+    </select>
+
+    <select id="getById" resultMap="RolMap" parameterType="map">
+        <![CDATA[
+        select *
+        from public.rol
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getRolByName" resultMap="RolMap" parameterType="map">
+        <![CDATA[
+        select *
+        from public.rol
+        where name = #{name}
+        ]]>
+    </select>
+
+</mapper>

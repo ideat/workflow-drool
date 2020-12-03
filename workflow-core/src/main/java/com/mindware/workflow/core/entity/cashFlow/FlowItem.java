@@ -8,4 +8,5 @@ import lombok.Setter;
 public class FlowItem {
     private Integer order;
     private String[] item;
+    private String type;
 }

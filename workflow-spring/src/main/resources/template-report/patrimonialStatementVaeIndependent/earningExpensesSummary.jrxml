@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="earningExpensesSummary" pageWidth="200" pageHeight="200" columnWidth="200" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="19386e6c-0ab8-4d70-842a-d462af79d344">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="earningExpensesSummary" pageWidth="300" pageHeight="200" columnWidth="300" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="19386e6c-0ab8-4d70-842a-d462af79d344">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -20,7 +29,7 @@
 		<band height="13" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="0" y="2" width="200" height="10" uuid="645b4005-366b-4d58-9563-1c817ef147d4">
+				<reportElement x="0" y="2" width="160" height="10" uuid="645b4005-366b-4d58-9563-1c817ef147d4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="adc3ac37-eefb-47e2-a831-275370a43bf0"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -38,10 +47,10 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="12" splitType="Stretch">
+		<band height="11" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="0" width="160" height="10" uuid="4ed0731a-49b6-4520-9760-4fd5e4a96bdb">
+				<reportElement x="0" y="0" width="120" height="10" uuid="4ed0731a-49b6-4520-9760-4fd5e4a96bdb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="adc3ac37-eefb-47e2-a831-275370a43bf0"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -57,7 +66,7 @@
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement x="160" y="0" width="40" height="10" uuid="8a9eb1af-ea72-42b0-ad24-c6edef14ba20">
+				<reportElement x="120" y="0" width="40" height="10" uuid="8a9eb1af-ea72-42b0-ad24-c6edef14ba20">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a370fa62-82ab-4396-a7b7-d8454501c048"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -71,6 +80,16 @@
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="140" height="10" isPrintWhenDetailOverflows="true" uuid="fa7391d4-87a3-4fae-9b53-1fb82d8df8d5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="4" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}=="Total ingreso x ventas"?"* Por Márgen de Prudencia, se utiliza el menor ingreso relevado.":
+$F{name}=="Total costo x ventas"?"* Por Márgen de Prudencia, se utiliza el mayor gasto relevado.":""]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

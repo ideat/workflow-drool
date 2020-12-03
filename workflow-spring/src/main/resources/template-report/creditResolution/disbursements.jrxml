@@ -60,7 +60,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="35" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement x="0" y="0" width="130" height="30" uuid="73d8dc76-f806-45cd-bfe9-eeba2796494f">
@@ -98,22 +98,34 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{conditions}]]></textFieldExpression>
 			</textField>
-			<rectangle>
-				<reportElement x="380" y="0" width="85" height="30" uuid="a2f8a08f-28c1-4784-ac4e-2c0dc249fe5e">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<staticText>
+				<reportElement x="380" y="0" width="85" height="30" uuid="e4cafc06-cc18-40e3-822b-6898d865925a"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="0" width="85" height="30" uuid="f62b64b1-4692-49ce-b36a-f6b959e7779d"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="380" y="21" width="170" height="1" uuid="76569a8a-c4b9-4c7d-add8-1d292094af29">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
-			</rectangle>
-			<rectangle>
-				<reportElement x="465" y="0" width="85" height="30" uuid="2db0d420-304c-4d02-adf7-e637fef6e25f">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</rectangle>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

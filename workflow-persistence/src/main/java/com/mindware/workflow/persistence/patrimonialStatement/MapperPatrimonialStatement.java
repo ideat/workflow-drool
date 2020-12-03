@@ -15,6 +15,8 @@ public interface MapperPatrimonialStatement {
 
     void update(PatrimonialStatement patrimonialStatement);
 
+    void updateCoordinates(PatrimonialStatement patrimonialStatement);
+
     PatrimonialStatement getById(@Param("id") UUID id);
 
     List<PatrimonialStatement> getByIdCreditRequestApplicantCategory(@Param("idCreditRequestApplicant") UUID idCreditRequestApplicant, @Param("category")String category);

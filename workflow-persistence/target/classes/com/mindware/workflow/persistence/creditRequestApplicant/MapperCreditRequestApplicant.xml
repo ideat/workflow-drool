@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.creditRequestApplicant.MapperCreditRequestApplicant">
+    <resultMap id="CreditRequestApplicantMap" type="com.mindware.workflow.core.entity.CreditRequestApplicant">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request" />
+        <result property="numberApplicant" column="number_applicant" />
+        <result property="typeRelation" column="type_relation"/>
+
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.CreditRequestApplicant">
+        insert into workflow.creditrequest_applicant(
+            id,
+            number_request,
+            number_applicant,
+            type_relation
+        ) values (
+             #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+             #{numberRequest},
+             #{numberApplicant},
+             #{typeRelation}
+                 )
+
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.CreditRequestApplicant">
+        update workflow.creditrequest_applicant
+            set number_applicant = #{numberApplicant}
+        where id =  #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+
+    </update>
+
+    <select id="getCreditRequestApplicantByNumberApplicantAndNumberCreditRequestAndTypeRelation" resultMap="CreditRequestApplicantMap" parameterType="map">
+        select *
+        from workflow.creditrequest_applicant
+        where number_request = #{numberRequest}
+        and number_applicant = #{numberApplicant}
+        and type_relation = #{typeRelation}
+    </select>
+
+    <select id="getCreditRequestApplicantbyId" resultMap="CreditRequestApplicantMap" parameterType="map">
+        select *
+        from workflow.creditrequest_applicant
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </select>
+
+    <select id="getByNumberRequest" resultMap="CreditRequestApplicantMap" parameterType="map">
+        select *
+        from workflow.creditrequest_applicant
+        where number_request = #{numberRequest}
+
+    </select>
+
+    <delete id="delete" parameterType="map">
+        delete from workflow.creditrequest_applicant
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </delete>
+
+</mapper>

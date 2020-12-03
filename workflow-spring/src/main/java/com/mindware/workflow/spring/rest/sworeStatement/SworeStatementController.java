@@ -9,6 +9,7 @@ import com.mindware.workflow.core.service.data.applicant.RepositoryApplicant;
 import com.mindware.workflow.core.service.data.config.RepositoryParameter;
 import com.mindware.workflow.core.service.data.config.RepositoryTypeCredit;
 import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequest;
+import com.mindware.workflow.core.service.data.creditResolution.dto.UnsecuredGuarantee;
 import com.mindware.workflow.core.service.data.patrimonialStatement.RepositoryPatrimonialStatement;
 import com.mindware.workflow.core.service.data.patrimonialStatement.dto.statementApplicants.RepositoryStatementApplicants;
 import com.mindware.workflow.core.service.data.patrimonialStatement.dto.statementApplicants.StatementApplicants;
@@ -94,6 +95,17 @@ public class SworeStatementController {
                 .generatePatrimonialStatementApplicantDto(creditRequest,statementApplicants
         ,applicant, patrimonialStatementList,applicantForStatementDtoList,typeCredit.getDescription(),typeRelation);
         InputStream stream = null;
+
+
+        if(creditRequest.getTypeGuarantee().equals("IPQ")) {
+            List<UnsecuredGuarantee> unsecuredGuarantee = new ArrayList<>();
+            UnsecuredGuarantee unsecuredGuarantee1 = new UnsecuredGuarantee();
+            unsecuredGuarantee1.setUnsecuredGuarantee(creditRequest.getTypeGuarantee().concat(" - GARANTIA QUIROGRAFARIA - SOLA FIRMA"));
+            unsecuredGuarantee.add(unsecuredGuarantee1);
+            psadto.setUnsecuredGuarantee(unsecuredGuarantee);
+        }
+
+
         if(origin.equals("Solicitud Credito")) {
             stream = getClass().getResourceAsStream("/template-report/applicantStatement/patrimonialStatementApplicant.jrxml");
         }else if(origin.equals("Solicitud Credito Persona Juridica")) {

@@ -3,6 +3,7 @@ package com.mindware.workflow.core.service.data.patrimonialStatement.dto.sworeSt
 import com.mindware.workflow.core.entity.CompanyData;
 import com.mindware.workflow.core.entity.patrimonialStatement.PatrimonialStatement;
 import com.mindware.workflow.core.service.data.applicant.dto.CompanyDataDto;
+import com.mindware.workflow.core.service.data.creditResolution.dto.UnsecuredGuarantee;
 import com.mindware.workflow.core.service.data.patrimonialStatement.dto.statementApplicants.StatementApplicants;
 import lombok.Getter;
 import lombok.Setter;
@@ -95,6 +96,6 @@ public class PatrimonialStatementApplicantDto {
 
     private List<PatrimonialStatement> expenseList;
 
-
+    private List<UnsecuredGuarantee> unsecuredGuarantee;
 
 }

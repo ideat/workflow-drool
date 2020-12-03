@@ -36,7 +36,7 @@
 				<textElement>
 					<font size="6" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Detalle de Gastos (En $us)]]></text>
+				<text><![CDATA[Detalle de Gastos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="208" y="10" width="40" height="10" uuid="fb881351-480a-4296-910c-ebca68d98afd">

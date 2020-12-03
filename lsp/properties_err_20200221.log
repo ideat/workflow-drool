@@ -1,0 +1,309 @@
+feb. 21, 2020 8:39:34 A. M. com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFO: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\fredd\Documents\Desarrollo\intellij\jbr
+feb. 21, 2020 8:53:04 A. M. org.eclipse.lsp4j.jsonrpc.RemoteEndpoint logIssues
+WARNING: Issue found in NotificationMessage: Message could not be parsed.
+com.google.gson.stream.MalformedJsonException: Use JsonReader.setLenient(true) to accept malformed JSON at line 1 column 387 path $
+	at com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1568)
+	at com.google.gson.stream.JsonReader.checkLenient(JsonReader.java:1409)
+	at com.google.gson.stream.JsonReader.doPeek(JsonReader.java:542)
+	at com.google.gson.stream.JsonReader.peek(JsonReader.java:425)
+	at org.eclipse.lsp4j.jsonrpc.json.MessageJsonHandler.parseMessage(MessageJsonHandler.java:124)
+	at org.eclipse.lsp4j.jsonrpc.json.MessageJsonHandler.parseMessage(MessageJsonHandler.java:114)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:193)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:04 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "ontent-Length: 260
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "ontent-Length: 260
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:04 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"42","method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":26}}}Content-Length: 260
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"42","method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":26}}}Content-Length: 260
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:06 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"43","method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":27}}}Content-Length: 354
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"43","method":"textDocument/hover","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":27}}}Content-Length: 354
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:06 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":49,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":30},"end":{"line":55,"character":38}},"rangeLength":0,"text":""}]}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":49,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":30},"end":{"line":55,"character":38}},"rangeLength":0,"text":""}]}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:06 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":50,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":30},"end":{"line":55,"character":30}},"rangeLength":0,"text":"c"}]}}Content-Length: 265
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":50,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":30},"end":{"line":55,"character":30}},"rangeLength":0,"text":"c"}]}}Content-Length: 265
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:16 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"44","method":"textDocument/completion","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":31}}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"44","method":"textDocument/completion","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":31}}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:16 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":51,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":31},"end":{"line":55,"character":31}},"rangeLength":0,"text":"o"}]}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":51,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":31},"end":{"line":55,"character":31}},"rangeLength":0,"text":"o"}]}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:16 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":52,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":32},"end":{"line":55,"character":32}},"rangeLength":0,"text":"n"}]}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":52,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":32},"end":{"line":55,"character":32}},"rangeLength":0,"text":"n"}]}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:19 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":53,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":33},"end":{"line":55,"character":33}},"rangeLength":0,"text":"t"}]}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":53,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":33},"end":{"line":55,"character":33}},"rangeLength":0,"text":"t"}]}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:19 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":54,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":34},"end":{"line":55,"character":34}},"rangeLength":0,"text":"r"}]}}Content-Length: 265
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":54,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":34},"end":{"line":55,"character":34}},"rangeLength":0,"text":"r"}]}}Content-Length: 265
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:29 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"45","method":"textDocument/completion","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":35}}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"45","method":"textDocument/completion","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":35}}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:29 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":55,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":35},"end":{"line":55,"character":35}},"rangeLength":0,"text":"a"}]}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":55,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":35},"end":{"line":55,"character":35}},"rangeLength":0,"text":"a"}]}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:29 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":56,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":36},"end":{"line":55,"character":36}},"rangeLength":0,"text":"c"}]}}Content-Length: 355
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":56,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":36},"end":{"line":55,"character":36}},"rangeLength":0,"text":"c"}]}}Content-Length: 355
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:29 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":57,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":37},"end":{"line":55,"character":37}},"rangeLength":0,"text":"t"}]}}Content-Length: 265
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":57,"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"contentChanges":[{"range":{"start":{"line":55,"character":37},"end":{"line":55,"character":37}},"rangeLength":0,"text":"t"}]}}Content-Length: 265
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:34 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"46","method":"textDocument/completion","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":38}}}Content-Length: 226
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"46","method":"textDocument/completion","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"position":{"line":55,"character":38}}}Content-Length: 226
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:39 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/willSave","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"reason":1}}Content-Length: 226
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/willSave","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"reason":1}}Content-Length: 226
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:39 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/willSave","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"reason":1}}Content-Length: 2684
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/willSave","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"reason":1}}Content-Length: 2684
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:48 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didSave","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"text":"logging.level.org.springframework\u003dINFO\n\nserver.port\u003d${PORT:8080}\n\nspring.datasource.driverClassName\u003dorg.postgresql.Driver\nspring.datasource.url\u003d${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/crm}\nspring.datasource.username\u003d${JDBC_DATABASE_URL:postgres}\nspring.datasource.password\u003d${JDBC_DATABASE_PASSWORD:postgres}\n\n# Sources:\n# https://github.com/brettwooldridge/HikariCP\n# https://www.concretepage.com/spring-boot/spring-boot-hikaricp\n# connection-timeout is the maximum number of milliseconds\n# that a client will wait for a connection from connection pool. Current value: 20 Seconds.\nspring.datasource.connection-timeout\u003d20000\n# minimum-idle is the minimum number of idle connections that is maintained by HikariCP in connection pool.\nspring.datasource.minimum-idle\u003d2\n# maximum-pool-size configures the maximum pool size.\nspring.datasource.maximum-pool-size\u003d100\n# idle-timeout is the maximum amount of time in milliseconds\n# that a connection is allowed to sit idle in connection pool. Current value: 5 Minutes.\nspring.datasource.idle-timeout\u003d300000\n# max-lifetime is the maximum life time in milliseconds of a connection in pool after it is closed.\n# Current value: 20 Minutes.\nspring.datasource.max-lifetime\u003d1200000\nspring.datasource.test-on-borrow\u003dtrue\nspring.datasource.validation-query\u003dSELECT 1\n\nspring.servlet.multipart.max-file-size\u003d1024KB\nspring.servlet.multipart.max-request-size\u003d1024KB\n\n#free tier heroku postgres limits\nspring.datasource.max-active\u003d10\nspring.datasource.max-idle\u003d5\nspring.datasource.initial-size\u003d5\nspring.datasource.remove-abandoned\u003dtrue\n\nspring.jackson.default-property-inclusion\u003dnon_null\njwt.secret\u003dmdwpass\njwt.get.token.uri\u003d/authenticate\n\n\nspring.mail.host \u003d smtp.gmail.com\nspring.mail.username \u003dworkflow.promocred@gmail.com\nspring.mail.password \u003d Start12@\n\n#Below Properties are needed for maintaining the session.\n#Two Step verification should not be enabled for gmail.\n\nspring.mail.properties.mail.smtp.auth \u003d true\nspring.mail.properties.mail.smtp.socketFactory.port \u003d 587\nspring.mail.properties.mail.smtp.socketFactory.class \u003d javax.net.ssl.SSLSocketFactory\nspring.mail.properties.mail.smtp.socketFactory.fallback \u003d false\n\npath_template \u003d c://workflow//template//\npath_contract \u003d c://workflow//contract//\n"}}Content-Length: 61
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","method":"textDocument/didSave","params":{"textDocument":{"uri":"file:///C:/Users/fredd/Documents/projects/workspace-proyectos/workflow/workflow-spring/src/main/resources/application.properties"},"text":"logging.level.org.springframework\u003dINFO\n\nserver.port\u003d${PORT:8080}\n\nspring.datasource.driverClassName\u003dorg.postgresql.Driver\nspring.datasource.url\u003d${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/crm}\nspring.datasource.username\u003d${JDBC_DATABASE_URL:postgres}\nspring.datasource.password\u003d${JDBC_DATABASE_PASSWORD:postgres}\n\n# Sources:\n# https://github.com/brettwooldridge/HikariCP\n# https://www.concretepage.com/spring-boot/spring-boot-hikaricp\n# connection-timeout is the maximum number of milliseconds\n# that a client will wait for a connection from connection pool. Current value: 20 Seconds.\nspring.datasource.connection-timeout\u003d20000\n# minimum-idle is the minimum number of idle connections that is maintained by HikariCP in connection pool.\nspring.datasource.minimum-idle\u003d2\n# maximum-pool-size configures the maximum pool size.\nspring.datasource.maximum-pool-size\u003d100\n# idle-timeout is the maximum amount of time in milliseconds\n# that a connection is allowed to sit idle in connection pool. Current value: 5 Minutes.\nspring.datasource.idle-timeout\u003d300000\n# max-lifetime is the maximum life time in milliseconds of a connection in pool after it is closed.\n# Current value: 20 Minutes.\nspring.datasource.max-lifetime\u003d1200000\nspring.datasource.test-on-borrow\u003dtrue\nspring.datasource.validation-query\u003dSELECT 1\n\nspring.servlet.multipart.max-file-size\u003d1024KB\nspring.servlet.multipart.max-request-size\u003d1024KB\n\n#free tier heroku postgres limits\nspring.datasource.max-active\u003d10\nspring.datasource.max-idle\u003d5\nspring.datasource.initial-size\u003d5\nspring.datasource.remove-abandoned\u003dtrue\n\nspring.jackson.default-property-inclusion\u003dnon_null\njwt.secret\u003dmdwpass\njwt.get.token.uri\u003d/authenticate\n\n\nspring.mail.host \u003d smtp.gmail.com\nspring.mail.username \u003dworkflow.promocred@gmail.com\nspring.mail.password \u003d Start12@\n\n#Below Properties are needed for maintaining the session.\n#Two Step verification should not be enabled for gmail.\n\nspring.mail.properties.mail.smtp.auth \u003d true\nspring.mail.properties.mail.smtp.socketFactory.port \u003d 587\nspring.mail.properties.mail.smtp.socketFactory.class \u003d javax.net.ssl.SSLSocketFactory\nspring.mail.properties.mail.smtp.socketFactory.fallback \u003d false\n\npath_template \u003d c://workflow//template//\npath_contract \u003d c://workflow//contract//\n"}}Content-Length: 61
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 8:53:48 A. M. org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer fireError
+SEVERE: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"47","method":"shutdown","params":null}Content-Length: 215
+
+"
+java.lang.IllegalStateException: Missing header Content-Length in input "{"jsonrpc":"2.0","id":"47","method":"shutdown","params":null}Content-Length: 215
+
+"
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:91)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+feb. 21, 2020 5:17:34 P. M. com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFO: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\fredd\Documents\Desarrollo\intellij\jbr
+feb. 21, 2020 7:00:24 P. M. com.redhat.quarkus.ls.QuarkusLanguageServer initialize
+INFO: Initializing Quarkus server 0.0.4-20191120-1547 with C:\Users\fredd\Documents\Desarrollo\intellij\jbr

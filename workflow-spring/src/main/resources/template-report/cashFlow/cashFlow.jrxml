@@ -70,8 +70,7 @@
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{requestDate}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{requestDate}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="627" y="15" width="60" height="12" uuid="cda9b830-8302-4bd0-9a3f-c927031ffa8d">
@@ -122,7 +121,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fullName}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00#">
 				<reportElement x="386" y="0" width="64" height="12" uuid="fc2ccd08-13ba-4100-a0f5-ea262583e492">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>

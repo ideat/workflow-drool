@@ -1,0 +1,66 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.observation.MapperObservation">
+    <resultMap id="ObservationMap" type="com.mindware.workflow.core.entity.observation.Observation">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="observations" column="observations" />
+        <result property="task" column="task"/>
+    </resultMap>
+
+    <select id="getByNumberRequest" resultMap="ObservationMap" parameterType="map">
+        <![CDATA[
+        SELECT *
+        from workflow.observation
+        where number_request = #{numberRequest}
+        ]]>
+    </select>
+
+    <select id="getByNumberRequestApplicantTask" resultMap="ObservationMap" parameterType="map">
+        <![CDATA[
+        SELECT *
+        from workflow.observation
+        where number_request = #{numberRequest}
+        and task = #{task}
+        ]]>
+    </select>
+
+    <select id="getAll" resultMap="ObservationMap">
+        <![CDATA[
+        SELECT *
+        from workflow.observation
+        ]]>
+    </select>
+
+    <select id="getById" resultMap="ObservationMap" parameterType="map">
+        <![CDATA[
+        SELECT *
+        from workflow.observation
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.observation.Observation">
+        insert into workflow.observation(
+            id,
+            number_request,
+            observations,
+            task
+        )
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{numberRequest},
+                   #{observations}::json,
+                   #{task}
+
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.observation.Observation">
+        update workflow.observation
+        set
+            observations = #{observations}::json
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </update>
+
+</mapper>

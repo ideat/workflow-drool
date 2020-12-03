@@ -1,0 +1,37 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.exceptions.MapperUserAuthorizer">
+    <resultMap id="UserAuthorizerMap" type="com.mindware.workflow.core.service.data.exceptions.dto.UserAuthorizer">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="loginUser" column="login_user"/>
+        <result property="city" column="city"/>
+        <result property="fullName" column="full_name"/>
+        <result property="scope" column="scope"/>
+        <result property="stateAuthorizer" column="state_authorizer"/>
+        <result property="stateUser" column="state_user"/>
+    </resultMap>
+
+
+    <select id="getByCity" resultMap="UserAuthorizerMap" parameterType="map">
+        <![CDATA[
+        SELECT a.id, a.login_user, o.city, u.names || ' ' || u.last_names as full_name,
+               a.scope, a.state as state_authorizer, u.state as state_user
+        from public.users u
+                 INNER join workflow.authorizer a on (u.login = a.login_user)
+                 INNER join public.office o on (u.code_office = o.internal_code)
+        where u.login = #{loginUser}
+        ]]>
+    </select>
+
+    <select id="getAll" resultMap="UserAuthorizerMap">
+        <![CDATA[
+        SELECT a.id, a.login_user, o.city, u.names || ' ' || u.last_names as full_name,
+               a.scope, a.state as state_authorizer, u.state as state_user
+        from public.users u
+                 INNER join workflow.authorizer a on (u.login = a.login_user)
+                 INNER join public.office o on (u.code_office = o.internal_code)
+        ]]>
+    </select>
+
+
+</mapper>

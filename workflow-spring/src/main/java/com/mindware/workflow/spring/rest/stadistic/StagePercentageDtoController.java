@@ -76,4 +76,12 @@ public class StagePercentageDtoController {
 
         return new ResponseEntity<>(activeCreditRequestList, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/v1/stadistic/getCreditRequestGroupedByTypeCredit", name = "Obtiene Lista de Solicitudes por Tipo de Credito")
+    ResponseEntity<Collection<StagesPercentageDto>> getCreditRequestGroupedByTypeCredit(@RequestHeader Map<String,String> headers){
+
+        List<StagesPercentageDto> activeCreditRequestList = repository.getCreditRequestGroupedByTypeCredit();
+
+        return new ResponseEntity<>(activeCreditRequestList, HttpStatus.OK);
+    }
 }

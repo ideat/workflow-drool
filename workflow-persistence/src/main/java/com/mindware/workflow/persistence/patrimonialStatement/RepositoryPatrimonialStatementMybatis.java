@@ -43,6 +43,11 @@ public class RepositoryPatrimonialStatementMybatis implements RepositoryPatrimon
     }
 
     @Override
+    public void updateCoordinates(PatrimonialStatement patrimonialStatement) {
+        mapper.updateCoordinates(patrimonialStatement);
+    }
+
+    @Override
     @Transactional
     public Optional<PatrimonialStatement> getById(UUID id) {
         return Optional.ofNullable(mapper.getById(id));

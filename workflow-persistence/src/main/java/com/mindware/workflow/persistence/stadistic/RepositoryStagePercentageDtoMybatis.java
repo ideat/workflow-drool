@@ -101,5 +101,10 @@ public class RepositoryStagePercentageDtoMybatis implements RepositoryStagePerce
         return mapper.getCreditRequestGroupedByCity();
     }
 
+    @Override
+    public List<StagesPercentageDto> getCreditRequestGroupedByTypeCredit() {
+        return mapper.getCreditRequestGroupedByTypeCredit();
+    }
+
 
 }

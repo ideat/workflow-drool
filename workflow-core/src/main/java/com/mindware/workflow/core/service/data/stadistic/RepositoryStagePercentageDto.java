@@ -38,5 +38,5 @@ public interface RepositoryStagePercentageDto {
 
     List<StagesPercentageDto> getCreditRequestGroupedByCity();
 
-
+    List<StagesPercentageDto> getCreditRequestGroupedByTypeCredit();
 }

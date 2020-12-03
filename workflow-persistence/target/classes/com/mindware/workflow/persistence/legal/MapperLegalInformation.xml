@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.legal.MapperLegalInformation">
+    <resultMap id="LegalInformationMap" type="com.mindware.workflow.core.entity.legal.LegalInformation">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="registration" column="registration"/>
+        <result property="registrationSeat" column="registration_seat"/>
+        <result property="propertyType" column="property_type"/>
+        <result property="location" column="location"/>
+        <result property="surface" column="surface"/>
+        <result property="north" column="north"/>
+        <result property="south" column="south"/>
+        <result property="east" column="east"/>
+        <result property="west" column="west"/>
+        <result property="owners" column="owners"/>
+        <result property="typeTitle" column="type_title"/>
+        <result property="publicDeed" column="public_deed"/>
+        <result property="dateDeed" column="date_deed"/>
+        <result property="givenBy" column="given_by"/>
+        <result property="documentsSubmitted" column="documents_submitted"/>
+        <result property="dataDocument" column="data_document"/>
+        <result property="details" column="details"/>
+<!--        <result property="observations" column="observations"/>-->
+<!--        <result property="missingDocumentation" column="missing_documentation"/>-->
+<!--        <result property="contractRequirements" column="contract_requirements"/>-->
+<!--        <result property="clarifications" column="clarifications"/>-->
+        <result property="creationDate" column="creation_date"/>
+        <result property="reportNumber" column="report_number"/>
+        <result property="createdBy" column="created_by"/>
+        <result property="publicWritingList" column="public_writing_list"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.legal.LegalInformation">
+
+        insert into workflow.legal_information(
+            id,
+            number_request,
+            registration,
+            registration_seat,
+            property_type,
+            location,
+            surface,
+            north,
+            south,
+            east,
+            west,
+            owners,
+            type_title,
+            public_deed,
+            date_deed,
+            given_by,
+            documents_submitted,
+            data_document,
+            details,
+            creation_date,
+            report_number,
+            created_by,
+            public_writing_list
+        )
+        VALUES(
+                  #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                  #{numberRequest},
+                  #{registration},
+                  #{registrationSeat}::json,
+                  #{propertyType},
+                  #{location},
+                  #{surface},
+                  #{north},
+                  #{south},
+                  #{east},
+                  #{west},
+                  #{owners}::json,
+                  #{typeTitle},
+                  #{publicDeed},
+                  #{dateDeed},
+                  #{givenBy},
+                  #{documentsSubmitted}::json,
+                  #{dataDocument}::json,
+                  #{details}::json,
+                  #{creationDate},
+                  #{reportNumber},
+                  #{createdBy},
+                  #{publicWritingList}::json
+              )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.legal.LegalInformation">
+        update workflow.legal_information
+        set
+            number_request = #{numberRequest},
+            registration = #{registration},
+            registration_seat = #{registrationSeat}::json,
+            property_type = #{propertyType},
+            location = #{location},
+            surface = #{surface},
+            north = #{north},
+            south = #{south},
+            east = #{east},
+            west = #{west},
+            owners = #{owners}::json,
+            type_title = #{typeTitle},
+            public_deed = #{publicDeed},
+            date_deed = #{dateDeed},
+            given_by = #{givenBy},
+            documents_submitted = #{documentsSubmitted}::json,
+            data_document = #{dataDocument}::json,
+            details = #{details}::json,
+            creation_date = #{creationDate},
+            report_number = #{reportNumber},
+            public_writing_list = #{publicWritingList}::json
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getById" resultMap="LegalInformationMap" parameterType="map">
+        select *
+        from workflow.legal_information
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </select>
+
+    <select id="getByNumberRequest" resultMap="LegalInformationMap" parameterType="map">
+        select *
+        from workflow.legal_information
+        where number_request = #{numberRequest}
+    </select>
+
+    <select id="getReportNumber" resultType="string">
+        select (count(*)+1) ||'/'|| date_part('year', CURRENT_DATE) as report_number
+        from workflow.legal_information
+    </select>
+</mapper>

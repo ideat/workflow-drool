@@ -17,9 +17,11 @@ public interface MapperCreditRequestApplicant {
     void delete(@Param("id") UUID id);
 
     CreditRequestApplicant getCreditRequestApplicantByNumberApplicantAndNumberCreditRequestAndTypeRelation(
-            Integer numberRequest, Integer numberApplicant, String typeRelation );
+            @Param("numberRequest") Integer numberRequest,
+            @Param("numberApplicant") Integer numberApplicant,
+            @Param("typeRelation") String typeRelation );
 
-    CreditRequestApplicant getCreditRequestApplicantbyId(UUID id);
+    CreditRequestApplicant getCreditRequestApplicantbyId(@Param("id") UUID id);
 
     List<CreditRequestApplicant> getByNumberRequest(@Param("numberRequest") Integer numberRequest);
 }

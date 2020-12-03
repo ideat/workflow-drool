@@ -1,0 +1,75 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.config.MapperTemplateForms">
+    <resultMap id="TemplateFormsMap" type="com.mindware.workflow.core.entity.config.TemplateForm">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="name" column="name"/>
+        <result property="fieldsStructure" column="fields_structure" />
+        <result property="category" column="category"/>
+    </resultMap>
+    
+    
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.config.TemplateForm">
+        insert into workflow.template_forms(
+            id,
+            name,
+            fields_structure,
+            category)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{name},
+                   #{fieldsStructure}::json,
+                   #{category}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.config.TemplateForm">
+        update workflow.template_forms
+        set
+            name = #{name},
+            category = #{category}
+
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <update id="updateFieldStructure" parameterType="com.mindware.workflow.core.entity.config.TemplateForm">
+        update workflow.template_forms
+        set
+            fields_structure = #{fieldsStructure}::json
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <delete id="delete" parameterType="map">
+        delete from workflow.template_forms
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </delete>
+
+    <select id="getByNameCategory" resultMap="TemplateFormsMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.template_forms
+        where name = #{name}
+        and category = #{category}
+        ]]>
+    </select>
+
+    <select id="getAll" resultMap="TemplateFormsMap">
+        <![CDATA[
+        select *
+        from workflow.template_forms
+        order by category
+        ]]>
+    </select>
+
+    <select id="getById" resultMap="TemplateFormsMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.template_forms
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+</mapper>

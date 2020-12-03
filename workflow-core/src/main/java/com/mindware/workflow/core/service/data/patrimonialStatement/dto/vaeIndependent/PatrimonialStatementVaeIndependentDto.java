@@ -16,6 +16,10 @@ public class PatrimonialStatementVaeIndependentDto {
 
     private Integer frecuency;
 
+    private Double utility;
+
+    private Integer numberRequest;
+
     private List<SalesProjection> listSaleDaily;
 
     private List<SalesProjection> listSaleWeek;
@@ -42,6 +46,6 @@ public class PatrimonialStatementVaeIndependentDto {
 
     private List<SummaryAmount> listEarningExpenses;
 
-
+    private List<SummaryAmount> listEarningExpensesMub;
 
 }

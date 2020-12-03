@@ -115,7 +115,6 @@ public class CreditResolutionCreditRequestApplicantController {
             UnsecuredGuarantee unsecuredGuarantee1 = new UnsecuredGuarantee();
             unsecuredGuarantee1.setUnsecuredGuarantee(creditRequest.getTypeGuarantee().concat(" - GARANTIA QUIROGRAFARIA - SOLA FIRMA"));
             unsecuredGuarantee.add(unsecuredGuarantee1);
-            unsecuredGuarantee.add(unsecuredGuarantee1);
         }
 
         Office office = repositoryOffice.getOfficeByInternalCode(creditRequest.getIdOffice()).get();

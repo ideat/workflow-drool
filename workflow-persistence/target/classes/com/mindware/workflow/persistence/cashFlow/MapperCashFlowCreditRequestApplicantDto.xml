@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.cashFlow.MapperCashFlowCreditRequestApplicantDto">
+    <resultMap id="CashFlowCreditRequestApplicantDtoMap" type="com.mindware.workflow.core.service.data.cashFlow.dto.CashFlowCreditRequestApplicantDto">
+        <result property="numberRequest" column="number_request"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="state" column="state"/>
+        <result property="amount" column="amount"/>
+        <result property="currency" column="currency"/>
+        <result property="city" column="city"/>
+        <result property="official" column="official"/>
+        <result property="hasPaymentPlan" column="has_payment_plan"/>
+        <result property="hasPatrimonialStatement" column="has_patrimonial_statement"/>
+        <result property="idCreditRequestApplicant" column="id_credit_request_applicant" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="typeFee" column="type_fee"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="CashFlowCreditRequestApplicantDtoMap">
+        select  c.number_request, a.number_applicant
+             , (a.first_name ||' '|| a.second_name) as first_name
+             , (a.last_name || ' '|| a.mother_last_name) as last_name
+             , c.state , c.amount
+             , c.currency,o.city
+             , u.names as official
+             ,(select (count(*)>0)
+               from workflow.payment_plan pp
+               where pp.number_request = c.number_request)   has_payment_plan
+             ,(select (count(distinct category)>=3)
+               from workflow.patrimonial_statement
+                        inner join workflow.creditrequest_applicant ca3 on (ca3.id = id_credit_request_applicant)
+               where ca3.type_relation = 'deudor'
+                 and ca3.number_request = ca.number_request) has_patrimonial_statement
+             , ca.id as id_credit_request_applicant, c.type_fee
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.users u on (u.login = c.login_user)
+                 inner join public.office o on (c.id_office = o.internal_code)
+        where ca.type_relation = 'deudor'
+    </select>
+
+    <select id="getByLoginUser" resultMap="CashFlowCreditRequestApplicantDtoMap" parameterType="map">
+        select  c.number_request, a.number_applicant
+             , (a.first_name ||' '|| a.second_name) as first_name
+             , (a.last_name || ' '|| a.mother_last_name) as last_name
+             , c.state , c.amount
+             , c.currency,o.city
+             , u.names as official
+             ,(select (count(*)>0)
+               from workflow.payment_plan pp
+               where pp.number_request = c.number_request)   has_payment_plan
+             ,(select (count(distinct category)>=3)
+               from workflow.patrimonial_statement
+                        inner join workflow.creditrequest_applicant ca3 on (ca3.id = id_credit_request_applicant)
+               where ca3.type_relation = 'deudor'
+                 and ca3.number_request = ca.number_request) has_patrimonial_statement
+             , ca.id as id_credit_request_applicant, c.type_fee
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.users u on (u.login = c.login_user)
+                 inner join public.office o on (c.id_office = o.internal_code)
+        where ca.type_relation = 'deudor'
+        and c.login_user =#{login}
+
+    </select>
+
+    <select id="getByCity" resultMap="CashFlowCreditRequestApplicantDtoMap" parameterType="map">
+        select  c.number_request, a.number_applicant
+             , (a.first_name ||' '|| a.second_name) as first_name
+             , (a.last_name || ' '|| a.mother_last_name) as last_name
+             , c.state , c.amount
+             , c.currency,o.city
+             , u.names as official
+             ,(select (count(*)>0)
+               from workflow.payment_plan pp
+               where pp.number_request = c.number_request)   has_payment_plan
+             ,(select (count(distinct category)>=3)
+               from workflow.patrimonial_statement
+                        inner join workflow.creditrequest_applicant ca3 on (ca3.id = id_credit_request_applicant)
+               where ca3.type_relation = 'deudor'
+                 and ca3.number_request = ca.number_request) has_patrimonial_statement, c.type_fee
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.users u on (u.login = c.login_user)
+                 inner join public.office o on (c.id_office = o.internal_code)
+        where ca.type_relation = 'deudor'
+          and o.city =#{city}
+
+    </select>
+
+
+
+</mapper>

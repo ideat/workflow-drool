@@ -63,20 +63,20 @@ public class CreateCashFlow {
         }
 
         headers[0] = "DETALLE";
-        cashflow.add(createFlowItem(headers,cont));
+        cashflow.add(createFlowItem(headers,cont,"DETAIL"));
 
         cont++;
         String[] subHeader1 = new String[size];
 //        subHeader1[0] = cont.toString();
         subHeader1[0] = "INGRESOS(+)";
         subHeader1 = fillSubHeaders(subHeader1);
-        cashflow.add(createFlowItem(subHeader1,cont));
+        cashflow.add(createFlowItem(subHeader1,cont,"HEADER_EARNING"));
         cont++;
 
         List<PatrimonialStatement> income = patrimonialStatementList.stream()
                 .filter(p -> p.getCategory().equals("INGRESOS")).collect(Collectors.toList());
         List<FlowItem> tempIncome = new ArrayList<>();
-        tempIncome = fillListArray(income);
+        tempIncome = fillListArray(income,"EARNING");
         cashflow.addAll(tempIncome);
 
         cont++;
@@ -84,21 +84,21 @@ public class CreateCashFlow {
 //        sumIncome[0] = cont.toString();
         sumIncome[0] = "TOTAL INGRESOS";
         Integer contSumIncome = cont;
-        cashflow.add(createFlowItem(sumIncome,cont));
+        cashflow.add(createFlowItem(sumIncome,cont,"TOTAL_EARNING"));
         cont++;
 
         String[] subHeader2 = new String[size];
 //        subHeader2[0] = cont.toString();
         subHeader2[0] = "EGRESOS(-)";
         subHeader2 = fillSubHeaders(subHeader2);
-        cashflow.add(createFlowItem(subHeader2,cont));
+        cashflow.add(createFlowItem(subHeader2,cont,"HEADER_EXPENSE"));
         cont++;
 
         List<PatrimonialStatement> expenses = patrimonialStatementList.stream()
                 .filter(p -> p.getCategory().equals("EGRESOS")).collect(Collectors.toList());
 
         List<FlowItem> tempExpenses = new ArrayList<>();
-        tempExpenses = fillListArray(expenses);
+        tempExpenses = fillListArray(expenses,"EXPENSE");
 
         tempExpenses.addAll(fillPaymentPlan(paymentPlanList));
         cashflow.addAll(tempExpenses);
@@ -107,13 +107,13 @@ public class CreateCashFlow {
         sumExpenses = sumItems(getItems(tempExpenses));
         sumExpenses[0] = "TOTAL EGRESOS";
 //        sumExpenses[0] = cont.toString();
-        cashflow.add(createFlowItem(sumExpenses,cont));
+        cashflow.add(createFlowItem(sumExpenses,cont,"TOTAL_EXPENSE"));
 
         cont++;
         List<String[]> valuesIncomeSuperAvit = calculateSuperAvit(sumIncome,sumExpenses);
 //        cashflow.removeIf(v -> v.getOrder().equals(contSumIncome));
-        cashflow.add(createFlowItem(valuesIncomeSuperAvit.get(0),cont));
-        cashflow.add(createFlowItem(valuesIncomeSuperAvit.get(1),cont++));
+        cashflow.add(createFlowItem(valuesIncomeSuperAvit.get(0),cont,"INCOME_SUPER_AVIT"));
+        cashflow.add(createFlowItem(valuesIncomeSuperAvit.get(1),cont++,"EXPENSE_SUPER_AVIT"));
 
         cashflow = formatNumber();
         return cashflow;
@@ -162,16 +162,17 @@ public class CreateCashFlow {
         return result;
     }
 
-    private List<FlowItem> fillListArray(List<PatrimonialStatement> patrimonialStatementList){
+    private List<FlowItem> fillListArray(List<PatrimonialStatement> patrimonialStatementList,String type){
         List<FlowItem> items = new ArrayList<>();
         for(PatrimonialStatement p : patrimonialStatementList){
             String[] item = new String[size];
             item[0] = p.getFieldText1();
 //            item[0] = cont.toString();
+
             cont++;
             item = fillArrayWithData(item,p.getFieldDouble1());
 
-            items.add(createFlowItem(item,cont));
+            items.add(createFlowItem(item,cont,type));
         }
 
         return items;
@@ -217,7 +218,6 @@ public class CreateCashFlow {
                         i++;
                     }
 
-
                 }
 
             }
@@ -225,8 +225,8 @@ public class CreateCashFlow {
         }
         items.add(capital);
         items.add(interest);
-        flowItems.add(createFlowItem(capital,cont));
-        flowItems.add(createFlowItem(interest,cont));
+        flowItems.add(createFlowItem(capital,cont,"EXPENSE"));
+        flowItems.add(createFlowItem(interest,cont,"EXPENSE"));
 
         return flowItems;
     }
@@ -271,10 +271,11 @@ public class CreateCashFlow {
         return header;
     }
 
-    private FlowItem createFlowItem(String[] item, Integer cont){
+    private FlowItem createFlowItem(String[] item, Integer cont, String type){
         FlowItem flowItem = new FlowItem();
         flowItem.setOrder(cont);
         flowItem.setItem(item);
+        flowItem.setType(type);
         return flowItem;
     }
 

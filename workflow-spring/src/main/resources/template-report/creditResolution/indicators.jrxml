@@ -114,30 +114,6 @@
 				</textElement>
 				<text><![CDATA[Total patrimonio]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="163" y="34" width="151" height="10" uuid="ba358944-31dd-4f30-8a07-5b999bd956e2">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65de60ae-133d-402d-a50e-6623b95f94f4"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total deuda directa en el Sistema]]></text>
-			</staticText>
-			<textField pattern="#,##0.0#">
-				<reportElement x="163" y="44" width="151" height="10" uuid="bd3605bf-9771-4451-ac11-19989ce96eaa">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65de60ae-133d-402d-a50e-6623b95f94f4"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box>
-					<pen lineWidth="0.25"/>
-				</box>
-				<textElement textAlignment="Center">
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{indicator11}]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0.00#">
 				<reportElement x="63" y="44" width="100" height="10" uuid="4c8c12aa-14e3-4e5f-8652-d6ba6e5084f4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="48df681d-1e14-4663-9e77-9f22cae0a010"/>
@@ -151,9 +127,8 @@
 				<textFieldExpression><![CDATA[$F{indicator8}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.0#">
-				<reportElement x="314" y="44" width="154" height="10" uuid="3de69de6-bb06-4bbd-a200-85e06fab0ceb">
+				<reportElement x="163" y="44" width="151" height="10" uuid="3de69de6-bb06-4bbd-a200-85e06fab0ceb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65de60ae-133d-402d-a50e-6623b95f94f4"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
 					<pen lineWidth="0.25"/>
@@ -186,7 +161,7 @@
 				<textFieldExpression><![CDATA[$F{indicator7}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="314" y="34" width="154" height="10" uuid="452984c8-e0fd-402c-8386-0c3d853cb980">
+				<reportElement x="163" y="34" width="151" height="10" uuid="452984c8-e0fd-402c-8386-0c3d853cb980">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65de60ae-133d-402d-a50e-6623b95f94f4"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>

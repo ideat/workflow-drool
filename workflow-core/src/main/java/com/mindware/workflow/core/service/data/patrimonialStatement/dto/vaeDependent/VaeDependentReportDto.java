@@ -35,4 +35,5 @@ public class VaeDependentReportDto {
     private Double maxFeeNoDulyGuarantee;
     private Double maxFeeDulyGuarantee;
     private Double superAvit;
+    private Integer numberRequest;
 }

@@ -14,6 +14,8 @@ public interface RepositoryPatrimonialStatement {
 
     void update(PatrimonialStatement patrimonialStatement);
 
+    void updateCoordinates(PatrimonialStatement patrimonialStatement);
+
     Optional<PatrimonialStatement> getById(UUID id);
 
     List<PatrimonialStatement> getByIdCreditRequestApplicantCategory(UUID idCreditRequestApplicant, String category);

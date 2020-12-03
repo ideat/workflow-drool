@@ -32,7 +32,7 @@
 		<groupExpression><![CDATA[$F{typeDebts}]]></groupExpression>
 		<groupHeader>
 			<band height="11">
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="0" y="0" width="162" height="10" uuid="e9492c69-4121-4180-bbd7-e8a5cc686b46"/>
 					<textElement>
 						<font size="6" isBold="true"/>

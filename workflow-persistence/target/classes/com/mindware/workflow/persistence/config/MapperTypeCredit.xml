@@ -1,0 +1,62 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.config.MapperTypeCredit">
+    <resultMap id="TypeCreditMap" type="com.mindware.workflow.core.entity.config.TypeCredit">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="description" column="description"/>
+        <result property="productTypeCredit" column="product_type_credit"/>
+        <result property="externalCode" column="external_code"/>
+        <result property="objectCredit" column="object_credit"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.config.TypeCredit">
+        insert into workflow.type_credit(
+            id,
+            description,
+            product_type_credit,
+            external_code,
+            object_credit)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{description},
+                   #{productTypeCredit}::json,
+                   #{externalCode},
+                   #{objectCredit}::json
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.config.TypeCredit">
+        update workflow.type_credit
+        set
+            description = #{description},
+            product_type_credit = #{productTypeCredit}::json,
+            external_code = #{externalCode},
+            object_credit = #{objectCredit}::json
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getAll" resultMap="TypeCreditMap">
+        <![CDATA[
+        select *
+        from workflow.type_credit
+        ]]>
+    </select>
+
+    <select id="getById" resultMap="TypeCreditMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.type_credit
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getByExternalCode" resultMap="TypeCreditMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.type_credit
+        where external_code = #{externalCode}
+        ]]>
+    </select>
+
+</mapper>

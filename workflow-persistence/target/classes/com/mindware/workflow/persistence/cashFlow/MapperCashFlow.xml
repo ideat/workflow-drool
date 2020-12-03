@@ -1,0 +1,52 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.cashFlow.MapperCashFlow">
+    <resultMap id="CashFlowMap" type="com.mindware.workflow.core.entity.cashFlow.CashFlow">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="items" column="items"  />
+        <result property="description" column="description"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.cashFlow.CashFlow">
+        insert into workflow.cash_flow(
+            id,
+            number_request,
+            items,
+            description)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{numberRequest},
+                   #{items}::json,
+                   #{description}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.cashFlow.CashFlow">
+        update workflow.cash_flow
+        set
+            items = #{items}::json,
+             description = #{description}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getById" resultMap="CashFlowMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.cash_flow
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getByNumberRequest" resultMap="CashFlowMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.cash_flow
+        where number_request = #{numberRequest}
+        ]]>
+    </select>
+
+
+
+</mapper>

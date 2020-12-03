@@ -1,0 +1,43 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.paymentPlan.report.MapperPaymentPlanDto">
+    <resultMap id="PaymentPlanDtoMap" type="com.mindware.workflow.core.service.data.paymentPlan.dto.PaymentPlanDto">
+        <result property="fullName" column="full_name"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="requestDate" column="request_date"/>
+        <result property="amount" column="amount"/>
+        <result property="feeNumber" column="fee_number"/>
+        <result property="typeFee" column="type_fee"/>
+        <result property="currency" column="currency"/>
+        <result property="rateInterest" column="rate_interest"/>
+        <result property="paymentPeriod" column="payment_period"/>
+        <result property="quotaNumber" column="quota_number"/>
+        <result property="paymentDate" column="payment_date"/>
+        <result property="capital" column="capital"/>
+        <result property="interest" column="interest"/>
+        <result property="secureCharge" column="secure_charge"/>
+        <result property="otherCharge" column="other_charge"/>
+        <result property="fee" column="fee"/>
+        <result property="residue" column="residue"/>
+        <result property="itf" column="itf"/>
+    </resultMap>
+
+    <select id="getDataReportPaymentPlant" resultMap="PaymentPlanDtoMap" parameterType="map">
+        <![CDATA[
+        select a.first_name || ' '|| a.second_name || ' '|| a.last_name || ' '|| a.mother_last_name as full_name
+        ,c.number_request, c.request_date, c.amount, 0 as fee_number, c.type_fee, c.currency, c.rate_interest
+        ,c.payment_period, p.quota_number, p.payment_date, p.capital, p.interest, p.secure_charge
+        ,p.other_charge, p.fee, p.residue, p.itf
+        from workflow.applicant a
+        inner join workflow.creditrequest_applicant ca on (a.number_applicant = ca.number_applicant)
+        inner join workflow.creditrequest c on (c.number_request = ca.number_request)
+        inner join workflow.payment_plan p on (p.number_request = c.number_request)
+        where p.number_request = #{numberRequest}
+        and ca.type_relation = 'deudor'
+        order by quota_number
+        ]]>
+    </select>
+
+
+
+</mapper>

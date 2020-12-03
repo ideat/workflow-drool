@@ -334,75 +334,99 @@
 				</graphicElement>
 			</rectangle>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement x="80" y="161" width="86" height="42" uuid="a0cb4e1c-e315-4067-b045-552614858f0c">
+				<reportElement x="80" y="159" width="86" height="45" uuid="a0cb4e1c-e315-4067-b045-552614858f0c">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{modality}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00#">
-				<reportElement x="166" y="161" width="44" height="10" uuid="cbbf46bb-2159-4034-b803-75223813ae9a">
+				<reportElement x="166" y="159" width="44" height="45" uuid="cbbf46bb-2159-4034-b803-75223813ae9a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="210" y="161" width="30" height="18" uuid="2960fa56-01e4-4f6f-858c-752105367c21">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<reportElement x="210" y="159" width="30" height="45" uuid="2960fa56-01e4-4f6f-858c-752105367c21">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{currency}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="240" y="161" width="78" height="42" uuid="dbee0659-b44f-4cd8-9156-b7074d5c2ccc">
+				<reportElement x="240" y="159" width="78" height="45" uuid="dbee0659-b44f-4cd8-9156-b7074d5c2ccc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{amortization}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="318" y="161" width="69" height="42" uuid="67a7ab63-1f9b-41d9-93a9-314d0c11ae06">
+				<reportElement x="318" y="159" width="69" height="45" uuid="67a7ab63-1f9b-41d9-93a9-314d0c11ae06">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="387" y="161" width="40" height="42" uuid="6cf31af1-588a-4e6a-be5b-88162be1b10b">
+				<reportElement x="387" y="159" width="40" height="45" uuid="6cf31af1-588a-4e6a-be5b-88162be1b10b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{term}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.##%">
-				<reportElement x="427" y="161" width="27" height="10" uuid="20748a4c-f43c-4905-8446-3debca665f53">
+				<reportElement x="427" y="159" width="27" height="45" uuid="20748a4c-f43c-4905-8446-3debca665f53">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{teac}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.0000%">
-				<reportElement x="454" y="161" width="45" height="10" uuid="6becf0ec-0646-4223-8191-959fac66d9a9">
+				<reportElement x="454" y="159" width="45" height="45" uuid="6becf0ec-0646-4223-8191-959fac66d9a9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
@@ -599,9 +623,12 @@
 				<text><![CDATA[Seguro contra todo riesgo (valor cuota)]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="500" y="161" width="51" height="10" uuid="6db52fc0-6906-41b2-b13c-8d43b8d281f2">
+				<reportElement x="500" y="159" width="51" height="45" uuid="6db52fc0-6906-41b2-b13c-8d43b8d281f2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
@@ -620,9 +647,12 @@
 				<text><![CDATA[Tipo de credito]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="2" y="161" width="32" height="10" uuid="2f1fa5c0-24fc-4a76-8fdd-07c423221267">
+				<reportElement x="2" y="159" width="32" height="45" uuid="2f1fa5c0-24fc-4a76-8fdd-07c423221267">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
@@ -663,10 +693,13 @@
 				<text><![CDATA[Descripcion tipo credito]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="34" y="161" width="46" height="42" uuid="57976eac-485b-480b-aa3c-fd5db6354421">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<reportElement x="34" y="159" width="46" height="45" uuid="57976eac-485b-480b-aa3c-fd5db6354421">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.15"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="5"/>
 				</textElement>

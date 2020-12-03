@@ -101,8 +101,10 @@ public class CreatePatrimonialStatementVaeIndependent {
         pvae.setListSummaryDay(summaryDay);
         pvae.setListSummaryWeek(summaryWeek);
         pvae.setListSummaryMonth(summaryMonth);
-        pvae.setListEarningExpenses(getEarningExpensesSummary());
+        pvae.setListEarningExpenses(getEarningExpensesSummary(""));
+        pvae.setListEarningExpensesMub(getEarningExpensesSummary("MUB"));
         pvae.setFrecuency(frecuency);
+        pvae.setUtility(patrimonialStatement.getFieldDouble1());
 
         return pvae;
     }
@@ -243,8 +245,10 @@ public class CreatePatrimonialStatementVaeIndependent {
         return result;
     }
 
-    private List<SummaryAmount> getEarningExpensesSummary(){
+    private List<SummaryAmount> getEarningExpensesSummary(String typeEarning){
         List<SummaryAmount> listEarningExpenses = new ArrayList<>();
+        List<SummaryAmount> listEarningExpensesMub = new ArrayList<>();
+
         Double minValue = listTotals.stream().min(Comparator.naturalOrder()).get();
         listTotalsBuys.add(minValue*(1-mubp));
         Double maxValue = listTotalsBuys.stream().max(Comparator.naturalOrder()).get();
@@ -257,27 +261,35 @@ public class CreatePatrimonialStatementVaeIndependent {
         }else {
             summarySalesDto = summarySalesDtoList.get(7);
         }
-            listEarningExpenses.add(newSummaryAmount("Total ingreso x ventas", minValue));
-            listEarningExpenses.add(newSummaryAmount("Margen Bruto Ponderado", mubp * 100.0));
-            listEarningExpenses.add(newSummaryAmount("Total costo x ventas", maxValue));
-            listEarningExpenses.add(newSummaryAmount("Utilidad Bruta", minValue - maxValue));
-            listEarningExpenses.add(newSummaryAmount("Ventas segun tabulacion Promedio", summarySalesDto.getTotal()));
-            Double auxAmount = (1 - mubp) * summarySalesDto.getTotal();
-            auxAmount = Math.round(auxAmount * 100.0) / 100.0;
-            listEarningExpenses.add(newSummaryAmount("Costos segun el MUB determinado", auxAmount));
-            listEarningExpenses.add(newSummaryAmount("Utilidad Bruta segun MUB", summarySalesDto.getTotal() - auxAmount));
-            Double totalOperativeExpenses = listOperativeExpenses.stream()
-                    .map(b -> b.getAmount())
-                    .reduce(0.0, Double::sum);
-            Double value = 0.0;
-            if(summarySalesDto.getTotal()>0){
-                value = summarySalesDto.getTotal() - auxAmount - totalOperativeExpenses;
-            }
-            listEarningExpenses.add(newSummaryAmount("Utilidad Operativa segun MUB", value));
-            Double operativeEarning = minValue - maxValue - totalOperativeExpenses;
-            operativeEarning = Math.round(operativeEarning * 100.0) / 100.0;
-            listEarningExpenses.add(newSummaryAmount("Utilidad Operativa", operativeEarning));
+        listEarningExpenses.add(newSummaryAmount("Total ingreso x ventas", minValue));
+        listEarningExpenses.add(newSummaryAmount("Total costo x ventas", maxValue));
+        listEarningExpenses.add(newSummaryAmount("Utilidad Bruta", minValue - maxValue));
+
+        Double totalOperativeExpenses = listOperativeExpenses.stream()
+                .map(b -> b.getAmount())
+                .reduce(0.0, Double::sum);
+        Double operativeEarning = minValue - maxValue - totalOperativeExpenses;
+        operativeEarning = Math.round(operativeEarning * 100.0) / 100.0;
+        listEarningExpenses.add(newSummaryAmount("Utilidad Operativa", operativeEarning));
+
+
+        listEarningExpensesMub.add(newSummaryAmount("Margen Bruto Ponderado", mubp * 100.0));
+        listEarningExpensesMub.add(newSummaryAmount("Ventas segun tabulacion Promedio", summarySalesDto.getTotal()));
+        Double auxAmount = (1 - mubp) * summarySalesDto.getTotal();
+        auxAmount = Math.round(auxAmount * 100.0) / 100.0;
+        listEarningExpensesMub.add(newSummaryAmount("Costos segun el MUB determinado", auxAmount));
+        listEarningExpensesMub.add(newSummaryAmount("Utilidad Bruta segun MUB", summarySalesDto.getTotal() - auxAmount));
+
+        Double value = 0.0;
+        if(summarySalesDto.getTotal()>0){
+            value = summarySalesDto.getTotal() - auxAmount - totalOperativeExpenses;
+        }
+        listEarningExpensesMub.add(newSummaryAmount("Utilidad Operativa segun MUB", value));
+        if(typeEarning.equals("MUB")) {
+            return listEarningExpensesMub;
+        }else {
             return listEarningExpenses;
+        }
 
     }
 

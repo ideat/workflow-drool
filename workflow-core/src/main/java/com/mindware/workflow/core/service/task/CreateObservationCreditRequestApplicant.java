@@ -24,10 +24,10 @@ public class CreateObservationCreditRequestApplicant {
         ObservationCreditRequestApplicant result = new ObservationCreditRequestApplicant();
         result.setNumberApplicant(applicant.getNumberApplicant());
         result.setNumberRequest(observation.getNumberRequest());
-        result.setNameOfficial(users.getNames());
+        result.setNameOfficial(users.getNames() + " " + users.getLastNames());
         result.setFullNameClient(applicant.getFullName());
         result.setTypeCredit(mapData.get("typeCredit"));
-        result.setTypeGuarantee(creditRequest.getTypeGuarantee());
+//        result.setTypeGuarantee(creditRequest.getTypeGuarantee());
         result.setMainActivity(mapData.get("mainActivity"));
         result.setAgency(mapData.get("agency"));
         result.setNumberCredit(creditRequest.getNumberCredit());////

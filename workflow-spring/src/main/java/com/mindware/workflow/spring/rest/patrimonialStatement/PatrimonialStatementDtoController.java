@@ -3,6 +3,7 @@ package com.mindware.workflow.spring.rest.patrimonialStatement;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mindware.workflow.core.entity.Applicant;
+import com.mindware.workflow.core.entity.CreditRequestApplicant;
 import com.mindware.workflow.core.entity.PaymentPlan;
 import com.mindware.workflow.core.entity.config.Parameter;
 import com.mindware.workflow.core.entity.patrimonialStatement.PatrimonialStatement;
@@ -10,6 +11,7 @@ import com.mindware.workflow.core.entity.patrimonialStatement.SalaryAnalisys;
 import com.mindware.workflow.core.entity.patrimonialStatement.SalesHistory;
 import com.mindware.workflow.core.service.data.applicant.RepositoryApplicant;
 import com.mindware.workflow.core.service.data.config.RepositoryParameter;
+import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.patrimonialStatement.RepositoryPatrimonialStatement;
 import com.mindware.workflow.core.service.data.patrimonialStatement.dto.costProduct.PatrimonialStatementCostProducts;
 import com.mindware.workflow.core.service.data.patrimonialStatement.dto.inventoryProductionSales.PatrimonialStatementProductionInventory;
@@ -66,6 +68,9 @@ public class PatrimonialStatementDtoController {
     @Autowired
     RepositoryParameter repositoryParameter;
 
+    @Autowired
+    RepositoryCreditRequestApplicant repositoryCreditRequestApplicant;
+
 
     @GetMapping(value = "/v1/patrimonialStatementSalesReport", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public  @ResponseBody byte[] getPatrimonialStatementSalesReport(@RequestHeader Map<String,String> headers) throws JRException, IOException {
@@ -121,6 +126,9 @@ public class PatrimonialStatementDtoController {
         CreatePatrimonialStatementVaeIndependent create = new CreatePatrimonialStatementVaeIndependent();
         PatrimonialStatementVaeIndependentDto pvae = create.generateVaeIndependent(applicant,patrimonialStatement);
 
+        CreditRequestApplicant creditRequestApplicant = repositoryCreditRequestApplicant.getCreditRequestApplicantbyId(patrimonialStatement.getIdCreditRequestApplicant()).get();
+        pvae.setNumberRequest(creditRequestApplicant.getNumberRequest());
+
         InputStream stream = getClass().getResourceAsStream("/template-report/patrimonialStatementVaeIndependent/vaeIndependent.jrxml");
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();
 
@@ -154,14 +162,15 @@ public class PatrimonialStatementDtoController {
         CreatePatrimonialStatementVaeIndependent create = new CreatePatrimonialStatementVaeIndependent();
         PatrimonialStatementVaeIndependentDto pvae = create.generateVaeIndependent(applicant,patrimonialStatement);
         List<SummaryAmount>  listEarningExpenses = pvae.getListEarningExpenses();
+        List<SummaryAmount> listEarningExpensesMub = pvae.getListEarningExpensesMub();
 
-        if(listEarningExpenses!=null) {
+        if(listEarningExpenses!=null && listEarningExpensesMub!=null) {
             Double operativeUtility = listEarningExpenses.stream()
                     .filter(p -> p.getName().equals("Utilidad Operativa"))
                     .map(b -> b.getAmount())
                     .reduce(0.0, Double::sum);
 
-            Double utilityMUB = listEarningExpenses.stream()
+            Double utilityMUB = listEarningExpensesMub.stream()
                     .filter(p -> p.getName().equals("Utilidad Operativa segun MUB"))
                     .map(b -> b.getAmount())
                     .reduce(0.0, Double::sum);
@@ -291,7 +300,8 @@ public class PatrimonialStatementDtoController {
                 .collect(Collectors.toList());
         
         VaeDependentReportDto vaeDependentReportDto = CreateVaeDependent.generate(salaryAnalisys,patrimonialStatementList,parameterList,applicant,paymentPlanList);
-        
+        vaeDependentReportDto.setNumberRequest(numberRequest);
+
         InputStream stream = getClass().getResourceAsStream("/template-report/patrimonialStatementVaeDependent/vaeDependent.jrxml");
 
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();

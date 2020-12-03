@@ -123,6 +123,9 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="df026442-740f-491e-8586-56eafdc7abb8"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement>
 					<font size="6"/>
 				</textElement>
@@ -133,6 +136,9 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6f330ce-437d-4c28-9a53-92f836f3c74d"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement textAlignment="Right">
 					<font size="6"/>
 				</textElement>
@@ -144,6 +150,9 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
@@ -155,6 +164,9 @@
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement>
 					<font size="6"/>
 				</textElement>
@@ -165,6 +177,9 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d6f330ce-437d-4c28-9a53-92f836f3c74d"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>

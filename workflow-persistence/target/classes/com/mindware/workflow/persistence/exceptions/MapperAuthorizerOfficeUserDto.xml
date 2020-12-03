@@ -1,0 +1,68 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.exceptions.MapperAuthorizerOfficeUserDto">
+    <resultMap id="AuthorizerOfficeUserMap" type="com.mindware.workflow.core.service.data.exceptions.dto.AuthorizersOfficeUserDto">
+        <result property="nameAuthorizer" column="name_authorizer"/>
+        <result property="stateAuthorizer" column="state_authorizer"/>
+        <result property="loginAuthorizer" column="login_authorizer"/>
+        <result property="maximumAmountBs" column="maximum_amount_bs"/>
+        <result property="minimumAmountBs" column="minimum_amount_bs"/>
+        <result property="maximumAmountSus" column="maximum_amount_sus"/>
+        <result property="minimumAmountSus" column="minimum_amount_sus"/>
+        <result property="scope" column="scope"/>
+        <result property="city" column="city"/>
+        <result property="internalCodeOffice" column="internal_code_office"/>
+        <result property="typeOffice" column="type_office"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <select id="getByCity" resultMap="AuthorizerOfficeUserMap" parameterType="map">
+        <![CDATA[
+        select  u.names as name_authorizer, u.state as state_authorizer, u.email
+             , u.login as login_authorizer, o.city, o.type_office, o.internal_code as internal_code_office
+             , a.maximum_amount_bs, a.minimum_amount_bs, a.maximum_amount_sus, a.maximum_amount_sus, a.scope
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+                 INNER join workflow.authorizer a on (a.login_user=u.login)
+        where city = #{city}
+        ]]>
+    </select>
+
+    <select id="getAll" resultMap="AuthorizerOfficeUserMap">
+        <![CDATA[
+        select  u.names as name_authorizer, u.state as state_authorizer, u.email
+             , u.login as login_authorizer, o.city, o.type_office, o.internal_code as internal_code_office
+             , a.maximum_amount_bs, a.minimum_amount_bs, a.maximum_amount_sus, a.maximum_amount_sus, a.scope
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+                 INNER join workflow.authorizer a on (a.login_user=u.login)
+        ]]>
+    </select>
+
+    <select id="getByAmountBs" resultMap="AuthorizerOfficeUserMap" parameterType="map">
+        <![CDATA[
+        select  u.names as name_authorizer, u.state as state_authorizer, u.email
+             , u.login as login_authorizer, o.city, o.type_office, o.internal_code as internal_code_office
+             , a.maximum_amount_bs, a.minimum_amount_bs, a.maximum_amount_sus, a.maximum_amount_sus, a.scope
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+                 INNER join workflow.authorizer a on (a.login_user=u.login)
+        where #{minimumBs}>=a.minimum_amount_bs and #{maximumBs} <= a.maximum_amount_bs
+        ]]>
+    </select>
+
+    <select id="getByAmountSus" resultMap="AuthorizerOfficeUserMap" parameterType="map">
+        <![CDATA[
+        select  u.names as name_authorizer, u.state as state_authorizer, u.email
+             , u.login as login_authorizer, o.city, o.type_office, o.internal_code as internal_code_office
+             , a.maximum_amount_bs, a.minimum_amount_bs, a.maximum_amount_sus, a.maximum_amount_sus, a.scope
+        from public.users u
+                 inner join public.office o on (u.code_office = o.internal_code)
+                 INNER join workflow.authorizer a on (a.login_user=u.login)
+        where #{minimumSus}>=a.minimum_amount_sus and #{maximumSus} <= a.maximum_amount_sus
+        ]]>
+    </select>
+
+
+
+</mapper>
