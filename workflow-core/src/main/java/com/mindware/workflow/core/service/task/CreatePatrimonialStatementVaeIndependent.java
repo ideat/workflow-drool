@@ -273,8 +273,9 @@ public class CreatePatrimonialStatementVaeIndependent {
         listEarningExpenses.add(newSummaryAmount("Utilidad Operativa", operativeEarning));
 
 
-        listEarningExpensesMub.add(newSummaryAmount("Margen Bruto Ponderado", mubp * 100.0));
         listEarningExpensesMub.add(newSummaryAmount("Ventas segun tabulacion Promedio", summarySalesDto.getTotal()));
+        listEarningExpensesMub.add(newSummaryAmount("Margen Bruto Ponderado", mubp * 100.0));
+
         Double auxAmount = (1 - mubp) * summarySalesDto.getTotal();
         auxAmount = Math.round(auxAmount * 100.0) / 100.0;
         listEarningExpensesMub.add(newSummaryAmount("Costos segun el MUB determinado", auxAmount));

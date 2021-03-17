@@ -255,16 +255,18 @@ public class UtilPaymentPlan {
     }
 
 
-    public static boolean correctPaymentPlan(List<PaymentPlan> paymentPlanList, Double fee){
+    public static double correctPaymentPlan(List<PaymentPlan> paymentPlanList, Double fee){
 
         int size = paymentPlanList.size()-1;
         PaymentPlan last = paymentPlanList.get(size);
+        PaymentPlan beforeLast = paymentPlanList.get(size-1);
         Double lastFee = last.getCapital() + last.getInterest();
+        Double residueBeforeLastFee = beforeLast.getResidue();
         if(lastFee>fee){
-            return true;
-        }else{
-            return false;
-        }
+            return 0.01;
+        }else if(residueBeforeLastFee < 0) {
+            return -0.01;
+        }else return 0.0;
 
     }
 

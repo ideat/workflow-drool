@@ -177,8 +177,12 @@ public class PatrimonialStatementDtoController {
             List<Double> earnings = new ArrayList<>();
             earnings.add(operativeUtility);
             earnings.add(utilityMUB);
-            Double earning = earnings.stream().min(Comparator.naturalOrder()).get();
-
+            Double earning =0.0;
+            if(utilityMUB.doubleValue()<=0.0){
+                earning = operativeUtility;
+            }else {
+                earning = earnings.stream().min(Comparator.naturalOrder()).get();
+            }
             return earning.toString();
         }else{
             return "0";

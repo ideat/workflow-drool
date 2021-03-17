@@ -2,6 +2,7 @@ package com.mindware.workflow.util;
 
 import com.mindware.workflow.core.entity.email.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ import java.io.UnsupportedEncodingException;
 
 @Service
 public class MailServiceImpl  implements MailService{
+
+    @Value("${spring.mail.username}")
+    private String userName;
+
     @Autowired
     JavaMailSender mailSender;
 
@@ -23,7 +28,7 @@ public class MailServiceImpl  implements MailService{
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
             mimeMessageHelper.setSubject(mail.getMailSubject());
-            mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), mail.getMailSubject()));
+            mimeMessageHelper.setFrom(new InternetAddress(userName, mail.getMailSubject()));
 //            mimeMessageHelper.setFrom(new InternetAddress("workflow.promocred@gmail.com", mail.getMailSubject()));
             mimeMessageHelper.setTo(mail.getMailTo());
             mimeMessageHelper.setText(mail.getMailContent());

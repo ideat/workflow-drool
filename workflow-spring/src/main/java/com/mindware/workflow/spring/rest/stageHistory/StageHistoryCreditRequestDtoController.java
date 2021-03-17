@@ -144,7 +144,8 @@ public class StageHistoryCreditRequestDtoController {
         List<StageHistoryCreditRequestDto> detailStageHistoryCreditRequestDtoList = CreateStageHistoryCreditRequestDto
                 .generateDetailStageHistoryCreditRequest(stageHCR,workflowProductList);
 
-        List<StageHistoryCreditRequestDto> stageHistoryCreditRequestDtoList = CreateStageHistoryCreditRequestDto.generateResumStageHistoryCreditRequestDto(detailStageHistoryCreditRequestDtoList,stateList);
+        List<StageHistoryCreditRequestDto> stageHistoryCreditRequestDtoList = CreateStageHistoryCreditRequestDto
+                .generateResumStageHistoryCreditRequestDto(detailStageHistoryCreditRequestDtoList,stateList);
 
         return new ResponseEntity<>(stageHistoryCreditRequestDtoList,HttpStatus.OK);
     }

@@ -9,6 +9,7 @@ import com.mindware.workflow.core.service.data.stageHistory.dto.StageHistoryCred
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -34,17 +35,27 @@ public class CreateStageHistoryCreditRequestDto {
                     .collect(Collectors.toList()).get(0);
 
             if(stageHCR.getInitDateTime()==null){
+                int a = getDaysWeekend(stageHCR.getStartDateTime(),Instant.now());
+
                 Long hours = ChronoUnit.HOURS.between(stageHCR.getStartDateTime(), Instant.now());
-                stageHCR.setTimeToBeAssigned(hours.intValue());
+
+                stageHCR.setTimeToBeAssigned(hours.intValue()-a);
                 stageHCR.setTimeElapsed(0);
+
             }else{
-                Long hours = ChronoUnit.HOURS.between(stageHCR.getStartDateTime(), stageHCR.getInitDateTime());
+                stageHCR.getStartDateTime().atOffset(ZoneOffset.UTC).getDayOfWeek();
+                int a = getDaysWeekend(stageHCR.getStartDateTime(),stageHCR.getInitDateTime());
+
+                Long hours = ChronoUnit.HOURS.between(stageHCR.getStartDateTime(), stageHCR.getInitDateTime()) - a;
+
                 stageHCR.setTimeToBeAssigned(hours.intValue());
                 if(stageHCR.getFinishedDateTime()==null){
-                    hours = ChronoUnit.HOURS.between(stageHCR.getInitDateTime(),Instant.now());
+                    a = getDaysWeekend(stageHCR.getInitDateTime(),Instant.now());
+                    hours = ChronoUnit.HOURS.between(stageHCR.getInitDateTime(),Instant.now()) - a;
                     stageHCR.setTimeElapsed(hours.intValue());
                 }else{
-                    hours = ChronoUnit.HOURS.between(stageHCR.getInitDateTime(),stageHCR.getFinishedDateTime());
+                    a = getDaysWeekend(stageHCR.getInitDateTime(),stageHCR.getFinishedDateTime());
+                    hours = ChronoUnit.HOURS.between(stageHCR.getInitDateTime(),stageHCR.getFinishedDateTime()) - a;
                     stageHCR.setTimeElapsed(hours.intValue());
                 }
             }
@@ -53,16 +64,32 @@ public class CreateStageHistoryCreditRequestDto {
             stageHistoryCreditRequestDtoList.add(stageHCR);
         }
 
-
         return stageHistoryCreditRequestDtoList;
     }
+
+    private static int  getDaysWeekend(Instant day1, Instant day2){
+
+        long days = ChronoUnit.DAYS.between(day1,day2);
+
+        Long h = 0l;
+        int endweek=0;
+        for(int i=0;i<days;i++){
+            Instant d1 =  day1.plus(i,ChronoUnit.DAYS);
+            int d = d1.atOffset(ZoneOffset.UTC).getDayOfWeek().getValue();
+            if(d == 6 || d == 7){
+                endweek+=1;
+            }
+        }
+
+        return endweek*24;
+    }
+
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
         return t -> seen.add(keyExtractor.apply(t));
     }
 
     public static List<StageHistoryCreditRequestDto> generateResumStageHistoryCreditRequestDto(List<StageHistoryCreditRequestDto> list, List<String> states){
-
 
         List<StageHistoryCreditRequestDto> stageHistoryCreditRequestDtoList = list;
         List<StageHistoryCreditRequestDto> returnList = new ArrayList<>();
@@ -92,7 +119,8 @@ public class CreateStageHistoryCreditRequestDto {
             StageHistoryCreditRequestDto stageHistoryCreditRequestDto = st;
             stageHistoryCreditRequestDto.setTimeToBeAssigned(timeToBeAssigned);
             stageHistoryCreditRequestDto.setTimeElapsed(totalTimeElapsedStage);
-            stageHistoryCreditRequestDto.setHoursLeft(stageHistoryCreditRequestDto.getTotalHoursStage()- (totalTimeElapsedStage+timeToBeAssigned));
+            stageHistoryCreditRequestDto.setHoursLeft(stageHistoryCreditRequestDto.getTotalHoursStage()
+                    - (totalTimeElapsedStage+timeToBeAssigned));
             returnList.add(stageHistoryCreditRequestDto);
 
         }

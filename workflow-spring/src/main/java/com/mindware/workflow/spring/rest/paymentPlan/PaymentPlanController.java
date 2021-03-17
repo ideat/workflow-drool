@@ -29,6 +29,7 @@ public class PaymentPlanController {
         List<PaymentPlan> paymentPlanList = new ArrayList<>();
 
         repository.delete(creditRequest.getNumberRequest());
+
         if(creditRequest.getTypeFee().equals("FIJA")){
             paymentPlanList = generatePaymentPlan.generatePaymentPlanFixedFee(creditRequest);
         }else if(creditRequest.getTypeFee().equals("VARIABLE")){

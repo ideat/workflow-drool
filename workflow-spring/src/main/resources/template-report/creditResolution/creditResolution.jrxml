@@ -545,24 +545,6 @@
 					<pen lineWidth="1.0"/>
 				</graphicElement>
 			</rectangle>
-			<textField pattern="#,##0.00##;(#,##0.00##-)">
-				<reportElement x="85" y="206" width="58" height="10" uuid="f281ca69-294c-432d-b049-b283fc783be7">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="2" y="206" width="82" height="10" uuid="8baf1192-aa8c-4b76-9a19-751e09509c51">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font size="6" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Monto total a cancelar:]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="2" y="220" width="128" height="9" uuid="0b2100f5-4814-43f5-a6f1-924659e18cf4"/>
 				<textElement>

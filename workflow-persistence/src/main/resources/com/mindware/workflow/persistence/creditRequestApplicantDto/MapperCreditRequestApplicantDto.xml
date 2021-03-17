@@ -164,10 +164,13 @@
              , a1.workaddress as workaddress_spouse, a1.profession as profession_spouse
              , a1.city as city_spouse, a1.province as province_spouse, a1.block as block_spouse
              , a1.type_home as type_home_spouse, c.type_credit, c.object_credit
+             , o.city as city_office, o.name as name_office, o.internal_code as code_office
         from workflow.creditrequest_applicant ca
                  inner join workflow.creditrequest c on (ca.number_request = c.number_request)
                  inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
                  LEFT join workflow.applicant a1 on (a.number_applicant_spouse = a1.number_applicant)
+                 INNER JOIN public.users u on (c.login_user = u.login)
+                 INNER join public.office o on (u.code_office = o.internal_code)
         where  ca.number_request = #{numberRequest}
     </select>
 

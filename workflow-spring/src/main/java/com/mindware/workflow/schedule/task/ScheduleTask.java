@@ -18,6 +18,7 @@ import com.mindware.workflow.core.service.data.exceptions.dto.ExceptionsApplican
 import com.mindware.workflow.core.service.data.users.RepositoryUsers;
 import com.mindware.workflow.util.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,9 @@ public class ScheduleTask {
     private StatusReview statusReview;
     private List<ExceptionsApplicantCreditRequestDto> exceptionsList;
     private List<Users> usersList;
+
+    @Value("${spring.mail.username}")
+    private String userName;
 
     public void expirationUserPassword(){
         usersList = repositoryUsers.getAllUsers();
@@ -139,7 +143,7 @@ public class ScheduleTask {
         mail.setLoginUser(loginUser);
         mail.setNumberRequest(numberRquest);
         mail.setSendDate(LocalDateTime.now());
-        mail.setMailFrom("workflow.promocred@gmail.com");
+        mail.setMailFrom(userName);
         mail.setMailTo(email);
         mail.setMailSubject("Notificacion proximo vencimiento plazo excepcion");
         mail.setMailContent(String.format("Excepcion %s de la solicitud %s vence su plazo de regularizacion en %s dias"

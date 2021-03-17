@@ -200,13 +200,13 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-metadata</artifactId>
-            <version>6.12.2</version>
+            <version>6.16.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>6.12.2</version>
+            <version>6.16.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/ar.com.fdvs/DynamicJasper-core-fonts -->
         <dependency>

@@ -14,7 +14,7 @@ public class CostProduct {
 
     private String supplies;
 
-    private Integer quantity;
+    private Double quantity;
 
     private String unity;
 
