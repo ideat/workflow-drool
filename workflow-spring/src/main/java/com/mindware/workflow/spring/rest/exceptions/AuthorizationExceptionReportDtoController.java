@@ -2,6 +2,7 @@ package com.mindware.workflow.spring.rest.exceptions;
 
 import com.mindware.workflow.core.service.data.exceptions.RepositoryAuthorizationExceptionReportDto;
 import com.mindware.workflow.core.service.data.exceptions.dto.AuthorizationExceptionReportDto;
+import com.mindware.workflow.core.service.task.CreateExceptionAuthorizationReportDto;
 import com.mindware.workflow.spring.config.ServiceUseCaseFactory;
 import com.mindware.workflow.util.PrinterReportJasper;
 import net.sf.jasperreports.engine.JRException;
@@ -39,13 +40,15 @@ public class AuthorizationExceptionReportDtoController {
 
         List<AuthorizationExceptionReportDto> collection = repository.getByNumberRequest(numberRequest,typeException);
 
+        List<AuthorizationExceptionReportDto> result = CreateExceptionAuthorizationReportDto.generate(collection);
+
         InputStream stream = getClass().getResourceAsStream("/template-report/authorizationException/authorizationException.jrxml");
 
         String pathLogo = getClass().getResource("/template-report/img/logo.png").getPath();
         Map<String,Object> params = new WeakHashMap<>();
         params.put("logo",pathLogo);
 
-        byte[] b = PrinterReportJasper.imprimirComoPdf(stream,collection,params);
+        byte[] b = PrinterReportJasper.imprimirComoPdf(stream,result,params);
         InputStream is = new ByteArrayInputStream(b);
         return IOUtils.toByteArray(is);
     }

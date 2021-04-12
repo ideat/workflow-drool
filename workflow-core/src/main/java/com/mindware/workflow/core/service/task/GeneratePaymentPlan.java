@@ -317,6 +317,8 @@ public class GeneratePaymentPlan {
 
         int term = 1;
         int periodYear = 1;// 360/creditRequest.getPaymentPeriod();
+
+
         ObjectMapper mapper = new ObjectMapper();
         List<Charge> chargeList = mapper.readValue(creditRequest.getCharge(),new TypeReference<List<Charge>>(){});
         chargeList = chargeList.stream().filter(p -> p.isSelected()).collect(Collectors.toList());
@@ -324,12 +326,12 @@ public class GeneratePaymentPlan {
         PaymentPlan paymentPlan0 = getPaymentPlan0(creditRequest);
 
         Long paymentPeriod =  DAYS.between(currentDate,creditRequest.getPaymentPlanEndDate());
-
+//
         paymentPlanList.add(paymentPlan0);
 //        for(int i=1;i<=term;i++){
             LocalDate nextDate = utilPaymentPlan.nextPaymentDate(0,currentDate,paymentPeriod.intValue(),minDays);
 //            long days = DAYS.between(currentDate,nextDate);
-            BigDecimal interest = utilPaymentPlan.getInterestVariableFee(amount,creditRequest.getRateInterest(),periodYear);
+            BigDecimal interest = utilPaymentPlan.getInterestVariableFeeTermFixed(amount,creditRequest.getRateInterest(),periodYear,paymentPeriod.intValue());
 
             PaymentPlan paymentPlan = new PaymentPlan();
             paymentPlan.setId(UUID.randomUUID());

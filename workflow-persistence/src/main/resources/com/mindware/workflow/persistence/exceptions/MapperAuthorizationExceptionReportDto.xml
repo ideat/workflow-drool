@@ -16,6 +16,7 @@
         <result property="justification" column="justification"/>
         <result property="exceptionRegister" column="exception_register"/>
         <result property="typeException" column="type_exception"/>
+        <result property="statusReview" column="status_review"/>
     </resultMap>
 
 
@@ -25,7 +26,7 @@
              ,trim(a.last_name ||' ' || a.mother_last_name) as last_name
              , c.amount, c.currency, c.destination, c.rate_interest, c.term, c.type_term
              , p.description as guarantee_description , e.description as exception_description, ec.justification, ec.register as exception_register
-             , e.type_exception
+             , e.type_exception, ec.status_review
         from workflow.exceptions e
                  inner join workflow.exceptions_creditrequest ec on (ec.code_exception = e.internal_code)
                  inner JOIN workflow.creditrequest c on (ec.number_request = c.number_request)

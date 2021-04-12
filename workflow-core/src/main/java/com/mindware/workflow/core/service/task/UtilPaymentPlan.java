@@ -3,6 +3,7 @@ package com.mindware.workflow.core.service.task;
 import com.mindware.workflow.core.entity.PaymentPlan;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -163,6 +164,17 @@ public class UtilPaymentPlan {
     public BigDecimal getInterestVariableFee(BigDecimal amount, Double rate, int feeNumber ){
 
         return amount.multiply(new BigDecimal(rate/100)).divide(new BigDecimal(feeNumber),BigDecimal.ROUND_UP).setScale(2,RoundingMode.UP);
+    }
+
+    public BigDecimal getInterestVariableFeeTermFixed(BigDecimal amount, Double rate, int feeNumber, int term ){
+        Double amt = amount.doubleValue();
+        Double aux = amt * (rate / 100) / (Double.valueOf(feeNumber)/360.0 );
+        BigDecimal dailyInterest = amount.multiply(new BigDecimal(rate/100))
+                .divide(new BigDecimal(feeNumber),MathContext.DECIMAL128).setScale(2,RoundingMode.UP).divide(new BigDecimal(360),MathContext.DECIMAL128);
+
+//        BigDecimal dailyInterest = new BigDecimal(aux);
+
+        return dailyInterest.multiply(new BigDecimal(term)).setScale(2, RoundingMode.UP);
     }
 
     public int getTypeTermNumber(String typeTerm) {

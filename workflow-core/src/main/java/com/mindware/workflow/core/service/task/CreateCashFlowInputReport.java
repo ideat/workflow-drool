@@ -129,17 +129,82 @@ public class CreateCashFlowInputReport {
         cashFlowPeriod.setPeriod10(11<=items.length?items[11]:"");
         cashFlowPeriod.setPeriod11(12<=items.length?items[12]:"");
         cashFlowPeriod.setPeriod12(13<=items.length?items[13]:"");
-        cashFlowPeriod.setPeriod13(14<=items.length && 25<= items.length?sumItem(14,25,items):"");
-        cashFlowPeriod.setPeriod14(26<=items.length && 37<=items.length?sumItem(26,37,items):"");
-        cashFlowPeriod.setPeriod15(38<=items.length && 49<=items.length?sumItem(38,49,items):"");
-        cashFlowPeriod.setPeriod16(50<=items.length && 61<=items.length?sumItem(50,61,items):"");
-        cashFlowPeriod.setPeriod17(62<=items.length && 73<=items.length?sumItem(62,73,items):"");
-        cashFlowPeriod.setPeriod18(74<=items.length && 85<=items.length?sumItem(74,85,items):"");
-        cashFlowPeriod.setPeriod19(86<=items.length && 97<=items.length?sumItem(86,97,items):"");
-        cashFlowPeriod.setPeriod20(98<=items.length && 109<=items.length?sumItem(98,109,items):"");
-        cashFlowPeriod.setPeriod21(110<=items.length && 121<=items.length?sumItem(110,121,items):"");
-        cashFlowPeriod.setPeriod22(122<=items.length && 181<=items.length ?sumItem(122,181,items):"");
-        cashFlowPeriod.setPeriod23(182<=items.length && 301<=items.length?sumItem(182,301,items):"");
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod13(14 <= items.length && 25 <= items.length ? sumItem(25, 25, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod13(14 <= items.length && 25 <= items.length ? sumItem(14, 25, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod14(26 <= items.length && 37 <= items.length ? sumItem(37, 37, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod14(26<= items.length && 37 <= items.length ? sumItem(26, 37, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod15(38 <= items.length && 49 <= items.length ? sumItem(49, 49, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod15(38 <= items.length && 49 <= items.length ? sumItem(38, 49, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod16(50 <= items.length && 61 <= items.length ? sumItem(61, 61, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod16(50 <= items.length && 61 <= items.length ? sumItem(50, 61, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod17(62 <= items.length && 73 <= items.length ? sumItem(73, 73, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod17(62 <= items.length && 73 <= items.length ? sumItem(62, 73, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod18(74 <= items.length && 85 <= items.length ? sumItem(85, 85, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod18(74 <= items.length && 85 <= items.length ? sumItem(74, 85, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod19(86 <= items.length && 97 <= items.length ? sumItem(97, 97, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod19(86 <= items.length && 97 <= items.length ? sumItem(86, 97, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod20(98 <= items.length && 109 <= items.length ? sumItem(109, 109, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod20(98 <= items.length && 109 <= items.length ? sumItem(98, 109, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod21(110 <= items.length && 121 <= items.length ? sumItem(121, 121, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod21(110 <= items.length && 121 <= items.length ? sumItem(110, 121, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod22(122 <= items.length && 181 <= items.length ? sumItem(181, 181, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod22(122 <= items.length && 181 <= items.length ? sumItem(122, 181, items) : "");
+        }
+
+        if(items[0].equals("ACUMULADOS")) {
+            cashFlowPeriod.setPeriod23(182 <= items.length && 301 <= items.length ? sumItem(301, 301, items) : "");
+        }else{
+            cashFlowPeriod.setPeriod23(182 <= items.length && 301 <= items.length ? sumItem(182, 301, items) : "");
+        }
+
+//        cashFlowPeriod.setPeriod14(26<=items.length && 37<=items.length?sumItem(26,37,items):"");
+//        cashFlowPeriod.setPeriod15(38<=items.length && 49<=items.length?sumItem(38,49,items):"");
+//        cashFlowPeriod.setPeriod16(50<=items.length && 61<=items.length?sumItem(50,61,items):"");
+//        cashFlowPeriod.setPeriod17(62<=items.length && 73<=items.length?sumItem(62,73,items):"");
+//        cashFlowPeriod.setPeriod18(74<=items.length && 85<=items.length?sumItem(74,85,items):"");
+//        cashFlowPeriod.setPeriod19(86<=items.length && 97<=items.length?sumItem(86,97,items):"");
+//        cashFlowPeriod.setPeriod20(98<=items.length && 109<=items.length?sumItem(98,109,items):"");
+//        cashFlowPeriod.setPeriod21(110<=items.length && 121<=items.length?sumItem(110,121,items):"");
+//        cashFlowPeriod.setPeriod22(122<=items.length && 181<=items.length ?sumItem(122,181,items):"");
+//        cashFlowPeriod.setPeriod23(182<=items.length && 301<=items.length?sumItem(182,301,items):"");
 
         return cashFlowPeriod;
     }

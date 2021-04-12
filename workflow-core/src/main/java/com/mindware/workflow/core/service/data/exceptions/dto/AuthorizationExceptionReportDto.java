@@ -21,6 +21,7 @@ public class AuthorizationExceptionReportDto {
     private String justification;
     private LocalDate exceptionRegister;
     private String typeException;
+    private String statusReview;
 
     public String getFullName(){
         return this.firstName +" "+ this.lastName;

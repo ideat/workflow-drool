@@ -50,10 +50,14 @@ public class PaymentPlanDtoController {
         tea = 0.0;
 
         CreditRequest creditRequest = repositoryCreditRequest.getCreditRequestByNumberRequest(numberrequest).get();
-        int factor = creditRequest.getPaymentPeriod()/30;
+        double factor = creditRequest.getPaymentPeriod()/30.0;
         if(creditRequest.getTypeFee().equals("PLAZO FIJO")){
-            teac = UtilPaymentPlan.irr3(payments, 0.0001d);
+
+            teac = UtilPaymentPlan.irr3(payments, 0.0001d)  * 11.8356 ; //estaba sin  * 11.8356
+
             Long days = DAYS.between(creditRequest.getPaymentPlanDate(),creditRequest.getPaymentPlanEndDate());
+            factor = days.intValue()/30.0;
+
             paymentPlantDtoList.stream().forEach(p -> p.setPaymentPeriod(days.intValue()));
         }else {
             teac = UtilPaymentPlan.irr3(payments, 0.0001d) * 11.8356;//11.6615;//11.8356;

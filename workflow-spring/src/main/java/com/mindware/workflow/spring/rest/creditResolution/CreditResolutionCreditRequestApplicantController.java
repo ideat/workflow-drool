@@ -44,6 +44,8 @@ import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 @RestController
 @RequestMapping(value = "/rest", produces = {"applicantion/json"})
 public class CreditResolutionCreditRequestApplicantController {
@@ -120,7 +122,7 @@ public class CreditResolutionCreditRequestApplicantController {
         Office office = repositoryOffice.getOfficeByInternalCode(creditRequest.getIdOffice()).get();
         Users users = repositoryUsers.getUserByIdUser(creditRequest.getLoginUser()).get();
 
-        int factor = creditRequest.getPaymentPeriod()/30;
+        Double factor = creditRequest.getPaymentPeriod()/30.0;
         TypeCredit typeCredit = repositoryTypeCredit.getByExternalCode(creditRequest.getTypeCredit()).get();
         List<PaymentPlanDto> paymentPlantDtoList = new ArrayList<>();
         paymentPlantDtoList = repositoryPaymentPlanDto.getDataReportPaymentPlant(numberRequest);
@@ -128,7 +130,10 @@ public class CreditResolutionCreditRequestApplicantController {
         double[] payments = UtilPaymentPlan.getListFee(paymentPlanList,paymentPlantDtoList.get(0).getAmount());
         Double teac=0.0;
         if(creditRequest.getTypeFee().equals("PLAZO FIJO")) {
-            teac = UtilPaymentPlan.irr3(payments, 0.0001d);
+            Long days = DAYS.between(creditRequest.getPaymentPlanDate(),creditRequest.getPaymentPlanEndDate());
+            factor = days.intValue()/30.0;
+            teac = UtilPaymentPlan.irr3(payments, 0.0001d)  * 11.8356;
+
         }else{
             teac = UtilPaymentPlan.irr3(payments, 0.0001d) * 11.8356;//11.8356;
         }
@@ -152,7 +157,7 @@ public class CreditResolutionCreditRequestApplicantController {
         ExchangeRate exchangeRate = repositoryExchangeRate.getActiveExchangeRateByCurrency("$us.").get();
         Double exchange = exchangeRate.getExchange();
 //        if(creditRequest.getCurrency().equals("BS"))  amount = Math.round((amount/exchange)*100.0)/100.0;
-        result.setIndicatorsList(getIndicators(amount,paymentPlanList,guaranteesResolutionList,factor,creditRequest.getTypeFee(),creditResolution));
+        result.setIndicatorsList(getIndicators(amount,paymentPlanList,guaranteesResolutionList,factor.intValue(),creditRequest.getTypeFee(),creditResolution));
 
         InputStream stream = getClass().getResourceAsStream("/template-report/creditResolution/creditResolution.jrxml");
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();
