@@ -25,4 +25,6 @@ public interface MapperCreditRequest {
     CreditRequest getCreditRequestByNumberRequest(@Param("numberRequest") Integer numberRequest);
 
     void updateCompanySizeIndicator(CreditRequest creditRequest);
+
+    void updateState(CreditRequest creditRequest);
 }

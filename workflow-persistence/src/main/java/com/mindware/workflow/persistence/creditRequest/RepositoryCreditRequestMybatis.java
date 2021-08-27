@@ -68,7 +68,16 @@ public class RepositoryCreditRequestMybatis implements RepositoryCreditRequest {
     }
 
     @Override
+    @Transactional
     public void updateCompanySizeIndicator(CreditRequest creditRequest) {
         mapper.updateCompanySizeIndicator(creditRequest);
     }
+
+    @Override
+    @Transactional
+    public void updateState(CreditRequest creditRequest) {
+        mapper.updateState(creditRequest);
+    }
+
+
 }

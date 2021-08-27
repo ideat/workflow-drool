@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.kiosco.MapperSummaryCreditRequestStage">
+    <resultMap id="SummaryCreditRequestStageMap" type="com.mindware.workflow.core.entity.kiosco.SummaryCreditRequestStage">
+        <result property="numberRequest" column="number_request"/>
+        <result property="amount" column="amount"/>
+        <result property="rateInterest" column="rate_interest"/>
+        <result property="currency" column="currency"/>
+        <result property="requestDate" column="request_date"/>
+        <result property="state" column="state"/>
+        <result property="stage" column="stage"/>
+        <result property="rateInterest" column="rate_interest"/>
+        <result property="term" column="term"/>
+        <result property="typeTerm" column="type_term"/>
+        <result property="paymentPeriod" column="payment_period"/>
+        <result property="typeFee" column="type_fee"/>
+        <result property="officerName" column="officer_name"/>
+        <result property="assignedUser" column="assigned_user"/>
+
+    </resultMap>
+
+
+
+    <select id="findActiveRequestByIdCard" resultMap="SummaryCreditRequestStageMap" parameterType="map">
+        SELECT c.number_request, c.amount, c.currency,c.request_date, s.state, s.stage, c.rate_interest,
+               c.term, c.type_term, c.payment_period, c.type_fee, (u.names || ' ' || u.last_names) officer_name,
+               (u2.names || ' ' || u2.last_names) assigned_user
+        from workflow.creditrequest c
+                 inner join workflow.stage_history s on s.number_request = c.number_request
+                 INNER JOIN workflow.creditrequest_applicant ca on ca.number_request = c.number_request
+                 inner join workflow.applicant a on a.number_applicant = ca.number_applicant
+                 inner join public.users u on u.login = c.login_user
+                 left join public.users u2 on u2.login = s.user_task
+        where s.state IN ('PENDIENTE','OBSERVADO')
+          and a.full_idcard = #{idCard}
+    </select>
+
+
+
+
+
+</mapper>

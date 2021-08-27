@@ -16,7 +16,7 @@ public class CreateVaeDependent {
     public static VaeDependentReportDto generate(List<SalaryAnalisys> salaryAnalisysList
             , List<PatrimonialStatement> patrimonialStatementList, List<Parameter> parameterList
             , Applicant applicant, List<PaymentPlan> paymentPlanList) {
-        String[] typeClient = {"CLIENTE","CONYUGE","CODEUDOR 1","CODEUDOR 2","CODEUDOR 3","CODEUDOR 4"};
+        String[] typeClient = {"CLIENTE","CLIENTE ACT2","CLIENTE ACT3","CONYUGE","CODEUDOR 1","CODEUDOR 2","CODEUDOR 3","CODEUDOR 4"};
         VaeDependentReportDto vaeDependentReportDto = new VaeDependentReportDto();
 
         vaeDependentReportDto.setFullName(applicant.getFullName());

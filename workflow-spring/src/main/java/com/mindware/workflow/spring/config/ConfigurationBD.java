@@ -18,6 +18,7 @@ import com.mindware.workflow.core.service.data.creditResolution.RepositoryCredit
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
+import com.mindware.workflow.core.service.data.kiosco.RepositorySummaryCreditRequestStage;
 import com.mindware.workflow.core.service.data.legal.RepositoryContractVariable;
 import com.mindware.workflow.core.service.data.legal.RepositoryLegalInformation;
 import com.mindware.workflow.core.service.data.legal.dto.RepositoryLegalInformationCreditRequestDto;
@@ -54,6 +55,7 @@ import com.mindware.workflow.persistence.creditResolution.dto.RepositoryCreditRe
 import com.mindware.workflow.persistence.email.RepositoryMailMybatis;
 import com.mindware.workflow.persistence.exceptions.*;
 import com.mindware.workflow.persistence.contract.RepositoryContractVariableMybatis;
+import com.mindware.workflow.persistence.kiosco.RepositorySummaryCreditRequestStageMybatis;
 import com.mindware.workflow.persistence.legal.RepositoryLegalInformationMybatis;
 import com.mindware.workflow.persistence.legal.dto.RepositoryLegalInformationCreditRequestDtoMybatis;
 import com.mindware.workflow.persistence.observation.RepositoryObservationMybatis;
@@ -356,6 +358,11 @@ public class ConfigurationBD {
     @Bean
     RepositoryStagePercentageDto repositoryStagePercentageDto(){
        return RepositoryStagePercentageDtoMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositorySummaryCreditRequestStage repositorySummaryCreditRequestStage(){
+        return RepositorySummaryCreditRequestStageMybatis.create(sqlSessionFactory);
     }
 
     @PostConstruct

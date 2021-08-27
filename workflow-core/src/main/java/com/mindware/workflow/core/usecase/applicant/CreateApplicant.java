@@ -43,9 +43,11 @@ public class CreateApplicant extends UseCaseBase<Applicant> implements UseCase<A
 
         if (isNew){
             this.register.setId(UUID.randomUUID());
+            this.register.setFullIdCard(this.register.getIdCard().trim().concat(this.register.getIdCardComplement().trim().concat(this.register.getIdCardExpedition().trim())));
             repository.addApplicant(this.register);
             result = Optional.of(this.register);
         }else{
+            this.register.setFullIdCard(this.register.getIdCard().trim().concat(this.register.getIdCardComplement().trim().concat(this.register.getIdCardExpedition().trim())));
             repository.updateApplicant(this.register);
         }
     }

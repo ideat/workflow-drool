@@ -24,4 +24,6 @@ public interface RepositoryCreditRequest {
 
     void updateCompanySizeIndicator(CreditRequest creditRequest);
 
+    void updateState(CreditRequest creditRequest);
+
 }

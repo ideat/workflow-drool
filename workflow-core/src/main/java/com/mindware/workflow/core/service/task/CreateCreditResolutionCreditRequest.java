@@ -3,6 +3,7 @@ package com.mindware.workflow.core.service.task;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mindware.workflow.core.entity.Applicant;
+import com.mindware.workflow.core.entity.CompanyData;
 import com.mindware.workflow.core.entity.config.ObjectCredit;
 import com.mindware.workflow.core.entity.config.ProductTypeCredit;
 import com.mindware.workflow.core.entity.config.TypeCredit;
@@ -24,24 +25,41 @@ import java.util.stream.Collectors;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class CreateCreditResolutionCreditRequest {
+    private static List<CompanyData> companyData;
 
     public static CreditResolutionCreditRequestApplicant generate(Applicant applicant, Optional<Applicant> spouse
             , CreditResolution creditResolution, CreditRequest creditRequest, TypeCredit typeCredit) throws IOException {
         CreditResolutionCreditRequestApplicant dataResolution = new CreditResolutionCreditRequestApplicant();
         ObjectMapper mapper = new ObjectMapper();
-        dataResolution.setFullNameApplicant(applicant.getFullName());
-        dataResolution.setIdCardCompleteApplicant(applicant.getFullIdCard());
-        if (spouse.isPresent()) {
-            dataResolution.setFullNameSpouse(spouse.get().getFullName());
-            dataResolution.setIdCardCompleteSpouse(spouse.get().getFullIdCard());
-        }else {
+        if(applicant.getTypePerson().equals("juridica")){
+            companyData = mapper.readValue(applicant.getCompanyData(), new TypeReference<List<CompanyData>>(){});
+            dataResolution.setFullNameApplicant(applicant.getNameCompanyWork());
+            dataResolution.setIdCardCompleteApplicant(applicant.getNit());
             dataResolution.setFullNameSpouse("");
             dataResolution.setIdCardCompleteSpouse("");
+            if(companyData.size() > 0) {
+                dataResolution.setHomeAddress(companyData.get(0).getAddress());
+                dataResolution.setPhones(companyData.get(0).getPhones());
+            }
+        }else {
+
+            dataResolution.setFullNameApplicant(applicant.getFullName());
+            dataResolution.setIdCardCompleteApplicant(applicant.getFullIdCard());
+            dataResolution.setHomeAddress(applicant.getHomeaddress());
+            dataResolution.setPhones(applicant.getCellphone() + " " + applicant.getHomephone());
+            if (spouse.isPresent()) {
+                dataResolution.setFullNameSpouse(spouse.get().getFullName());
+                dataResolution.setIdCardCompleteSpouse(spouse.get().getFullIdCard());
+            } else {
+                dataResolution.setFullNameSpouse("");
+                dataResolution.setIdCardCompleteSpouse("");
+            }
         }
+
         dataResolution.setCreditNumber(creditRequest.getNumberCredit());
         dataResolution.setCreditResolutionDate(creditResolution.getCreationDate());
-        dataResolution.setHomeAddress(applicant.getHomeaddress());
-        dataResolution.setPhones(applicant.getCellphone() + " " +applicant.getHomephone());
+
+
         dataResolution.setCaedecApplicant(applicant.getCaedec());
         dataResolution.setApplicantRaiting(creditResolution.getApplicantRating());
         dataResolution.setPatrimony(0.0);
@@ -82,7 +100,7 @@ public class CreateCreditResolutionCreditRequest {
         String textRate = "";
         if(creditRequest.getBaseInterestRate()>0 && creditRequest.getInitPeriodBaseRate()>0){
             textRate =  creditRequest.getRateInterest().toString()+"% tasa durante los primeros "
-                    +creditRequest.getInitPeriodBaseRate() + " meses, posteriormente se cobra el " + creditRequest.getBaseInterestRate()+"% mas la TRE ";
+                    +(creditRequest.getInitPeriodBaseRate() -1) + " meses, posteriormente se cobra el " + creditRequest.getBaseInterestRate()+"% mas la TRE ";
         }else{
             textRate = creditRequest.getRateInterest().toString()+ "% durante la vida del credito";
         }

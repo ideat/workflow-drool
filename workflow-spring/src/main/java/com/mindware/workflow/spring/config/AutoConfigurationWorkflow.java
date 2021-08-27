@@ -16,6 +16,7 @@ import com.mindware.workflow.core.service.data.creditResolution.RepositoryCredit
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
+import com.mindware.workflow.core.service.data.kiosco.RepositorySummaryCreditRequestStage;
 import com.mindware.workflow.core.service.data.legal.RepositoryContractVariable;
 import com.mindware.workflow.core.service.data.legal.RepositoryLegalInformation;
 import com.mindware.workflow.core.service.data.legal.dto.RepositoryLegalInformationCreditRequestDto;
@@ -198,6 +199,9 @@ public class AutoConfigurationWorkflow {
     @Autowired
     private RepositoryStagePercentageDto repositoryStagePercentageDto;
 
+    @Autowired
+    private RepositorySummaryCreditRequestStage repositorySummaryCreditRequestStage;
+
     @Bean
     @DependsOn({"repositoryOffice"})
     public ServiceUseCaseFactory serviceUseCaseFactory(){
@@ -254,6 +258,7 @@ public class AutoConfigurationWorkflow {
         factory.setRepositoryTypeCredit(repositoryTypeCredit);
         factory.setRepositoryExceptionsApplicantCreditRequestDto(repositoryExceptionsApplicantCreditRequestDto);
         factory.setRepositoryStagePercentageDto(repositoryStagePercentageDto);
+        factory.setRepositorySummaryCreditRequestStage(repositorySummaryCreditRequestStage);
         return factory;
     }
 }

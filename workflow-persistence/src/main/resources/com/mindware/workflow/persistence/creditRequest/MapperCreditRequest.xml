@@ -162,6 +162,13 @@
 
     </update>
 
+    <update id="updateState"  parameterType="com.mindware.workflow.core.entity.creditRequest.CreditRequest">
+        update workflow.creditrequest
+        set
+            state = #{state}
+        where number_request = #{numberRequest}
+    </update>
+
    <select id="getAllCreditRequest" resultMap="CreditRequestMap">
        select *
        from workflow.creditrequest

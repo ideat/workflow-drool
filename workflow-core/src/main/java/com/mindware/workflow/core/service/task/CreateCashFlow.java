@@ -27,7 +27,7 @@ public class CreateCashFlow {
         if(frecuency==1){
             size = creditRequest.getTerm() + frecuency+1;
         }else if(frecuency%2==0 ) {
-            size = creditRequest.getTerm() + frecuency;
+            size = creditRequest.getTerm() + frecuency + 1; //TODO: CHANGE..ADDED + 1, REVIEW
         }else {
             size = creditRequest.getTerm() + frecuency - 1;
         }

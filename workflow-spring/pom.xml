@@ -193,9 +193,6 @@
             <version>2.6</version>
         </dependency>
 
-
-
-
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-metadata -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>

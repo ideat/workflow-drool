@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vaeDependent" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a1d8c3f-43b5-4cff-9bb9-081cc67127c0">
 	<parameter name="path_subreport" class="java.lang.String"/>
 	<parameter name="logo" class="java.lang.String"/>
@@ -64,7 +64,7 @@
 				<textFieldExpression><![CDATA[$F{nameCompanyWork}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="409" y="45" width="100" height="12" uuid="7013e6ba-49bf-47b1-9c6c-b294557d7e64">
+				<reportElement x="389" y="45" width="161" height="12" uuid="7013e6ba-49bf-47b1-9c6c-b294557d7e64">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -76,7 +76,7 @@
 				<textFieldExpression><![CDATA[$F{dependentNumber}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="409" y="57" width="100" height="12" uuid="00f9076c-4108-4f83-99d9-608c31908d9b">
+				<reportElement x="389" y="57" width="161" height="12" uuid="00f9076c-4108-4f83-99d9-608c31908d9b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -106,7 +106,7 @@
 				<text><![CDATA[Lugar de Trabajo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="295" y="45" width="114" height="12" uuid="0bf298f0-1395-477e-9a40-83f4829c110c">
+				<reportElement x="295" y="45" width="93" height="12" uuid="0bf298f0-1395-477e-9a40-83f4829c110c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -115,7 +115,7 @@
 				<text><![CDATA[Numero dependientes:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="295" y="57" width="114" height="12" uuid="e9b8b12f-3760-4c19-94ed-9c93bcbf1f86">
+				<reportElement x="295" y="57" width="93" height="12" uuid="e9b8b12f-3760-4c19-94ed-9c93bcbf1f86">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -135,7 +135,7 @@
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="296" y="32" width="114" height="12" uuid="af7119f4-8c46-471e-bc3a-d367bd2f9e0c">
+				<reportElement x="296" y="32" width="93" height="12" uuid="af7119f4-8c46-471e-bc3a-d367bd2f9e0c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -144,7 +144,7 @@
 				<text><![CDATA[Numero solicitud:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="409" y="32" width="100" height="12" uuid="7451932a-45a0-4af1-9701-2a4a09b4a7d7">
+				<reportElement x="389" y="32" width="161" height="12" uuid="7451932a-45a0-4af1-9701-2a4a09b4a7d7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>

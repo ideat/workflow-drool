@@ -39,6 +39,7 @@ import com.mindware.workflow.core.service.data.creditResolution.RepositoryCredit
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
+import com.mindware.workflow.core.service.data.kiosco.RepositorySummaryCreditRequestStage;
 import com.mindware.workflow.core.service.data.legal.RepositoryContractVariable;
 import com.mindware.workflow.core.service.data.legal.RepositoryLegalInformation;
 import com.mindware.workflow.core.service.data.legal.dto.RepositoryLegalInformationCreditRequestDto;
@@ -137,6 +138,7 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
     private RepositoryTypeCredit repositoryTypeCredit;
     private RepositoryExceptionsApplicantCreditRequestDto repositoryExceptionsApplicantCreditRequestDto;
     private RepositoryStagePercentageDto repositoryStagePercentageDto;
+    private RepositorySummaryCreditRequestStage repositorySummaryCreditRequestStage;
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -375,5 +377,9 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
 
     public void setRepositoryStagePercentageDto(RepositoryStagePercentageDto repositoryStagePercentageDto){
         this.repositoryStagePercentageDto = repositoryStagePercentageDto;
+    }
+
+    public void setRepositorySummaryCreditRequestStage(RepositorySummaryCreditRequestStage repositorySummaryCreditRequestStage){
+        this.repositorySummaryCreditRequestStage = repositorySummaryCreditRequestStage;
     }
 }

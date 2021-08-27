@@ -47,6 +47,7 @@
         <result property="externalSystemCode" column="external_system_code"/>
         <result property="zone" column="zone"/>
         <result property="workzone" column="workzone"/>
+        <result property="fullIdCard" column="full_idcard"></result>
     </resultMap>
 
     <insert id="addApplicant" parameterType="com.mindware.workflow.core.entity.Applicant">
@@ -98,7 +99,8 @@
             home_address_reference,
             external_system_code,
             zone,
-            workzone)
+            workzone,
+            full_idcard)
         values (
            #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
            #{numberApplicant},
@@ -144,7 +146,8 @@
            #{homeAddressReference},
            #{externalSystemCode},
            #{zone},
-           #{workzone}     )
+           #{workzone},
+           #{fullIdCard})
     </insert>
 
     <update id="updateApplicant" parameterType="com.mindware.workflow.core.entity.Applicant">
@@ -190,7 +193,8 @@
             home_address_reference = #{homeAddressReference},
             external_system_code = #{externalSystemCode},
             zone = #{zone},
-            workzone = #{workzone}
+            workzone = #{workzone},
+            full_idcard = #{fullIdCard}
         where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
 
     </update>

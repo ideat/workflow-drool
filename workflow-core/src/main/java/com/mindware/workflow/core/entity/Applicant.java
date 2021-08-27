@@ -48,7 +48,7 @@ public class Applicant {
     @Size(min = 5, max = 15, message = "'Carnet de Identidad' debe tener entre 5 y 15 caracteres")
     private String idCard;
 
-    @NotNull(message = "'Lugar expedicion carnet' no puede ser omitido")
+//    @NotNull(message = "'Lugar expedicion carnet' no puede ser omitido")
     private String idCardExpedition;
 
     private String idCardComplement;
@@ -57,16 +57,16 @@ public class Applicant {
 
     private LocalDate dateExpirationIdCard;
 
-    @NotNull(message = "'Estado civil' no puede ser omitido")
+//    @NotNull(message = "'Estado civil' no puede ser omitido")
     private String civilStatus;
 
     private int dependentNumber;
 
-    @NotNull(message = "'Fecha de nacimiento' no debe ser omitida")
-    @Past(message = "'Fecha de nacimiento' no debe ser en el futuro")
+//    @NotNull(message = "'Fecha de nacimiento' no debe ser omitida")
+//    @Past(message = "'Fecha de nacimiento' no debe ser en el futuro")
     private LocalDate birthdate;
 
-    @NotNull(message = "'Genero' no puede ser omitido")
+//    @NotNull(message = "'Genero' no puede ser omitido")
     private String gender;
 
     private String profession;
@@ -124,6 +124,8 @@ public class Applicant {
     private String zone;
 
     private String workzone;
+
+    private String fullIdCard;
 //    public String getIdCardComplet(){
 //        return this.idCard+ this.idCardExpedition;
 //    }
@@ -135,8 +137,8 @@ public class Applicant {
         return Optional.ofNullable(this.firstName).orElse("")+" "
                 +Optional.ofNullable(this.secondName).orElse("") + " "
                 +Optional.ofNullable(this.lastName).orElse("")+ " "
-//                +Optional.ofNullable(this.motherLastName).orElse("")+ " "
-                + (!mal.equals("")?"de " + mal:ml);
+                +Optional.ofNullable(this.motherLastName).orElse("")+ " "
+                + (!mal.equals("")?"de " + mal:"");
 
     }
 

@@ -48,20 +48,20 @@ public class CreatePatrimonialStatementVaeIndependent {
         List<ProductSalesBuys> productSalesBuysList = Arrays.asList(mapper.readValue(patrimonialStatement.getFieldText4(), ProductSalesBuys[].class));
 
         List<SalesProjection> listSaleDaily = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("DIARIA")
-                && !p.getTypeSale().equals("")).collect(Collectors.toList());
+                && p.getTypeSale() != null && !p.getTypeSale().equals("")).collect(Collectors.toList());
 
         List<SalesProjection> listSaleWeek = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("SEMANAL")
-                && !p.getTypeSale().equals("")).collect(Collectors.toList());
+                && p.getTypeSale() != null && !p.getTypeSale().equals("")).collect(Collectors.toList());
         List<SalesProjection> listSaleMonth = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("MENSUAL")
-                && !p.getTypeSale().equals("")).collect(Collectors.toList());
+                && p.getTypeSale() != null && !p.getTypeSale().equals("")).collect(Collectors.toList());
 
         List<SalesProjection> listAmountDaily = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("DIARIA")
-                && p.getTypeSale().equals("")).collect(Collectors.toList());
+                && (p.getTypeSale() == null || p.getTypeSale().equals(""))).collect(Collectors.toList());
 
         List<SalesProjection> listAmountWeek = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("SEMANAL")
-                && p.getTypeSale().equals("")).collect(Collectors.toList());
+                && (p.getTypeSale() == null || p.getTypeSale().equals(""))).collect(Collectors.toList());
         List<SalesProjection> listAmountMonth = salesProjectionList.stream().filter(p -> p.getCategorySale().equals("MENSUAL")
-                && p.getTypeSale().equals("")).collect(Collectors.toList());
+                &&(p.getTypeSale() == null || p.getTypeSale().equals(""))).collect(Collectors.toList());
 
         List<ProductSalesBuys> listProductSales = productSalesBuysList.stream().filter(p -> p.getTypeRegister().equals("VENTA"))
                 .collect(Collectors.toList());
@@ -81,6 +81,7 @@ public class CreatePatrimonialStatementVaeIndependent {
         if(totalBuysSales2>0) listTotals.add(totalBuysSales2);
 
         List<ProductSalesBuys> productSalesBuys = getPercentageTotalBuys(listProductBuys);
+
         Double totalBuys = listProductBuys.stream()
                 .map(b -> b.getTotalBuys())
                 .reduce(0.0,Double::sum);
@@ -155,9 +156,10 @@ public class CreatePatrimonialStatementVaeIndependent {
                 .reduce(0.0,Double::sum);
 
         Double totalBuys2 = ((totalBuys*mubp)/(1 - mubp))+totalBuys;
-//        listTotals.add(totalBuys2);
-
         totalBuys2 = Math.round(totalBuys2*100.0)/100.0;
+        if(totalBuys2>0) {
+            listTotals.add(totalBuys2);  //Total de ventas segun compras
+        }
         for(ProductSalesBuys p:productSalesBuysList){
             ProductSalesBuys productBuy = new ProductSalesBuys();
             productBuy.setProduct(p.getProduct());
