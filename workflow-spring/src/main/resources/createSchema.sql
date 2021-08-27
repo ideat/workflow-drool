@@ -111,6 +111,7 @@ CREATE TABLE if not exists workflow.applicant(
     customer_from date,
     saving_account character varying default '0',
     workzone character varying default '',
+    full_idcard character varying(30) default '',
     CONSTRAINT applicant_pkey PRIMARY KEY (id),
     CONSTRAINT unique_workflow_id_card UNIQUE (id_card,id_card_expedition)
 );
