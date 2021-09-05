@@ -19,16 +19,17 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 public class GeneratePaymentPlan {
     private Integer minDays = 12;
+    private Integer maxDays = 10;
     private UtilPaymentPlan utilPaymentPlan = new UtilPaymentPlan();
 
-    public List<PaymentPlan> generatePaymentPlanFixedFee(CreditRequest creditRequest) throws IOException {
+    public List<PaymentPlan> generatePaymentPlanFixedFee(CreditRequest creditRequest,String origin) throws IOException {
         List<PaymentPlan> paymentPlanList = new ArrayList<>();
         int factor = creditRequest.getPaymentPeriod()/30;
         double adjust = 0.0;
 
         BigDecimal fee = BigDecimal.ZERO;
         LocalDate currentDate = creditRequest.getPaymentPlanDate();
-        LocalDate nd=  utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),minDays);
+        LocalDate nd=  utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),minDays,maxDays);
         Long dias = DAYS.between(currentDate,nd);
         if(creditRequest.getFixedDay()==0) {
             fee = utilPaymentPlan.getFixedFee(creditRequest.getAmount(), creditRequest.getRateInterest()
@@ -68,30 +69,7 @@ public class GeneratePaymentPlan {
 
         Integer numberQuota=0;
         Double itf =0.0;
-//        for(int i=1;i<=countGracePeriod;i++) {
-//            PaymentPlan paymentPlan = new PaymentPlan();
-//            nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),10);
-//            long days =  DAYS.between(currentDate,nextDate);
-//            BigDecimal interest = utilPaymentPlan.getInterestFixedFee(amount,creditRequest.getRateInterest(), days,creditRequest.getPaymentPeriod());
-////            Double secureCharge = utilPaymentPlan.getSecure(nextDate,currentDate,amount.doubleValue(),
-////                    mapCharge.get("SEGURO DESGRAVAMEN")==null?0.0:mapCharge.get("SEGURO DESGRAVAMEN")).doubleValue();
-//
-//            Double secureCharge = utilPaymentPlan.getSecure2(creditRequest.getPaymentPeriod(),amount.doubleValue(),
-//                    mapCharge.get("SEGURO DESGRAVAMEN")==null?0.0:mapCharge.get("SEGURO DESGRAVAMEN")).doubleValue();
-//
-//            Double otherCharge = mapCharge.get("SEGURO CONTRA TODO RIESGO")==null?0.0: mapCharge.get("SEGURO CONTRA TODO RIESGO").doubleValue();
-//
-//
-//            numberQuota=i;
-//            itf =  utilPaymentPlan.getItf(interest.doubleValue()+secureCharge+otherCharge
-//                    , mapCharge.get("ITF")==null?0.0:mapCharge.get("ITF"));
-//            paymentPlan = getPaymentPlantGracePeriod(creditRequest.getTypeGracePeriod(), creditRequest.getAmount(),
-//                    interest.doubleValue(), secureCharge, otherCharge,nextDate,numberQuota,creditRequest.getNumberRequest(),itf);
-//
-//            paymentPlanList.add(paymentPlan);
-//            currentDate = nextDate;
-//        }
-//
+
         term=term-countGracePeriod;
         double inc =0.0;
 //        List<PaymentPlan> initPaymentPlanList = new ArrayList<>(paymentPlanList);
@@ -102,11 +80,11 @@ public class GeneratePaymentPlan {
             numberQuota = paymentPlanList.get(paymentPlanList.size()-1).getQuotaNumber();
             amount = BigDecimal.valueOf(creditRequest.getAmount());
             for (int i = 1; i <= term; i++) {
-                nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(), currentDate, creditRequest.getPaymentPeriod(), minDays);
+                nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(), currentDate, creditRequest.getPaymentPeriod(), minDays,maxDays);
                 long days = DAYS.between(currentDate, nextDate);
                 BigDecimal interest = utilPaymentPlan.getInterestFixedFee(amount, creditRequest.getRateInterest(), days, creditRequest.getPaymentPeriod());
                 if(interest.doubleValue()>fee.doubleValue()){
-                    nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(), currentDate, creditRequest.getPaymentPeriod(), minDays);
+                    nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(), currentDate, creditRequest.getPaymentPeriod(), minDays,maxDays);
                     days = DAYS.between(currentDate, nextDate);
                     interest = utilPaymentPlan.getInterestFixedFee(amount, creditRequest.getRateInterest(), days, creditRequest.getPaymentPeriod());
                 }
@@ -123,8 +101,13 @@ public class GeneratePaymentPlan {
                 paymentPlan.setSecureCharge( utilPaymentPlan.getSecure2(creditRequest.getPaymentPeriod(),amount.doubleValue(),
                         mapCharge.get("SEGURO DESGRAVAMEN")==null?0.0:mapCharge.get("SEGURO DESGRAVAMEN")).doubleValue());
 
-                paymentPlan.setOtherCharge(mapCharge.get("SEGURO CONTRA TODO RIESGO") == null ? 0.0 : mapCharge.get("SEGURO CONTRA TODO RIESGO").doubleValue()*factor);
-
+                if(origin.equals("KIOSCO")){
+                    paymentPlan.setOtherCharge(mapCharge.get("SEGURO CONTRA TODO RIESGO") == null ? 0.0 :
+                            mapCharge.get("SEGURO CONTRA TODO RIESGO").doubleValue() * creditRequest.getAmount());
+                }else {
+                    paymentPlan.setOtherCharge(mapCharge.get("SEGURO CONTRA TODO RIESGO") == null ? 0.0 :
+                            mapCharge.get("SEGURO CONTRA TODO RIESGO").doubleValue() * factor);
+                }
                 BigDecimal amort = fee.subtract(interest);
 
                 amount = amount.subtract(amort);
@@ -185,7 +168,7 @@ public class GeneratePaymentPlan {
         double itf=0.0;
         for(int i=1;i<=countGracePeriod;i++) {
             PaymentPlan paymentPlan = new PaymentPlan();
-            nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),minDays);
+            nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),minDays, maxDays);
             long days =  DAYS.between(currentDate,nextDate);
             BigDecimal interest = BigDecimal.ZERO;
             if(creditRequest.getTypeTerm().equals("FIJA")) {
@@ -250,7 +233,7 @@ public class GeneratePaymentPlan {
         amount = BigDecimal.valueOf(creditRequest.getAmount());
         double itf=0.0;
         for(int i=1;i<=term;i++){
-            LocalDate nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),minDays);
+            LocalDate nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),minDays, maxDays);
 //            long days = DAYS.between(currentDate,nextDate);
             BigDecimal interest = utilPaymentPlan.getInterestVariableFee(amount,creditRequest.getRateInterest(),periodYear);
 
@@ -329,7 +312,7 @@ public class GeneratePaymentPlan {
 //
         paymentPlanList.add(paymentPlan0);
 //        for(int i=1;i<=term;i++){
-            LocalDate nextDate = utilPaymentPlan.nextPaymentDate(0,currentDate,paymentPeriod.intValue(),minDays);
+            LocalDate nextDate = utilPaymentPlan.nextPaymentDate(0,currentDate,paymentPeriod.intValue(),minDays,maxDays);
 //            long days = DAYS.between(currentDate,nextDate);
             BigDecimal interest = utilPaymentPlan.getInterestVariableFeeTermFixed(amount,creditRequest.getRateInterest(),periodYear,paymentPeriod.intValue());
 

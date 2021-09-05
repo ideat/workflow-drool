@@ -10,7 +10,7 @@
     </resultMap>
 
     <insert id="addProduct" parameterType="com.mindware.workflow.core.entity.config.Product">
-        insert into workflow.product(
+        insert into workflow.productKiosco(
             id,
             name,
             interes_rate,
@@ -26,7 +26,7 @@
     </insert>
 
     <update id="updateProduct" parameterType="com.mindware.workflow.core.entity.config.Product">
-        update workflow.product
+        update workflow.productKiosco
         set
             name = #{name},
             interes_rate = #{interestRate}::json,
@@ -40,14 +40,14 @@
     <select id="getAllProducts" resultMap="ProductMap">
         <![CDATA[
         select *
-        from workflow.product
+        from workflow.productKiosco
         ]]>
     </select>
 
     <select id="getProductById" resultMap="ProductMap" parameterType="map">
         <![CDATA[
         select *
-        from workflow.product
+        from workflow.productKiosco
         where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
         ]]>
     </select>
@@ -55,7 +55,7 @@
     <select id="getProductByName" resultMap="ProductMap" parameterType="map">
         <![CDATA[
         select *
-        from workflow.product
+        from workflow.productKiosco
         where name = #{name}
         ]]>
     </select>

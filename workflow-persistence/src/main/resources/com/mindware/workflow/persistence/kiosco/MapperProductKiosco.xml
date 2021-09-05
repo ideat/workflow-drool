@@ -1,0 +1,90 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.kiosco.MapperProductKiosco">
+    <resultMap id="ProductMap" type="com.mindware.workflow.core.entity.kiosco.ProductKiosco">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="concept" column="concept"/>
+        <result property="product" column="product"/>
+        <result property="minAmount" column="min_amount"/>
+        <result property="maxAmount" column="max_amount"/>
+        <result property="secure" column="secure"/>
+        <result property="allRisk" column="all_risk"/>
+        <result property="term" column="term"/>
+        <result property="rate" column="rate"/>
+        <result property="guarantee" column="guarantee"/>
+        <result property="conditions" column="conditions"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.kiosco.ProductKiosco">
+        insert into kiosco.product_kiosco(
+            id,
+            concept,
+            product,
+            min_amount,
+            max_amount,
+            secure,
+            all_risk,
+            term,
+            rate,
+            guarantee,
+            conditions,
+            state)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{concept},
+                   #{product},
+                   #{minAmount},
+                   #{maxAmount},
+                   #{secure},
+                   #{allRisk},
+                   #{term},
+                   #{rate},
+                   #{guarantee},
+                   #{conditions},
+                   #{state}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.kiosco.ProductKiosco">
+        update kiosco.product_kiosco
+        set
+            concept = #{concept},
+            product = #{product},
+            min_amount = #{minAmount},
+            max_amount = #{maxAmount},
+            secure = #{secure},
+            all_risk = #{allRisk},
+            term = #{term},
+            rate = #{rate},
+            guarantee = #{guarantee},
+            conditions = #{conditions},
+            state = #{state}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getAll" resultMap="ProductMap" parameterType="map">
+
+        select *
+        from kiosco.product_kiosco
+        order by concept, product
+    </select>
+
+
+    <select id="getProductKioscoById" resultMap="ProductMap" parameterType="map">
+        <![CDATA[
+        select *
+        from kiosco.product_kiosco
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getByProductName" resultMap="ProductMap" parameterType="map">
+        <![CDATA[
+        select *
+        from kiosco.product_kiosco
+        where product = #{product}
+        ]]>
+    </select>
+</mapper>

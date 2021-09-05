@@ -31,7 +31,7 @@ public class PaymentPlanController {
         repository.delete(creditRequest.getNumberRequest());
 
         if(creditRequest.getTypeFee().equals("FIJA")){
-            paymentPlanList = generatePaymentPlan.generatePaymentPlanFixedFee(creditRequest);
+            paymentPlanList = generatePaymentPlan.generatePaymentPlanFixedFee(creditRequest,"SEC");
         }else if(creditRequest.getTypeFee().equals("VARIABLE")){
             paymentPlanList = generatePaymentPlan.generatePaymentPlanVariableFee(creditRequest);
         }else{

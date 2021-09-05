@@ -208,4 +208,18 @@
     "name": "Numero Solicitudes",
     "read": "false",
     "write": "false"
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Kiosco",
+    "read": "false",
+    "write": "false"
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Productos Kiosco",
+    "read": "false",
+    "write": "false"
   }]

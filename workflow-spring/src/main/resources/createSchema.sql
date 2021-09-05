@@ -472,3 +472,19 @@ create table if not exists workflow.type_credit(
     constraint type_credit_id primary key (id)
 );
 
+create table if not exists  kiosco.product_kiosco(
+    id uuid not null,
+    concept character  varying not null,
+    productKiosco character varying not null,
+    min_amount numeric(10,2) not null,
+    max_amount numeric(10,2) not null,
+    secure numeric(10,4) not null,
+    all_risk numeric(10,8) not null,
+    term int not null,
+    rate numeric(10,2) not null,
+    guarantee character  varying ,
+    conditions character  varying ,
+    state character varying (20),
+    constraint product_id primary  key(id)
+);
+

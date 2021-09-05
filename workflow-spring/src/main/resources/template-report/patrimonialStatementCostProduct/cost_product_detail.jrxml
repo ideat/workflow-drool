@@ -14,7 +14,7 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="product" class="java.lang.String"/>
+	<field name="productKiosco" class="java.lang.String"/>
 	<field name="supplies" class="java.lang.String"/>
 	<field name="quantity" class="java.lang.Double"/>
 	<field name="unity" class="java.lang.String"/>
@@ -45,7 +45,7 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
-				<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{productKiosco}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="90" y="0" width="60" height="20" uuid="d711d1fc-9523-4372-acd0-527e7f9af3dd">

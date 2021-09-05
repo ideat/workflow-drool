@@ -14,7 +14,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 public class UtilPaymentPlan {
 
-    public LocalDate nextPaymentDate(int fixedDay, LocalDate initDate, int paymentPeriod, int minDays){
+    public LocalDate nextPaymentDate(int fixedDay, LocalDate initDate, int paymentPeriod, int minDays, int maxDays){
 
         int period = paymentPeriod/30;
         Calendar calendar = Calendar.getInstance();
@@ -27,8 +27,12 @@ public class UtilPaymentPlan {
             calendar.add(Calendar.MONTH,period);
             calendar = new GregorianCalendar(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),fixedDay);
             days = DAYS.between(aux.toInstant(),calendar.toInstant());
-            if (days <= minDays) {
-                calendar.add(Calendar.MONTH, 1);
+            if(maxDays < (days - paymentPeriod)){
+                calendar.add(Calendar.MONTH,(period*-1));
+            }else {
+                if (days <= minDays) {
+                    calendar.add(Calendar.MONTH, 1);
+                }
             }
         }else{
             calendar.add(Calendar.DATE,paymentPeriod);
@@ -67,14 +71,14 @@ public class UtilPaymentPlan {
     }
 
     public BigDecimal getFixedFee2(Double amount, Double rate, int term, String typeTerm
-            , int paymentPeriod, LocalDate initDate, int fixedDay,int minDays){
+            , int paymentPeriod, LocalDate initDate, int fixedDay,int minDays, int maxDays){
         Double termd = new Double(term);
         int typeTermNumber = getTypeTermNumber(typeTerm);
         termd = termd*typeTermNumber;
         int feeNumber = (int) (termd/paymentPeriod);
         LocalDate endDate = initDate;
         for(int i=1;i<=feeNumber;i++){
-            endDate = nextPaymentDate(fixedDay,endDate,paymentPeriod,minDays);
+            endDate = nextPaymentDate(fixedDay,endDate,paymentPeriod,minDays, maxDays);
         }
         long days = DAYS.between(initDate,endDate);
 

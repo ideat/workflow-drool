@@ -5,7 +5,7 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="product" class="java.lang.String"/>
+	<field name="productKiosco" class="java.lang.String"/>
 	<field name="unit" class="java.lang.String"/>
 	<field name="quantity" class="java.lang.Integer"/>
 	<field name="frecuency" class="java.lang.Integer"/>
@@ -207,7 +207,7 @@
 				<textElement>
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{productKiosco}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="50" y="0" width="40" height="10" uuid="a8a7b25d-e9e3-49ff-9b12-1068e4fc1205">

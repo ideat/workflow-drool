@@ -15,6 +15,7 @@ import com.mindware.workflow.core.entity.exceptions.Authorizer;
 import com.mindware.workflow.core.entity.exceptions.Exceptions;
 import com.mindware.workflow.core.entity.exceptions.ExceptionsCreditRequest;
 import com.mindware.workflow.core.entity.contract.ContractVariable;
+import com.mindware.workflow.core.entity.kiosco.ProductKiosco;
 import com.mindware.workflow.core.entity.legal.LegalInformation;
 import com.mindware.workflow.core.entity.observation.Observation;
 import com.mindware.workflow.core.entity.patrimonialStatement.PatrimonialStatement;
@@ -39,6 +40,7 @@ import com.mindware.workflow.core.service.data.creditResolution.RepositoryCredit
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
+import com.mindware.workflow.core.service.data.kiosco.RepositoryProductKiosco;
 import com.mindware.workflow.core.service.data.kiosco.RepositorySummaryCreditRequestStage;
 import com.mindware.workflow.core.service.data.legal.RepositoryContractVariable;
 import com.mindware.workflow.core.service.data.legal.RepositoryLegalInformation;
@@ -75,6 +77,7 @@ import com.mindware.workflow.core.usecase.email.CreateMail;
 import com.mindware.workflow.core.usecase.exceptions.CreateAuthorizer;
 import com.mindware.workflow.core.usecase.exceptions.CreateExceptions;
 import com.mindware.workflow.core.usecase.exceptions.CreateExceptionsCreditRequest;
+import com.mindware.workflow.core.usecase.kiosco.CreateProductKiosco;
 import com.mindware.workflow.core.usecase.legal.CreateContractVariable;
 import com.mindware.workflow.core.usecase.legal.CreateLegalInformation;
 import com.mindware.workflow.core.usecase.observation.CreateObservation;
@@ -139,7 +142,7 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
     private RepositoryExceptionsApplicantCreditRequestDto repositoryExceptionsApplicantCreditRequestDto;
     private RepositoryStagePercentageDto repositoryStagePercentageDto;
     private RepositorySummaryCreditRequestStage repositorySummaryCreditRequestStage;
-
+    private RepositoryProductKiosco repositoryProductKiosco;
     @SuppressWarnings("rawtypes")
     @Override
     public UseCase create(String useCase, Object input) {
@@ -206,7 +209,8 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
                 return CreateCityProvince.create(this.repositoryCityProvince,(CityProvince) input);
             case "CreateTypeCredit":
                 return CreateTypeCredit.create(this.repositoryTypeCredit,(TypeCredit) input);
-
+            case "CreateProductKiosco":
+                return CreateProductKiosco.create(this.repositoryProductKiosco,(ProductKiosco) input);
             default:
                 throw new IllegalArgumentException(String.format("Caso de Uso '%s' desconocido.", useCase));
         }
@@ -381,5 +385,9 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
 
     public void setRepositorySummaryCreditRequestStage(RepositorySummaryCreditRequestStage repositorySummaryCreditRequestStage){
         this.repositorySummaryCreditRequestStage = repositorySummaryCreditRequestStage;
+    }
+
+    public void setRepositoryProductKiosco(RepositoryProductKiosco repositoryProductKiosco){
+        this.repositoryProductKiosco = repositoryProductKiosco;
     }
 }
