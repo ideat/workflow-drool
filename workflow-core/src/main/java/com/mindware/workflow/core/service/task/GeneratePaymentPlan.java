@@ -376,7 +376,7 @@ public class GeneratePaymentPlan {
         paymentPlan0.setQuotaNumber(numberQuota);
         paymentPlan0.setId(UUID.randomUUID());
         if(typeGracePeriod.equals("CAPITAL")){
-            paymentPlan0.setFee(secureCharge+otherCharges+interest);
+            paymentPlan0.setFee(secureCharge+otherCharges+interest+itf);
             paymentPlan0.setInterest(interest.doubleValue());
             paymentPlan0.setOtherCharge(otherCharges);
             paymentPlan0.setSecureCharge(secureCharge);

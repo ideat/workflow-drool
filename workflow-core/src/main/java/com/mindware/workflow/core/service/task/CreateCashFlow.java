@@ -40,6 +40,10 @@ public class CreateCashFlow {
                 headers[i] = p.getPaymentDate().format(DateTimeFormatter.ofPattern("MM-yyyy"));
                 i++;
             }else{
+                if(aux==0){
+                    headers[i] = p.getPaymentDate().plusMonths(-1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
+                    i++;
+                }
                 if(aux==1) {
 
                     for (int j = frecuency ; j > 0; j--) {
@@ -48,7 +52,7 @@ public class CreateCashFlow {
                     }
 
                 }else if(aux>1){
-                    for (int j = frecuency ; j > 0; j--) {
+                    for (int j = frecuency-1 ; j >= 0; j--) {
                         headers[i] = p.getPaymentDate().plusMonths(j *-1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
                         i++;
                     }
@@ -57,10 +61,10 @@ public class CreateCashFlow {
 
             }
         }
-        if(frecuency!=1) {
-            headers[i] = paymentPlanList.get(aux - 1).getPaymentDate().format(DateTimeFormatter.ofPattern("MM-yyyy"));
-            i++;
-        }
+//        if(frecuency!=1) {
+//            headers[i] = paymentPlanList.get(aux-1 ).getPaymentDate().format(DateTimeFormatter.ofPattern("MM-yyyy"));
+//            i++;
+//        }
 
         headers[0] = "DETALLE";
         cashflow.add(createFlowItem(headers,cont,"DETAIL"));

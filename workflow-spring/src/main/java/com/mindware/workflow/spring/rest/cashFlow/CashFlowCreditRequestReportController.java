@@ -1,8 +1,10 @@
 package com.mindware.workflow.spring.rest.cashFlow;
 
 import com.mindware.workflow.core.entity.cashFlow.CashFlow;
+import com.mindware.workflow.core.entity.config.Parameter;
 import com.mindware.workflow.core.service.data.cashFlow.RepositoryCashFlow;
 import com.mindware.workflow.core.service.data.cashFlow.dto.CashFlowCreditRequestReportDto;
+import com.mindware.workflow.core.service.data.config.RepositoryParameter;
 import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestApplicantDto;
 import com.mindware.workflow.core.service.data.creditRequest.dto.CreditRequestApplicantdto;
 import com.mindware.workflow.core.service.task.CreateCashFlowInputReport;
@@ -16,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-import java.util.WeakHashMap;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/rest", produces = {"application/json"})
@@ -29,6 +28,9 @@ public class CashFlowCreditRequestReportController {
 
     @Autowired
     RepositoryCreditRequestApplicantDto repositoryCreditRequestApplicantDto;
+
+    @Autowired
+    RepositoryParameter repositoryParameter;
 
     private Integer numberRequest;
 
@@ -45,6 +47,11 @@ public class CashFlowCreditRequestReportController {
 
         CreateCashFlowInputReport createCashFlowInputReport = new CreateCashFlowInputReport();
         cashFlowCreditRequestReportDto = createCashFlowInputReport.createInputReport(cashFlow,creditRequestApplicantdto);
+        Optional<Parameter> parameter = repositoryParameter.getParameterByCategoryAndValue("MONEDA",cashFlowCreditRequestReportDto.getCurrency());
+        if(parameter.isPresent()){
+            cashFlowCreditRequestReportDto.setCurrencyName(parameter.get().getDescription());
+        }
+
 
         InputStream stream = getClass().getResourceAsStream("/template-report/cashFlow/cashFlow.jrxml");
         String pathLogo = "template-report/cashFlow/";

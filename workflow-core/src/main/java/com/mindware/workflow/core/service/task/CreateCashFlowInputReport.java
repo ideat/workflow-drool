@@ -27,6 +27,7 @@ public class CreateCashFlowInputReport {
         cashFlowCreditRequestReportDto.setNumberRequest(creditRequestApplicantdto.getNumberRequest());
 
 
+
         List<CashFlowPeriod> cashFlowPeriodList = new ArrayList<>();
         List<FlowItem> cashFlowItemList = getCashFlowItems(cashFlow.getItems());
         cashFlowPeriodList = generateCashFlowPeriod(cashFlowItemList);

@@ -43,9 +43,9 @@ public class Applicant {
     private String homeAddressReference;
 
     @NotNull(message = "'Carnet de Identidad' no puede ser omitido")
-    @Pattern(regexp="\\d{5,10}(-[a-zA-Z_0-9]*)*",message = "'Carnet de Identidad' debe ser una secuencia de entre 5 y 10 dígitos, opcionalmente un caracter seguido de hasta 3 digitos " )
+//    @Pattern(regexp="\\d{5,10}(-[a-zA-Z_0-9]*)*",message = "'Carnet de Identidad' debe ser una secuencia de entre 5 y 10 dígitos, opcionalmente un caracter seguido de hasta 3 digitos " )
     @NotBlank(message = "'Carnet de Identidad' no puede ser omitido")
-    @Size(min = 5, max = 15, message = "'Carnet de Identidad' debe tener entre 5 y 15 caracteres")
+    @Size(min = 5, max = 20, message = "'Documento de Identidad' debe tener entre 5 y 20 caracteres")
     private String idCard;
 
 //    @NotNull(message = "'Lugar expedicion carnet' no puede ser omitido")

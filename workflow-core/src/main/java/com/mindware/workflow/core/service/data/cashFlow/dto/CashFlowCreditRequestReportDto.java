@@ -17,6 +17,8 @@ public class CashFlowCreditRequestReportDto {
 
     private String currency;
 
+    private String currencyName;
+
     private LocalDate requestDate;
 
     private String description;
