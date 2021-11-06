@@ -14,7 +14,7 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="productKiosco" class="java.lang.String"/>
+	<field name="product" class="java.lang.String"/>
 	<field name="supplies" class="java.lang.String"/>
 	<field name="quantity" class="java.lang.Double"/>
 	<field name="unity" class="java.lang.String"/>
@@ -40,12 +40,12 @@
 	<pageHeader>
 		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement x="155" y="0" width="100" height="20" uuid="28a80633-f571-43a3-b750-ba5a6a1a1568">
+				<reportElement x="155" y="0" width="230" height="20" uuid="28a80633-f571-43a3-b750-ba5a6a1a1568">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Bottom"/>
-				<textFieldExpression><![CDATA[$F{productKiosco}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="90" y="0" width="60" height="20" uuid="d711d1fc-9523-4372-acd0-527e7f9af3dd">

@@ -197,11 +197,11 @@ public class PatrimonialStatementDtoController {
             if(key.equals("id-patrimonial-statement")) idPatrimonialStatement = UUID.fromString(value);
             if(key.equals("product")) product = value;
         });
-
+        product =  new String(product.getBytes("ISO-8859-15"),"UTF-8");
         Applicant applicant = repositoryApplicant.getApplicantById(idApplicant).get();
         PatrimonialStatement patrimonialStatement = repositoryPatrimonialStatement.getById(idPatrimonialStatement).get();
         CreatePatrimonialStatementCostProduct createPatrimonialStatementCostProduct = new CreatePatrimonialStatementCostProduct();
-        PatrimonialStatementCostProducts pcp = createPatrimonialStatementCostProduct.generateCostProduct(product, applicant,patrimonialStatement);
+        PatrimonialStatementCostProducts pcp = createPatrimonialStatementCostProduct.generateCostProduct(product.replace('Ã','Ñ'), applicant,patrimonialStatement);
         InputStream stream = getClass().getResourceAsStream("/template-report/patrimonialStatementCostProduct/cost_product.jrxml");
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();
 //        String pathSubreport = getClass().getResource("/template-report/patrimonialStatementCostProduct/").getPath();

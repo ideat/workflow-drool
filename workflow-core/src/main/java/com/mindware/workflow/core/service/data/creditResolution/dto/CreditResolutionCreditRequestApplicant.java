@@ -101,4 +101,6 @@ public class CreditResolutionCreditRequestApplicant {
     private String nameOffice;
 
     private List<UnsecuredGuarantee> unsecuredGuarantee;
+
+    private List<CodebtorResolution> codebtorsList;
 }

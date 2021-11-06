@@ -159,15 +159,15 @@
     <orderEntry type="library" name="Maven: org.apache.poi:poi-scratchpad:4.1.2" level="project" />
     <orderEntry type="library" name="Maven: com.github.deividasstr:docx-word-replacer:0.4" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.jasperreports:jasperreports-metadata:6.12.2" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.jasperreports:jasperreports:6.12.2" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.jasperreports:jasperreports-metadata:6.16.0" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.jasperreports:jasperreports:6.16.0" level="project" />
     <orderEntry type="library" name="Maven: commons-digester:commons-digester:2.1" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.lowagie:itext:2.1.7.js7" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.62" level="project" />
+    <orderEntry type="library" name="Maven: com.lowagie:itext:2.1.7.js8" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.64" level="project" />
     <orderEntry type="library" name="Maven: org.jfree:jcommon:1.0.23" level="project" />
     <orderEntry type="library" name="Maven: org.jfree:jfreechart:1.0.19" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.jdt.core.compiler:ecj:4.4.2" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jdt:ecj:3.21.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.castor:castor-xml:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.castor:castor-core:1.4.1" level="project" />
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />

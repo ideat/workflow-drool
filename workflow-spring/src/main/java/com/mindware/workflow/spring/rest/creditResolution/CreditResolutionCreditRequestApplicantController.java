@@ -40,7 +40,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -153,6 +152,9 @@ public class CreditResolutionCreditRequestApplicantController {
         guaranteesResolutionList.addAll(getNoOwnGuarantee(creditRequest.getNoOwnGuarantee()));
         result.setGuaranteesResolutionList(guaranteesResolutionList);
 
+        List<CodebtorResolution> codebtorResolutionList = getCodebtorsResolution(numberRequest);
+        result.setCodebtorsList(codebtorResolutionList);
+
         Double amount = creditRequest.getAmount();
         ExchangeRate exchangeRate = repositoryExchangeRate.getActiveExchangeRateByCurrency("$us.").get();
         Double exchange = exchangeRate.getExchange();
@@ -237,6 +239,47 @@ public class CreditResolutionCreditRequestApplicantController {
             }
         }
         return guaranteesResolutionList;
+    }
+
+    private List<CodebtorResolution> getCodebtorsResolution(Integer numberRequest){
+        List<CreditRequestApplicant> creditRequestApplicants = repositoryCreditRequestApplicant.getByNumberRequest(numberRequest);
+        List<CodebtorResolution> codebtorResolutionList = new ArrayList<>();
+        for(CreditRequestApplicant cr: creditRequestApplicants){
+            if(cr.getTypeRelation().equals("codeudor")){
+                Applicant applicant = repositoryApplicant.getApplicantByNumberApplicant(cr.getNumberApplicant()).get();
+                CodebtorResolution codebtorResolution = new CodebtorResolution();
+                codebtorResolution.setFullNameCodebtor(applicant.getFullName());
+                codebtorResolution.setIdCardCompleteCodebtor(applicant.getFullIdCard());
+                Optional<Applicant> spouse = repositoryApplicant.getApplicantByNumberApplicant(applicant.getNumberApplicantSpouse());
+                if(spouse.isPresent()){
+                    codebtorResolution.setFullNameSpouse(spouse.get().getFullName());
+                    codebtorResolution.setIdCardCompleteSpouse(spouse.get().getFullIdCard());
+                }
+                codebtorResolution.setHomeAddress(applicant.getHomeaddress());
+                codebtorResolution.setPhones(applicant.getHomephone() +" " + applicant.getCellphone());
+                codebtorResolution.setCaedecCodebtor(applicant.getCaedec());
+                Double patrimony = getPatrimony(cr.getId());
+                codebtorResolution.setPatrimony(patrimony);
+                codebtorResolution.setCustomerFrom(applicant.getCustomerFrom());
+
+                List<PatrimonialStatement> patrimonialStatementList = repositoryPatrimonialStatement.getByIdCreditRequestApplicant(cr.getId());
+                if(patrimonialStatementList.size() > 0) {
+                    patrimonialStatementList = patrimonialStatementList.stream()
+                            .filter(p -> Objects.nonNull(p.getCategory().equals("ACTIVO") && p.getElementCategory().equals("CUENTAS CORRIENTE Y AHORRO"))
+                                    && p.getFieldBoolean4() != null && p.getFieldBoolean4().equals("SI"))
+                            .collect(Collectors.toList());
+                    Double reciprocity = patrimonialStatementList.stream()
+                            .map(p -> p.getFieldDouble1()).reduce(0.0, Double::sum);
+                    codebtorResolution.setReciprocity(reciprocity);
+                }else{
+                    codebtorResolution.setReciprocity(0.0);
+                }
+
+                codebtorResolutionList.add(codebtorResolution);
+            }
+        }
+
+        return codebtorResolutionList;
     }
 
     private List<Indicators> getIndicators(Double amount, List<PaymentPlan> paymentPlanList,

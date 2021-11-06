@@ -18,53 +18,61 @@ public class CreateCashFlow {
     private int size;
     private Integer cont;
     private int frecuency;
-
+    private int factor;
     public  List<FlowItem> createCashFlowMonth(List<PaymentPlan> paymentPlanList
             , List<PatrimonialStatement> patrimonialStatementList, CreditRequest creditRequest){
         cont = 0;
-        frecuency = creditRequest.getPaymentPeriod()/30;
 
-        if(frecuency==1){
-            size = creditRequest.getTerm() + frecuency+1;
-        }else if(frecuency%2==0 ) {
-            size = creditRequest.getTerm() + frecuency + 1; //TODO: CHANGE..ADDED + 1, REVIEW
+        if(creditRequest.getTypeTerm().equals("MES")){
+            factor = creditRequest.getTerm();
+        }else if(creditRequest.getTypeTerm().equals("ANUAL")){
+            factor = creditRequest.getTerm()*12;
+
         }else {
-            size = creditRequest.getTerm() + frecuency - 1;
+            factor = creditRequest.getTerm()/30;
         }
+        size = factor + 3;
+        frecuency = creditRequest.getPaymentPeriod()/30;
+//        if(frecuency==1){
+//            size = factor + 2;
+//        }else if(frecuency%2==0 ) {
+//            size = creditRequest.getTerm() +  2; //TODO: CHANGE..ADDED + 2, REVIEW
+//        }else {
+//            size = creditRequest.getTerm() + frecuency - 1;
+//        }
 
         String[] headers = new String[size];
         int i=1;
-        int aux= 0;
+
         for(PaymentPlan p : paymentPlanList){
             if(frecuency==1) {
                 headers[i] = p.getPaymentDate().format(DateTimeFormatter.ofPattern("MM-yyyy"));
                 i++;
             }else{
-                if(aux==0){
-                    headers[i] = p.getPaymentDate().plusMonths(-1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
+                if(i==1){
+//                    headers[i] = p.getPaymentDate().plusMonths(-1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
+                    headers[i] = p.getPaymentDate().format(DateTimeFormatter.ofPattern("MM-yyyy"));
                     i++;
-                }
-                if(aux==1) {
-
-                    for (int j = frecuency ; j > 0; j--) {
-                        headers[i] = p.getPaymentDate().plusMonths(j *-1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
-                        i++;
+                }else {
+                    if(i==2) {
+                        for (int j = frecuency-1; j > 0; j--) {
+                            headers[i] = p.getPaymentDate().plusMonths(j * -1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
+                            i++;
+                        }
+                    }else{
+                        for (int j = frecuency; j > 0; j--) {
+                            headers[i] = p.getPaymentDate().plusMonths(j * -1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
+                            i++;
+                        }
                     }
-
-                }else if(aux>1){
-                    for (int j = frecuency-1 ; j >= 0; j--) {
-                        headers[i] = p.getPaymentDate().plusMonths(j *-1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
-                        i++;
-                    }
                 }
-                aux++;
 
             }
         }
-//        if(frecuency!=1) {
-//            headers[i] = paymentPlanList.get(aux-1 ).getPaymentDate().format(DateTimeFormatter.ofPattern("MM-yyyy"));
-//            i++;
-//        }
+        if(frecuency!=1) {
+            headers[i] = paymentPlanList.get(paymentPlanList.size()-1).getPaymentDate().format(DateTimeFormatter.ofPattern("MM-yyyy"));
+            i++;
+        }
 
         headers[0] = "DETALLE";
         cashflow.add(createFlowItem(headers,cont,"DETAIL"));
@@ -131,7 +139,7 @@ public class CreateCashFlow {
             if(!f.getOrder().equals(0)) {
                 String[] item = f.getItem();
                 for (int i = 1; i < size; i++) {
-                    if(!item[i].equals(""))
+                    if(item[i]!=null && !item[i].equals(""))
                         item[i] = String.format("%,.2f", Double.parseDouble(item[i]));
                 }
                 f.setItem(item);
@@ -194,14 +202,19 @@ public class CreateCashFlow {
 //        interest[0] = cont.toString();
         int i = 1;
         for(PaymentPlan p:paymentPlanList){
+//            if(i==1){
+//                capital[1] = "0.0";
+//                interest[1] = "0.0";
+//                i++;
+//            }
             if(frecuency==1) {
                 capital[i] = p.getCapital().toString();// String.format("%.,2f",p.getCapital());
                 Double charges = p.getInterest() + p.getSecureCharge() + p.getOtherCharge() + p.getItf();
                 interest[i] = charges.toString();
                 i++;
             }else{
-                if(i==1) {
-                    for (int j = 0; j < frecuency-1; j++) {
+                if(i==2) {
+                    for (int j = 1; j < frecuency-1; j++) {
                         capital[i] = "0.0";
                         interest[i] = "0.0";
                         i++;
@@ -221,11 +234,8 @@ public class CreateCashFlow {
                         interest[i] = "0.0";
                         i++;
                     }
-
                 }
-
             }
-
         }
         items.add(capital);
         items.add(interest);

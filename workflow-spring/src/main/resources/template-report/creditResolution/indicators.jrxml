@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="indicators" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4087c616-dd3f-4109-925b-9b6175fdf1da">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString>
@@ -30,7 +30,7 @@
 	<columnHeader>
 		<band height="82" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="13" width="570" height="62" uuid="20321661-6660-4e42-91fa-0d08eae6701b">
+				<reportElement x="0" y="13" width="551" height="62" uuid="20321661-6660-4e42-91fa-0d08eae6701b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -49,10 +49,9 @@
 				<text><![CDATA[Garantia/Deuda actual]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="468" y="14" width="100" height="10" uuid="f1b72493-8c1c-41c0-8961-88a4d2b595f7">
+				<reportElement x="451" y="14" width="98" height="10" uuid="f1b72493-8c1c-41c0-8961-88a4d2b595f7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65de60ae-133d-402d-a50e-6623b95f94f4"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6" isBold="true"/>
@@ -81,7 +80,7 @@
 				<textFieldExpression><![CDATA[$F{indicator13}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00#">
-				<reportElement x="468" y="24" width="100" height="10" uuid="0038777a-e69e-42f0-b40d-b78462214c4b">
+				<reportElement x="451" y="24" width="98" height="10" uuid="0038777a-e69e-42f0-b40d-b78462214c4b">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65de60ae-133d-402d-a50e-6623b95f94f4"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -94,7 +93,7 @@
 				<textFieldExpression><![CDATA[$F{indicator4}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="314" y="14" width="154" height="10" uuid="e69ec08c-e97e-4ced-9d4f-082a48e72558">
+				<reportElement x="314" y="14" width="136" height="10" uuid="e69ec08c-e97e-4ced-9d4f-082a48e72558">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1857d571-95a0-4831-a5ea-b3ae3780d5e5"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -149,7 +148,7 @@
 				<text><![CDATA[(Cuota actual+cuotas en el sistema)/ingresos]]></text>
 			</staticText>
 			<textField pattern="#,##0.##%" isBlankWhenNull="true">
-				<reportElement x="314" y="24" width="154" height="10" uuid="804d01f5-cb5a-4f95-b73f-58df72c4bdb5">
+				<reportElement x="314" y="24" width="136" height="10" uuid="804d01f5-cb5a-4f95-b73f-58df72c4bdb5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1857d571-95a0-4831-a5ea-b3ae3780d5e5"/>
 				</reportElement>
 				<box>
