@@ -16,6 +16,7 @@ import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditReq
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryConfigurationScoring;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
 import com.mindware.workflow.core.service.data.kiosco.RepositoryProductKiosco;
@@ -53,6 +54,7 @@ import com.mindware.workflow.persistence.creditRequestApplicant.RepositoryCredit
 import com.mindware.workflow.persistence.creditRequestCompanySizeIndicatorDto.RepositoryCreditRequestCompanySizeIndicatorDtoMybatis;
 import com.mindware.workflow.persistence.creditResolution.RepositoryCreditResolutionMybatis;
 import com.mindware.workflow.persistence.creditResolution.dto.RepositoryCreditResolutionCreditRequestDtoMybatis;
+import com.mindware.workflow.persistence.creditScoring.RepositoryConfigurationScoringMybatis;
 import com.mindware.workflow.persistence.email.RepositoryMailMybatis;
 import com.mindware.workflow.persistence.exceptions.*;
 import com.mindware.workflow.persistence.contract.RepositoryContractVariableMybatis;
@@ -370,6 +372,11 @@ public class ConfigurationBD {
     @Bean
     RepositoryProductKiosco repositoryProductKiosco(){
         return RepositoryProductKioscoMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryConfigurationScoring repositoryConfigurationScoring(){
+        return RepositoryConfigurationScoringMybatis.create(sqlSessionFactory);
     }
 
     @PostConstruct

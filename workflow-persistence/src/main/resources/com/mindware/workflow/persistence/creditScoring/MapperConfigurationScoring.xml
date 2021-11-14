@@ -1,0 +1,51 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.creditScoring.MapperConfigurationScoring">
+    <resultMap id="ConfigurationScoringMap" type="com.mindware.workflow.core.entity.creditScoring.ConfigurationScoring">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="product" column="product"/>
+        <result property="state" column="state"  />
+        <result property="groupScoring" column="group_scoring"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.creditScoring.ConfigurationScoring">
+        insert into scoring.configuration_scoring(
+            id,
+            product,
+            state,
+            group_scoring)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{product},
+                   #{state},
+                   #{groupScoring}::json
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.creditScoring.ConfigurationScoring">
+        update scoring.configuration_scoring
+        set
+            group_scoring = #{groupScoring}::json,
+            product = #{product},
+            state = #{state}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getById" resultMap="ConfigurationScoringMap" parameterType="map">
+        <![CDATA[
+        select *
+        from scoring.configuration_scoring
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getByProduct" resultMap="ConfigurationScoringMap" parameterType="map">
+        <![CDATA[
+        select *
+        from scoring.configuration_scoring
+        where product = #{product}
+        ]]>
+    </select>
+
+</mapper>
