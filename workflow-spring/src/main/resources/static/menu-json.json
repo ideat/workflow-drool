@@ -222,4 +222,11 @@
     "name": "Productos Kiosco",
     "read": "false",
     "write": "false"
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Scoring Crediticio",
+    "read": "false",
+    "write": "false"
   }]

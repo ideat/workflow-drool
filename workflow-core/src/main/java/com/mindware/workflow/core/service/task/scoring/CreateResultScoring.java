@@ -11,12 +11,12 @@ import java.util.Map;
 public class CreateResultScoring {
 
         public void evaluate(ScoringCreditRequest scoringCreditRequest){
-            ConfigurationScoring configurationScoring = scoringCreditRequest.getAnalysis();
-            List<GroupScoring> groupScoringList = configurationScoring.getGroupScoring();
-
-            for(GroupScoring groupScoring:groupScoringList){
-                Map<String, List<ParameterScoring>> parameterScoring = groupScoring.getParameterScoring();
-
-            }
+//            ConfigurationScoring configurationScoring = scoringCreditRequest.getAnalysis();
+//            List<GroupScoring> groupScoringList = configurationScoring.getGroupScoring();
+//
+//            for(GroupScoring groupScoring:groupScoringList){
+//                Map<String, List<ParameterScoring>> parameterScoring = groupScoring.getParameterScoring();
+//
+//            }
         }
 }

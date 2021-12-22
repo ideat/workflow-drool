@@ -3,20 +3,19 @@ package com.mindware.workflow.core.entity.creditScoring;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
-public class GroupScoring {
+public class RiskLevel {
 
     private UUID id;
 
-    private String evaluationName;
+    private String name;
 
-    private List<ParameterScoring> parameterScoring;
+    private String expression;
 
     private Integer position;
 
-    private String formula;
+    private String description;
 }

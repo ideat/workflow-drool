@@ -74,9 +74,20 @@ public class CreateCashFlowInputReport {
 
     private String sumItem(int initPeriod, int numPeriods, String[] items){
         Double sum=0.0;
+        if(initPeriod > items.length-1){
+            initPeriod = items.length-1;
+        }
+        if(numPeriods > items.length){
+            numPeriods = items.length-1;
+        }
         for (int i = initPeriod; i <= numPeriods; i++) {
-            if (i <= items.length)
-                sum = sum + Double.parseDouble(items[i].replace(".","").replace(",","."));
+            if (i <= items.length) {
+                if(items[i]!=null) {
+                    sum = sum + Double.parseDouble(items[i].replace(".", "").replace(",", "."));
+                }else{
+
+                }
+            }
         }
 
         return String.format("%,.2f",sum);
@@ -100,7 +111,8 @@ public class CreateCashFlowInputReport {
         cashFlowPeriod.setPeriod10(11<=length?items[11]:"");
         cashFlowPeriod.setPeriod11(12<=length?items[12]:"");
         cashFlowPeriod.setPeriod12(13<=length?items[13]:"");
-        cashFlowPeriod.setPeriod13(14<=length && 25<=length?"2do año":"");
+        cashFlowPeriod.setPeriod13((14<=length && 25<=length) ||(14<=length && length<=25)?"2do año":"");
+//        cashFlowPeriod.setPeriod13((14<=length && 25<=length)?"2do año":"");
         cashFlowPeriod.setPeriod14(26<=length && 37<= length?"3er año":"");
         cashFlowPeriod.setPeriod15(38<=length && 49<= length?"4to año":"");
         cashFlowPeriod.setPeriod16(50<=length && 61<= length?"5to año":"");
@@ -134,9 +146,9 @@ public class CreateCashFlowInputReport {
         cashFlowPeriod.setPeriod11(12<=length?items[12]:"");
         cashFlowPeriod.setPeriod12(13<=length?items[13]:"");
         if(items[0].equals("ACUMULADOS")) {
-            cashFlowPeriod.setPeriod13(14 <= length && 25 <= length ? sumItem(25, 25, items) : "");
+            cashFlowPeriod.setPeriod13((14 <= length && 25 <= length)  || (14 <= length && length <= 25)  ? sumItem(25, 25, items) : "");
         }else{
-            cashFlowPeriod.setPeriod13(14 <= length && 25 <= length ? sumItem(14, 25, items) : "");
+            cashFlowPeriod.setPeriod13((14 <= length && 25 <= length) || (14 <= length && length <= 25) ? sumItem(14, 25, items) : "");
         }
 
         if(items[0].equals("ACUMULADOS")) {

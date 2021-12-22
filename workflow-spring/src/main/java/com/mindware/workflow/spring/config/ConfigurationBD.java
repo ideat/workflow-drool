@@ -16,7 +16,8 @@ import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditReq
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
-import com.mindware.workflow.core.service.data.creditScoring.RepositoryConfigurationScoring;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCreditRequest;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
 import com.mindware.workflow.core.service.data.kiosco.RepositoryProductKiosco;
@@ -54,7 +55,8 @@ import com.mindware.workflow.persistence.creditRequestApplicant.RepositoryCredit
 import com.mindware.workflow.persistence.creditRequestCompanySizeIndicatorDto.RepositoryCreditRequestCompanySizeIndicatorDtoMybatis;
 import com.mindware.workflow.persistence.creditResolution.RepositoryCreditResolutionMybatis;
 import com.mindware.workflow.persistence.creditResolution.dto.RepositoryCreditResolutionCreditRequestDtoMybatis;
-import com.mindware.workflow.persistence.creditScoring.RepositoryConfigurationScoringMybatis;
+import com.mindware.workflow.persistence.creditScoring.RepositoryScoringCreditRequestMybatis;
+import com.mindware.workflow.persistence.creditScoring.RepositoryScoringProductMybatis;
 import com.mindware.workflow.persistence.email.RepositoryMailMybatis;
 import com.mindware.workflow.persistence.exceptions.*;
 import com.mindware.workflow.persistence.contract.RepositoryContractVariableMybatis;
@@ -375,8 +377,13 @@ public class ConfigurationBD {
     }
 
     @Bean
-    RepositoryConfigurationScoring repositoryConfigurationScoring(){
-        return RepositoryConfigurationScoringMybatis.create(sqlSessionFactory);
+    RepositoryScoringProduct repositoryScoringProduct(){
+        return RepositoryScoringProductMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryScoringCreditRequest repositoryScoringCreditRequest(){
+        return RepositoryScoringCreditRequestMybatis.create(sqlSessionFactory);
     }
 
     @PostConstruct

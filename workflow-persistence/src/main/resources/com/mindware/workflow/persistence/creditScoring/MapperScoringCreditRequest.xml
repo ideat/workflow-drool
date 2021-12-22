@@ -1,0 +1,62 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.creditScoring.MapperScoringCreditRequest">
+    <resultMap id="ScoringCreditRequestMap" type="com.mindware.workflow.core.entity.creditScoring.ScoringCreditRequest">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="analysis" column="analysis" />
+        <result property="score" column="score"/>
+        <result property="analisysDate" column="analysis_date"/>
+        <result property="riskOpinion" column="risk_opinon"/>
+        <result property="riskResult" column="risk_result"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.creditScoring.ScoringCreditRequest">
+        insert into scoring.scoring_creditrequest(
+            id,
+            number_request,
+            analysis,
+            score,
+            analysis_date,
+            risk_opinion,
+            risk_result)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{numberRequest},
+                   #{analysis}::json,
+                   #{score},
+                   #{analysisDate},
+                   #{riskOpinion},
+                   #{riskResult}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.creditScoring.ScoringCreditRequest">
+        update scoring.scoring_creditrequest
+        set
+            analysis = #{analysis}::json,
+            score = #{score},
+            analysis_date = #{analysisDate},
+            risk_opinion = #{riskOpinion},
+            risk_result = #{riskResult}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getById" resultMap="ScoringCreditRequestMap" parameterType="map">
+        <![CDATA[
+        select *
+        from scoring.scoring_creditrequest
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getByNumberRequest" resultMap="ScoringCreditRequestMap" parameterType="map">
+        <![CDATA[
+        select *
+        from scoring.scoring_creditrequest
+        where number_request = #{numberRequest}
+        ]]>
+    </select>
+
+</mapper>

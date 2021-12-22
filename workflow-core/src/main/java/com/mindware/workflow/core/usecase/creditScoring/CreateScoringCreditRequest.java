@@ -2,7 +2,6 @@ package com.mindware.workflow.core.usecase.creditScoring;
 
 import com.mindware.workflow.core.entity.creditScoring.ScoringCreditRequest;
 import com.mindware.workflow.core.exception.UseCaseException;
-import com.mindware.workflow.core.service.data.creditScoring.RepositoryConfigurationScoring;
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCreditRequest;
 import com.mindware.workflow.core.usecase.UseCase;
 import com.mindware.workflow.core.usecase.UseCaseBase;
@@ -35,7 +34,7 @@ public class CreateScoringCreditRequest extends UseCaseBase<ScoringCreditRequest
         super.execute();
         boolean isNew = !this.searchById.isPresent();
 
-        Optional<ScoringCreditRequest> searchByNumberRequest = repository.getByNumerRequest(this.register.getNumberRequest());
+        Optional<ScoringCreditRequest> searchByNumberRequest = repository.getByNumberRequest(this.register.getNumberRequest());
 
         if(ifNewScoringCreditRequestAndNumberRequestExist(isNew,searchByNumberRequest)
             || existNumberRequestIntoOtherScoringCreditRequest(this.register.getId(),searchByNumberRequest)){

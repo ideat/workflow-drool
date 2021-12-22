@@ -14,9 +14,9 @@ public class ScoringProduct {
 
     private String name;
 
-    private List<ConfigurationScoring> configurationScorings;
-
-    private Double result;
+    private String configurationScorings; //Json  List<ConfigurationScoring>
 
     private String state;
+
+    private String riskLevel; //Json List<RiskLevel>
 }

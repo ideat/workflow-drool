@@ -14,7 +14,8 @@ import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditReq
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
-import com.mindware.workflow.core.service.data.creditScoring.RepositoryConfigurationScoring;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCreditRequest;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
 import com.mindware.workflow.core.service.data.kiosco.RepositoryProductKiosco;
@@ -208,7 +209,10 @@ public class AutoConfigurationWorkflow {
     private RepositoryProductKiosco repositoryProductKiosco;
 
     @Autowired
-    private RepositoryConfigurationScoring repositoryConfigurationScoring;
+    private RepositoryScoringProduct repositoryScoringProduct;
+
+    @Autowired
+    private RepositoryScoringCreditRequest repositoryScoringCreditRequest;
 
     @Bean
     @DependsOn({"repositoryOffice"})
@@ -268,7 +272,8 @@ public class AutoConfigurationWorkflow {
         factory.setRepositoryStagePercentageDto(repositoryStagePercentageDto);
         factory.setRepositorySummaryCreditRequestStage(repositorySummaryCreditRequestStage);
         factory.setRepositoryProductKiosco(repositoryProductKiosco);
-        factory.setRepositoryConfigurationScoring(repositoryConfigurationScoring);
+        factory.setRepositoryScoringProduct(repositoryScoringProduct);
+        factory.setRepositoryScoringCreditRequest(repositoryScoringCreditRequest);
         return factory;
     }
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.creditScoring.MapperScoringProduct">
+    <resultMap id="ScoringProductMap" type="com.mindware.workflow.core.entity.creditScoring.ScoringProduct">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="name" column="name"/>
+        <result property="state" column="state" />
+        <result property="configurationScorings" column="configuration_scorings"/>
+        <result property="riskLevel" column="risk_level"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.creditScoring.ScoringProduct">
+        insert into scoring.scoring_product(
+            id,
+            name,
+            configuration_scorings,
+            risk_level,
+            state)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{name},
+                   #{configurationScorings}::json,
+                   #{riskLevel}::json,
+                   #{state}
+               )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.creditScoring.ScoringProduct">
+        update scoring.scoring_product
+        set
+            configuration_scorings = #{configurationScorings}::json,
+            name = #{name},
+            state = #{state},
+            risk_level = #{riskLevel}::json
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getById" resultMap="ScoringProductMap" parameterType="map">
+        <![CDATA[
+        select *
+        from scoring.scoring_product
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+    <select id="getByName" resultMap="ScoringProductMap" parameterType="map">
+        <![CDATA[
+        select *
+        from scoring.scoring_product
+        where name = #{name}
+        ]]>
+    </select>
+
+    <select id="getAll" resultMap="ScoringProductMap" >
+        <![CDATA[
+        select *
+        from scoring.scoring_product
+        ]]>
+    </select>
+</mapper>

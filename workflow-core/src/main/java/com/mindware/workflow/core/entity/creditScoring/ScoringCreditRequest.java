@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,9 +15,13 @@ public class ScoringCreditRequest {
 
     private Integer numberRequest;
 
-    private ConfigurationScoring analysis;
+    private String analysis; //Json List<ScoreResult>
 
     private Double score;
 
     private LocalDate analysisDate;
+
+    private String riskOpinion;
+
+    private Double riskResult;
 }

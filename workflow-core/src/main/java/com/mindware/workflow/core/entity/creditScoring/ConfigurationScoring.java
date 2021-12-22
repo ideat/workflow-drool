@@ -14,8 +14,11 @@ public class ConfigurationScoring {
 
     private String category;
 
-    private List<GroupScoring> groupScoring;
+    private String groupScoring; //List<GroupScoring>
 
-    private Double score;
+    private String riskLevel; //List<RiskLevel>
 
+    private Double percentage;
+
+    private Integer position;
 }

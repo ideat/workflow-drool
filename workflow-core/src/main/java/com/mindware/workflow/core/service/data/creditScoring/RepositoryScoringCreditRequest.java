@@ -4,6 +4,7 @@ import com.mindware.workflow.core.entity.creditScoring.ScoringCreditRequest;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface RepositoryScoringCreditRequest {
 
@@ -13,6 +14,8 @@ public interface RepositoryScoringCreditRequest {
 
     List<ScoringCreditRequest> getAll();
 
-    Optional<ScoringCreditRequest> getByNumerRequest(Integer numberRequest);
+    Optional<ScoringCreditRequest> getByNumberRequest(Integer numberRequest);
+
+    Optional<ScoringCreditRequest> getById(UUID id);
 
 }

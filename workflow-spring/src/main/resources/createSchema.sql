@@ -488,21 +488,25 @@ create table if not exists  kiosco.product_kiosco(
     constraint product_id primary  key(id)
 );
 
-create table if not exists scoring.configuration_scoring(
-    id uuid  not null,
-    category character varying(70) not null,
-    group_scoring jsonb not null default '[]',
-    constraint  configuration_scoring_id primary key(id),
-    constraint unique_product unique(product)
-);
-
 create table if not exists scoring.scoring_creditrequest(
     id uuid not null,
     number_request integer not null,
     analysis jsonb not null default '[]',
     score numeric(8,2),
     analysis_date date,
+    risk_opinion character varying (3500),
+    risk_result numeric(10,2),
     constraint scoring_creditrequest_id primary key(id),
     constraint unique_number_request unique(number_request)
+);
+
+create table if not exists scoring.scoring_product(
+    id uuid not null,
+    name character varying(50) not null,
+    configuration_scorings jsonb not null default '[]',
+    state character varying (20) not null,
+    risk_level jsonb not null default '[]',
+    constraint scoring_product_id primary key(id),
+    constraint unique_name unique(name)
 );
 
