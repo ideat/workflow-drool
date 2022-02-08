@@ -44,6 +44,7 @@ public class CreateCreditRequestApplicant extends UseCaseBase<CreditRequestAppli
         if(isNew) {
             this.register.setId(UUID.randomUUID());
             repository.add(this.register);
+            result = Optional.of(this.register);
         }else {
             repository.update(this.register);
         }

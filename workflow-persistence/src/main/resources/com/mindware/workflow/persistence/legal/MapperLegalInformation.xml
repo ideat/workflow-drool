@@ -111,6 +111,13 @@
             report_number = #{reportNumber},
             public_writing_list = #{publicWritingList}::json
         where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </update>
+
+    <update id="updateUser" parameterType="com.mindware.workflow.core.entity.legal.LegalInformation">
+        update workflow.legal_information
+        set
+            created_by = #{createdBy}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
 
     </update>
 

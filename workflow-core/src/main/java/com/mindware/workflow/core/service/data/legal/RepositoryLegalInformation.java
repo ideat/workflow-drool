@@ -19,5 +19,7 @@ public interface RepositoryLegalInformation {
 
     void update(LegalInformation legalInformation);
 
+    void updateUser(LegalInformation legalInformation);
+
     void delete(UUID id);
 }

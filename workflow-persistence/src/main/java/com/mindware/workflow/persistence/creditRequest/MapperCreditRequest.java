@@ -27,4 +27,6 @@ public interface MapperCreditRequest {
     void updateCompanySizeIndicator(CreditRequest creditRequest);
 
     void updateState(CreditRequest creditRequest);
+
+    void updateUser(CreditRequest creditRequest);
 }

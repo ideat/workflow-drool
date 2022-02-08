@@ -11,6 +11,8 @@ public interface RepositoryExceptionsCreditRequest {
 
     void update(ExceptionsCreditRequest exceptionsCreditRequest);
 
+    void updateUser(ExceptionsCreditRequest exceptionsCreditRequest);
+
     void delete(UUID id);
 
     List<ExceptionsCreditRequest> getByNumberRequest(Integer numberRequest);

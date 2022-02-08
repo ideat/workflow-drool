@@ -9,6 +9,7 @@ import com.mindware.workflow.core.entity.config.*;
 import com.mindware.workflow.core.entity.contract.Contract;
 import com.mindware.workflow.core.entity.contract.TemplateContract;
 import com.mindware.workflow.core.entity.creditRequest.CreditRequest;
+import com.mindware.workflow.core.entity.creditRequest.CreditRequestEnabled;
 import com.mindware.workflow.core.entity.creditResolution.CreditResolution;
 import com.mindware.workflow.core.entity.creditScoring.ScoringCreditRequest;
 import com.mindware.workflow.core.entity.creditScoring.ScoringProduct;
@@ -17,6 +18,7 @@ import com.mindware.workflow.core.entity.exceptions.Authorizer;
 import com.mindware.workflow.core.entity.exceptions.Exceptions;
 import com.mindware.workflow.core.entity.exceptions.ExceptionsCreditRequest;
 import com.mindware.workflow.core.entity.contract.ContractVariable;
+import com.mindware.workflow.core.entity.historyChangeResponsible.HistoryChangeResponsible;
 import com.mindware.workflow.core.entity.kiosco.ProductKiosco;
 import com.mindware.workflow.core.entity.legal.LegalInformation;
 import com.mindware.workflow.core.entity.observation.Observation;
@@ -34,9 +36,7 @@ import com.mindware.workflow.core.service.data.config.*;
 import com.mindware.workflow.core.service.data.contract.RepositoryContract;
 import com.mindware.workflow.core.service.data.contract.RepositoryContractCreditRequestDto;
 import com.mindware.workflow.core.service.data.contract.RepositoryTemplateContract;
-import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequest;
-import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestApplicantDto;
-import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestCompanySizeIndicatorDto;
+import com.mindware.workflow.core.service.data.creditRequest.*;
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
@@ -44,6 +44,9 @@ import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCr
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsible;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsibleDto;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsibleReport;
 import com.mindware.workflow.core.service.data.kiosco.RepositoryProductKiosco;
 import com.mindware.workflow.core.service.data.kiosco.RepositorySummaryCreditRequestStage;
 import com.mindware.workflow.core.service.data.legal.RepositoryContractVariable;
@@ -75,6 +78,7 @@ import com.mindware.workflow.core.usecase.config.*;
 import com.mindware.workflow.core.usecase.contract.CreateContract;
 import com.mindware.workflow.core.usecase.contract.CreateTemplateContract;
 import com.mindware.workflow.core.usecase.creditRequest.CreateCreditRequest;
+import com.mindware.workflow.core.usecase.creditRequest.CreateCreditRequestEnabled;
 import com.mindware.workflow.core.usecase.creditRequestApplicant.CreateCreditRequestApplicant;
 import com.mindware.workflow.core.usecase.creditResolution.CreateCreditResolution;
 import com.mindware.workflow.core.usecase.creditScoring.CreateScoringCreditRequest;
@@ -83,6 +87,7 @@ import com.mindware.workflow.core.usecase.email.CreateMail;
 import com.mindware.workflow.core.usecase.exceptions.CreateAuthorizer;
 import com.mindware.workflow.core.usecase.exceptions.CreateExceptions;
 import com.mindware.workflow.core.usecase.exceptions.CreateExceptionsCreditRequest;
+import com.mindware.workflow.core.usecase.historyChangeResponsible.CreateHistoryChangeResponsible;
 import com.mindware.workflow.core.usecase.kiosco.CreateProductKiosco;
 import com.mindware.workflow.core.usecase.legal.CreateContractVariable;
 import com.mindware.workflow.core.usecase.legal.CreateLegalInformation;
@@ -151,6 +156,11 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
     private RepositoryProductKiosco repositoryProductKiosco;
     private RepositoryScoringProduct repositoryScoringProduct;
     private RepositoryScoringCreditRequest repositoryScoringCreditRequest;
+    private RepositoryCreditRequestEnabled repositoryCreditRequestEnabled;
+    private RepositoryCreditRequestEnabledApplicantDto repositoryCreditRequestEnabledApplicantDto;
+    private RepositoryHistoryChangeResponsible repositoryHistoryChangeResponsible;
+    private RepositoryHistoryChangeResponsibleDto repositoryHistoryChangeResponsibleDto;
+    private RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport;
     @SuppressWarnings("rawtypes")
     @Override
     public UseCase create(String useCase, Object input) {
@@ -223,6 +233,10 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
                 return CreateScoringProduct.create(this.repositoryScoringProduct,(ScoringProduct) input);
             case "CreateScoringCreditRequest":
                 return CreateScoringCreditRequest.create(this.repositoryScoringCreditRequest, (ScoringCreditRequest) input);
+            case "CreateCreditRequestEnabled":
+                return CreateCreditRequestEnabled.create(this.repositoryCreditRequestEnabled, (CreditRequestEnabled) input);
+            case "CreateHistoryChangeResponsible":
+                return CreateHistoryChangeResponsible.create(this.repositoryHistoryChangeResponsible,(HistoryChangeResponsible) input);
             default:
                 throw new IllegalArgumentException(String.format("Caso de Uso '%s' desconocido.", useCase));
         }
@@ -409,5 +423,25 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
 
     public void setRepositoryScoringCreditRequest(RepositoryScoringCreditRequest repositoryScoringCreditRequest){
         this.repositoryScoringCreditRequest = repositoryScoringCreditRequest;
+    }
+
+    public void setRepositoryCreditRequestEnabled(RepositoryCreditRequestEnabled repositoryCreditRequestEnabled){
+        this.repositoryCreditRequestEnabled = repositoryCreditRequestEnabled;
+    }
+
+    public void setRepositoryCreditRequestEnabledApplicantDto(RepositoryCreditRequestEnabledApplicantDto repositoryCreditRequestEnabledApplicantDto){
+        this.repositoryCreditRequestEnabledApplicantDto = repositoryCreditRequestEnabledApplicantDto;
+    }
+
+    public void setRepositoryHistoryChangeResponsible(RepositoryHistoryChangeResponsible repositoryHistoryChangeResponsible){
+        this.repositoryHistoryChangeResponsible = repositoryHistoryChangeResponsible;
+    }
+
+    public void setRepositoryHistoryChangeResponsibleDto(RepositoryHistoryChangeResponsibleDto repositoryHistoryChangeResponsibleDto){
+        this.repositoryHistoryChangeResponsibleDto = repositoryHistoryChangeResponsibleDto;
+    }
+
+    public void setRepositoryHistoryChangeResponsibleReport(RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport){
+        this.repositoryHistoryChangeResponsibleReport = repositoryHistoryChangeResponsibleReport;
     }
 }

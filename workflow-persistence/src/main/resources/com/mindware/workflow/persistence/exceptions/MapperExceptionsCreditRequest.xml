@@ -46,6 +46,14 @@
 
     </update>
 
+    <update id="updateUser" parameterType="com.mindware.workflow.core.entity.exceptions.ExceptionsCreditRequest">
+        update workflow.exceptions_creditrequest
+        set
+            status_review = #{statusReview}::json
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
     <select id="getByNumberRequest" resultMap="ExceptionsCreditRequestMap" parameterType="map">
         <![CDATA[
         select *

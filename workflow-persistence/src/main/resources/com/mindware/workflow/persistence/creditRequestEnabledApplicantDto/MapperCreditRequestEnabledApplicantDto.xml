@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.creditRequestEnabledApplicantDto.MapperCreditRequestEnabledApplicantDto">
+    <resultMap id="CreditRequestEnabledApplicantDtoMap" type="com.mindware.workflow.core.service.data.creditRequest.dto.CreditRequestEnabledApplicantDto">
+        <result property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="currency" column="currency"/>
+        <result property="amount" column="amount"/>
+        <result property="requestDate" column="request_date"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="cityOffice" column="city"/>
+        <result property="codeOffice" column="code_office"/>
+        <result property="nameOffice" column="name_office"/>
+        <result property="disbursementDate" column="disbursament_date"/>
+        <result property="loginUser" column="login_user"/>
+        <result property="nameOfficer" column="name_officer"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="enabledDateTime" column="enabled_date_time"/>
+        <result property="hoursEnabled" column="hours_enabled"/>
+        <result property="finishedDateTime" column="finished_date_time"/>
+        <result property="enablingUser" column="enabling_user"/>
+        <result property="reasonToEnable" column="reason_to_enable"/>
+        <result property="descriptionReason" column="description_reason"/>
+        <result property="nameUserEnabling" column="name_user_enabling"/>
+    </resultMap>
+
+
+    <select id="getAll" resultMap="CreditRequestEnabledApplicantDtoMap">
+        <![CDATA[
+        select c.number_request,  c.currency, c.amount, c.request_date
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+             , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+             , c.login_user, u.names as name_officer, ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+        inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+        inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+        inner join public.office o on (o.internal_code = c.id_office)
+        inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+        INNER join public.users u on (c.login_user = u.login)
+        left join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+        left join public.users u2 on (u2.login = ce.enabling_user)
+        order by c.number_request
+        ]]>
+    </select>
+
+    <select id="getAllByCity" resultMap="CreditRequestEnabledApplicantDtoMap" parameterType="map">
+        <![CDATA[
+        select c.number_request,  c.currency, c.amount, c.request_date
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+             , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+             , c.login_user,u.names as name_officer,ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (o.internal_code = c.id_office)
+                 inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+                 INNER join public.users u on (c.login_user = u.login)
+                 left join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+                 left join public.users u2 on (u2.login = ce.enabling_user)
+        where o.city = #{cityOffice}
+        order by c.number_request
+        ]]>
+    </select>
+
+
+    <select id="getByEnablingUser" resultMap="CreditRequestEnabledApplicantDtoMap" parameterType="map">
+        select c.number_request,  c.currency, c.amount, c.request_date
+        , trim(a.first_name|| ' ' || a.second_name) as first_name
+        , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+        , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+        , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+        , c.login_user, u.names as name_officer,ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+        inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+        inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+        inner join public.office o on (o.internal_code = c.id_office)
+        inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+        INNER join public.users u on (c.login_user = u.login)
+        left join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+        left join public.users u2 on (u2.login = ce.enabling_user)
+        where ce.enabling_user = #{enablingUser}
+        order by c.number_request
+    </select>
+
+    <select id="getByLoginUser" resultMap="CreditRequestEnabledApplicantDtoMap" parameterType="map">
+        select c.number_request,  c.currency, c.amount, c.request_date
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+             , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+             , c.login_user,u.names as name_officer,ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (o.internal_code = c.id_office)
+                 inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+                 INNER join public.users u on (c.login_user = u.login)
+                 left join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+                 left join public.users u2 on (u2.login = ce.enabling_user)
+        where c.login_user = #{loginUser}
+        order by c.number_request
+    </select>
+
+    <select id="getAllEnabled" resultMap="CreditRequestEnabledApplicantDtoMap">
+        <![CDATA[
+        select c.number_request,  c.currency, c.amount, c.request_date
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+             , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+             , c.login_user, u.names as name_officer, ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (o.internal_code = c.id_office)
+                 inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+                 INNER join public.users u on (c.login_user = u.login)
+                 inner join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+                 inner join public.users u2 on (u2.login = ce.enabling_user)
+        order by c.number_request, ce.enabled_date_time
+        ]]>
+    </select>
+
+    <select id="getAllEnabledByCity" resultMap="CreditRequestEnabledApplicantDtoMap" parameterType="map">
+        <![CDATA[
+        select c.number_request,  c.currency, c.amount, c.request_date
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+             , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+             , c.login_user,u.names as name_officer,ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (o.internal_code = c.id_office)
+                 inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+                 INNER join public.users u on (c.login_user = u.login)
+                 inner join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+                 inner join public.users u2 on (u2.login = ce.enabling_user)
+        where o.city = #{cityOffice}
+        order by c.number_request, ce.enabled_date_time
+        ]]>
+    </select>
+
+    <select id="getAllEnabledByEnablignUser" resultMap="CreditRequestEnabledApplicantDtoMap" parameterType="map">
+        select c.number_request,  c.currency, c.amount, c.request_date
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+             , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+             , c.login_user, u.names as name_officer,ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (o.internal_code = c.id_office)
+                 inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+                 INNER join public.users u on (c.login_user = u.login)
+                 inner join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+                 inner join public.users u2 on (u2.login = ce.enabling_user)
+        where ce.enabling_user = #{enablingUser}
+        order by c.number_request, ce.enabled_date_time
+    </select>
+
+    <select id="getEnabledReport" resultMap="CreditRequestEnabledApplicantDtoMap" parameterType="map">
+        <![CDATA[
+        select c.number_request,  c.currency, c.amount, c.request_date
+             , trim(a.first_name|| ' ' || a.second_name) as first_name
+             , trim( a.last_name || ' ' || a.mother_last_name) as last_name
+             , c.login_user, o.city, o.name as name_office, sh.finished_datetime as disbursement_date
+             , ce.enabled_date_time, ce.hours_enabled, ce.finished_date_time, ce.enabling_user, ce.reason_to_enable
+             , c.login_user,u.names as name_officer,ce.enabled_date_time, ce.description_reason, ce.id, u2.names as name_user_enabling
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.office o on (o.internal_code = c.id_office)
+                 inner join workflow.stage_history sh on (sh.number_request = c.number_request and sh.stage='DESEMBOLSO' and sh.finished_datetime is not null)
+                 INNER join public.users u on (c.login_user = u.login)
+                 inner join workflow.creditrequest_enabled ce on (ce.number_request = c.number_request)
+                 inner join public.users u2 on (u2.login = ce.enabling_user)
+        where o.city like #{cityOffice}
+        and (ce.enabled_date_time >= #{fromDate} and ce.enabled_date_time <= #{toDate})
+        order by c.number_request, ce.enabled_date_time
+        ]]>
+    </select>
+</mapper>

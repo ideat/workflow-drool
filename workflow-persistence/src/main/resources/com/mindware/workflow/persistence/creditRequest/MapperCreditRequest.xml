@@ -203,6 +203,11 @@
         order by number_request
     </select>
 
-
+    <select id="updateUser" resultMap="CreditRequestMap" parameterType="map">
+        update workflow.creditrequest
+        set
+            login_user = #{loginUser}
+        where number_request = #{numberRequest}
+    </select>
 
 </mapper>

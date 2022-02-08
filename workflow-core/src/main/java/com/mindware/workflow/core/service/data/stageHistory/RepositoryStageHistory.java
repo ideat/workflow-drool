@@ -11,6 +11,8 @@ public interface RepositoryStageHistory {
 
     void update(StageHistory stageHistory);
 
+    void updateUser(StageHistory stageHistory);
+
     List<StageHistory> getAll();
 
     List<StageHistory> getByNumberRequestStageState(String stage, Integer numberRequest, String state);

@@ -37,6 +37,11 @@ public class RepositoryStageHistoryMybatis implements RepositoryStageHistory {
     }
 
     @Override
+    public void updateUser(StageHistory stageHistory) {
+        mapper.updateUser(stageHistory);
+    }
+
+    @Override
     @Transactional
     public List<StageHistory> getAll() {
         return mapper.getAll();

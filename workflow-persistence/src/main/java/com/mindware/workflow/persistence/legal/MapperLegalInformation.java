@@ -21,5 +21,7 @@ public interface MapperLegalInformation {
 
     void update(LegalInformation legalInformation);
 
+    void updateUser(LegalInformation legalInformation);
+
     void delete(@Param("id") UUID id);
 }

@@ -27,4 +27,9 @@ public class RepositoryLegalInformationCreditRequestDtoMybatis implements Reposi
     public List<LegalInformationCreditRequestDto> getAll() {
         return mapper.getAll();
     }
+
+    @Override
+    public List<LegalInformationCreditRequestDto> getByCity(String city) {
+        return mapper.getByCity(city);
+    }
 }

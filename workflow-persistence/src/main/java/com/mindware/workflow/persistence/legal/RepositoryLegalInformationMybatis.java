@@ -60,6 +60,11 @@ public class RepositoryLegalInformationMybatis implements RepositoryLegalInforma
     }
 
     @Override
+    public void updateUser(LegalInformation legalInformation) {
+        mapper.updateUser(legalInformation);
+    }
+
+    @Override
     @Transactional
     public void delete(UUID id) {
         mapper.delete(id);

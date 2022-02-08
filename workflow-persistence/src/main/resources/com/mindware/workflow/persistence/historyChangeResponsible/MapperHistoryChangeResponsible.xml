@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.historyChangeResponsible.MapperHistoryChangeResponsible">
+    <resultMap id="HistoryChangeResponsibleMap" type="com.mindware.workflow.core.entity.historyChangeResponsible.HistoryChangeResponsible">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="dateChange" column="date_change"/>
+        <result property="rolName" column="rol_name"/>
+        <result property="oldResponsible" column="old_responsible"/>
+        <result property="newResponsible" column="new_responsible"/>
+        <result property="reasonChangeResponsible" column="reason_change_responsible"/>
+        <result property="processedBy" column="processed_by"/>
+
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.historyChangeResponsible.HistoryChangeResponsible">
+        insert into workflow.history_change_responsible(
+            id,
+            number_request,
+            date_change,
+            rol_name,
+            old_responsible,
+            new_responsible,
+            reason_change_responsible,
+            processed_by)
+        values (
+                   #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+                   #{numberRequest},
+                   #{dateChange},
+                   #{rolName},
+                   #{oldResponsible},
+                   #{newResponsible},
+                   #{reasonChangeResponsible},
+                   #{processedBy}
+               )
+    </insert>
+
+    <select id="getById" resultMap="HistoryChangeResponsibleMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.history_change_responsible
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+        ]]>
+    </select>
+
+
+</mapper>

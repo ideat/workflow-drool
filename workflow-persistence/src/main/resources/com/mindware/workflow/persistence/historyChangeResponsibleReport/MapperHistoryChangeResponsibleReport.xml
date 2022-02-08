@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.historyChangeResponsibleReport.MapperHistoryChangeResponsibleReport">
+    <resultMap id="HistoryChangeResponsibleReportMap" type="com.mindware.workflow.core.service.data.historyChangeResponsible.dto.HistoryChangeResponsibleReport">
+        <result property="numberRequest" column="number_request"/>
+        <result property="dateChange" column="date_change"/>
+        <result property="rolName" column="rol_name"/>
+        <result property="oldResponsibleName" column="old_responsible_name"/>
+        <result property="newResponsibleName" column="new_responsible_name"/>
+        <result property="reasonChangeResponsible" column="reason_change_responsible"/>
+        <result property="oldOfficeName" column="old_office_name"/>
+        <result property="newOfficeName" column="new_office_name"/>
+        <result property="processedBy" column="processed_by"/>
+        <result property="firstName" column="first_name"/>
+        <result property="secondName" column="second_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="motherLastName" column="mother_last_name"/>
+        <result property="marriedLastName" column="married_last_name"/>
+    </resultMap>
+
+
+    <select id="getByCityAndRageDate" resultMap="HistoryChangeResponsibleReportMap">
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+               hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
+               a.last_name, a.mother_last_name, a.married_last_name
+        from workflow.history_change_responsible hcr
+                 inner join public.users u on (u.login = hcr.old_responsible)
+                 inner join public.users u2 on (u2.login = hcr.new_responsible)
+                 inner join public.office o on (o.internal_code = u.code_office)
+                 inner join public.office o2 on (o2.internal_code = u2.code_office)
+                 inner join workflow.creditrequest c on (c.number_request = hcr.number_request)
+                 inner join workflow.creditrequest_applicant ca on (ca.number_request = hcr.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+        where  o2.city = #{city}
+        and hcr.date_change between #{startDate} and #{endDate}
+        order by hcr.date_change
+    </select>
+
+    <select id="getByAllByRageDate" resultMap="HistoryChangeResponsibleReportMap">
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+               hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
+               a.last_name, a.mother_last_name, a.married_last_name
+        from workflow.history_change_responsible hcr
+                 inner join public.users u on (u.login = hcr.old_responsible)
+                 inner join public.users u2 on (u2.login = hcr.new_responsible)
+                 inner join public.office o on (o.internal_code = u.code_office)
+                 inner join public.office o2 on (o2.internal_code = u2.code_office)
+                 inner join workflow.creditrequest c on (c.number_request = hcr.number_request)
+                 inner join workflow.creditrequest_applicant ca on (ca.number_request = hcr.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+        where  hcr.date_change between #{startDate} and #{endDate}
+        order by hcr.date_change
+    </select>
+
+    <select id="getByCity" resultMap="HistoryChangeResponsibleReportMap">
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+               hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
+               a.last_name, a.mother_last_name, a.married_last_name
+        from workflow.history_change_responsible hcr
+                 inner join public.users u on (u.login = hcr.old_responsible)
+                 inner join public.users u2 on (u2.login = hcr.new_responsible)
+                 inner join public.office o on (o.internal_code = u.code_office)
+                 inner join public.office o2 on (o2.internal_code = u2.code_office)
+                 inner join workflow.creditrequest c on (c.number_request = hcr.number_request)
+                 inner join workflow.creditrequest_applicant ca on (ca.number_request = hcr.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+        where  o.city = #{city}
+        order by hcr.date_change
+    </select>
+
+    <select id="getAll" resultMap="HistoryChangeResponsibleReportMap">
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+               hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
+               a.last_name, a.mother_last_name, a.married_last_name
+        from workflow.history_change_responsible hcr
+                 inner join public.users u on (u.login = hcr.old_responsible)
+                 inner join public.users u2 on (u2.login = hcr.new_responsible)
+                 inner join public.office o on (o.internal_code = u.code_office)
+                 inner join public.office o2 on (o2.internal_code = u2.code_office)
+                 inner join workflow.creditrequest c on (c.number_request = hcr.number_request)
+                 inner join workflow.creditrequest_applicant ca on (ca.number_request = hcr.number_request and ca.type_relation = 'deudor')
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+        order by hcr.date_change
+    </select>
+</mapper>

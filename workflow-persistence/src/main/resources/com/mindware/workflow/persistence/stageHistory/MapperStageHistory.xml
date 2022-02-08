@@ -63,6 +63,14 @@
 
     </update>
 
+    <update id="updateUser" parameterType="com.mindware.workflow.core.entity.stageHistory.StageHistory">
+        update workflow.stage_history
+        set
+            user_task = #{userTask}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
     <select id="getAll" resultMap="StageHistoryMap">
         select *
         from workflow.stage_history

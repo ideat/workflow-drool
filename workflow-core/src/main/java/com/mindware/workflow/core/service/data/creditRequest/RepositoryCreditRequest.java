@@ -26,4 +26,6 @@ public interface RepositoryCreditRequest {
 
     void updateState(CreditRequest creditRequest);
 
+    void updateUser(CreditRequest creditRequest);
+
 }

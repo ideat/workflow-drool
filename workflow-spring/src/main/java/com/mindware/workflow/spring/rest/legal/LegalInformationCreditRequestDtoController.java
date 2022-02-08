@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,12 @@ public class LegalInformationCreditRequestDtoController {
     @GetMapping(value = "/v1/legalInformationCreditRequest/getAll", name = "Lista de solicitudes, estado de registros")
     ResponseEntity<List<LegalInformationCreditRequestDto>> getAll(){
         List<LegalInformationCreditRequestDto> result = repositoryLegalInformationCreditRequestDto.getAll();
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/v1/legalInformationCreditRequest/getByCity/{city}", name = "Lista de solicitudes, estado de registros")
+    ResponseEntity<List<LegalInformationCreditRequestDto>> getByCity(@PathVariable("city") String city){
+        List<LegalInformationCreditRequestDto> result = repositoryLegalInformationCreditRequestDto.getByCity(city);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

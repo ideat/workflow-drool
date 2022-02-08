@@ -79,5 +79,10 @@ public class RepositoryCreditRequestMybatis implements RepositoryCreditRequest {
         mapper.updateState(creditRequest);
     }
 
+    @Override
+    public void updateUser(CreditRequest creditRequest) {
+        mapper.updateUser(creditRequest);
+    }
+
 
 }

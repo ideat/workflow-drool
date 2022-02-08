@@ -224,9 +224,37 @@
     "write": "false"
   },
   {
+  "assigned": "false",
+  "description": "",
+  "name": "Para Habilitar",
+  "read": "false",
+  "write": "false"
+},
+  {
     "assigned": "false",
     "description": "",
-    "name": "Scoring Crediticio",
+    "name": "Habilitadas",
+    "read": "false",
+    "write": "false"
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Historico Hab.",
+    "read": "false",
+    "write": "false"
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Cambio Responsable",
+    "read": "false",
+    "write": "false"
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Historico Camb. Resp.",
     "read": "false",
     "write": "false"
   }]

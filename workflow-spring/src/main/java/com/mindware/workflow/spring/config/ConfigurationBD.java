@@ -10,9 +10,7 @@ import com.mindware.workflow.core.service.data.config.*;
 import com.mindware.workflow.core.service.data.contract.RepositoryContract;
 import com.mindware.workflow.core.service.data.contract.RepositoryContractCreditRequestDto;
 import com.mindware.workflow.core.service.data.contract.RepositoryTemplateContract;
-import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequest;
-import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestApplicantDto;
-import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestCompanySizeIndicatorDto;
+import com.mindware.workflow.core.service.data.creditRequest.*;
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
@@ -20,6 +18,9 @@ import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCr
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsible;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsibleDto;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsibleReport;
 import com.mindware.workflow.core.service.data.kiosco.RepositoryProductKiosco;
 import com.mindware.workflow.core.service.data.kiosco.RepositorySummaryCreditRequestStage;
 import com.mindware.workflow.core.service.data.legal.RepositoryContractVariable;
@@ -49,10 +50,12 @@ import com.mindware.workflow.persistence.config.*;
 import com.mindware.workflow.persistence.contract.RepositoryContractCreditRequestDtoMybatis;
 import com.mindware.workflow.persistence.contract.RepositoryContractMybatis;
 import com.mindware.workflow.persistence.contract.RepositoryTemplateContractMybatis;
+import com.mindware.workflow.persistence.creditRequest.RepositoryCreditRequestEnabledMybatis;
 import com.mindware.workflow.persistence.creditRequestApplicantDto.RepositoryCreditRequestApplicantDtoMybatis;
 import com.mindware.workflow.persistence.creditRequest.RepositoryCreditRequestMybatis;
 import com.mindware.workflow.persistence.creditRequestApplicant.RepositoryCreditRequestApplicantMybatis;
 import com.mindware.workflow.persistence.creditRequestCompanySizeIndicatorDto.RepositoryCreditRequestCompanySizeIndicatorDtoMybatis;
+import com.mindware.workflow.persistence.creditRequestEnabledApplicantDto.RepositoryCreditRequestEnabledApplicantDtoMybatis;
 import com.mindware.workflow.persistence.creditResolution.RepositoryCreditResolutionMybatis;
 import com.mindware.workflow.persistence.creditResolution.dto.RepositoryCreditResolutionCreditRequestDtoMybatis;
 import com.mindware.workflow.persistence.creditScoring.RepositoryScoringCreditRequestMybatis;
@@ -60,6 +63,9 @@ import com.mindware.workflow.persistence.creditScoring.RepositoryScoringProductM
 import com.mindware.workflow.persistence.email.RepositoryMailMybatis;
 import com.mindware.workflow.persistence.exceptions.*;
 import com.mindware.workflow.persistence.contract.RepositoryContractVariableMybatis;
+import com.mindware.workflow.persistence.historyChangeResponsibleReport.RepositoryHistoryChangeResponsibleReportMybatis;
+import com.mindware.workflow.persistence.historyChangeResponsible.RepositoryHistoryChangeResponsibleMybatis;
+import com.mindware.workflow.persistence.historyChangeResponsibleDto.RepositoryHistoryChangeResponsibleDtoMybatis;
 import com.mindware.workflow.persistence.kiosco.RepositoryProductKioscoMybatis;
 import com.mindware.workflow.persistence.kiosco.RepositorySummaryCreditRequestStageMybatis;
 import com.mindware.workflow.persistence.legal.RepositoryLegalInformationMybatis;
@@ -384,6 +390,31 @@ public class ConfigurationBD {
     @Bean
     RepositoryScoringCreditRequest repositoryScoringCreditRequest(){
         return RepositoryScoringCreditRequestMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryCreditRequestEnabled repositoryCreditRequestEnabled(){
+        return RepositoryCreditRequestEnabledMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryCreditRequestEnabledApplicantDto repositoryCreditRequestEnabledApplicantDto(){
+        return RepositoryCreditRequestEnabledApplicantDtoMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryHistoryChangeResponsible repositoryHistoryChangeResponsible(){
+        return RepositoryHistoryChangeResponsibleMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryHistoryChangeResponsibleDto repositoryHistoryChangeResponsibleDto(){
+        return RepositoryHistoryChangeResponsibleDtoMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport(){
+        return RepositoryHistoryChangeResponsibleReportMybatis.create(sqlSessionFactory);
     }
 
     @PostConstruct

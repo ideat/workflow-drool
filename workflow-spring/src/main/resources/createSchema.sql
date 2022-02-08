@@ -510,3 +510,27 @@ create table if not exists scoring.scoring_product(
     constraint unique_name unique(name)
 );
 
+create table if not exists workflow.creditrequest_enabled(
+    id uuid not null,
+    number_request integer not null,
+    enabled_date_time timestamp not null ,
+    hours_enabled integer not null,
+    finished_date_time timestamp,
+    enabling_user character varying(20) not null ,
+    reason_to_enable character varying(100),
+    description_reason character varying(3000),
+    constraint  creditrequest_enabled_id primary key (id)
+);
+
+create table if not exists workflow.history_change_responsible(
+    id uuid not null,
+    number_request integer not null,
+    date_change date not null,
+    rol_name character varying(50) not null,
+    old_responsible character varying(20) not null,
+    new_responsible character varying(20) not null,
+    reason_change_responsible character varying,
+    processed_by character varying(20),
+    constraint history_change_responsible_id primary key (id)
+);
+

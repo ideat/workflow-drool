@@ -16,6 +16,8 @@
         <result property="hasGuarantee" column="has_guarantee"/>
         <result property="hasGuarantor" column="has_guarantor"/>
         <result property="hasPatrimonialStatement" column="has_patrimonial_statement"/>
+        <result property="legalAdvisorName" column="legal_advisor_name"/>
+        <result property="legalAdvisorLogin" column="legal_advisor_login"/>
     </resultMap>
 
 
@@ -26,6 +28,8 @@
              ,  c.type_guarantee, c.state , c.amount
              , c.currency,o.city
              , u.names as official
+             , u2.names as legal_advisor_name
+             , u2.login as legal_advisor_login
              ,(select (count(*)>0)
                from workflow.patrimonial_statement ps
                         inner join workflow.creditrequest_applicant ca1 on (ca1.id = id_credit_request_applicant)
@@ -46,10 +50,45 @@
                  inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
                  inner join public.users u on (u.login = c.login_user)
                  inner join public.office o on (c.id_office = o.internal_code)
+                 left join workflow.legal_information li on (li.number_request = c.number_request)
+                 left join public.users u2 on (u2.login = li.created_by)
         where ca.type_relation = 'deudor'
     </select>
 
-
+    <select id="getByCity" resultMap="LegalInformationCreditRequestDtoMap">
+        select  c.number_request, a.number_applicant
+             , (a.first_name ||' '|| a.second_name) as first_name
+             , (a.last_name || ' '|| a.mother_last_name) as last_name
+             ,  c.type_guarantee, c.state , c.amount
+             , c.currency,o.city
+             , u.names as official
+             , u2.names as legal_advisor_name
+             , u2.login as legal_advisor_login
+             ,(select (count(*)>0)
+               from workflow.patrimonial_statement ps
+                        inner join workflow.creditrequest_applicant ca1 on (ca1.id = id_credit_request_applicant)
+               where ca1.type_relation = 'deudor'
+                 and ps.field_boolean2 = 'SI'
+                 and ca1.number_request = ca.number_request ) has_guarantee
+             ,(select (count(*)>0)
+               from workflow.creditrequest_applicant ca2
+               where ca2.type_relation = 'garante'
+                 and ca2.number_request = ca.number_request)   has_guarantor
+             ,(select (count(distinct category)>=3)
+               from workflow.patrimonial_statement
+                        inner join workflow.creditrequest_applicant ca3 on (ca3.id = id_credit_request_applicant)
+               where ca3.type_relation = 'deudor'
+                 and ca3.number_request = ca.number_request) has_patrimonial_statement
+        from workflow.creditrequest_applicant ca
+                 inner join workflow.creditrequest c on (ca.number_request = c.number_request)
+                 inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
+                 inner join public.users u on (u.login = c.login_user)
+                 inner join public.office o on (c.id_office = o.internal_code)
+                 left join workflow.legal_information li on (li.number_request = c.number_request)
+                 left join public.users u2 on (u2.login = li.created_by)
+        where ca.type_relation = 'deudor'
+        and o.city = #{city}
+    </select>
 
 
 

@@ -37,6 +37,11 @@ public class RepositoryExceptionsCreditRequestMybatis implements RepositoryExcep
     }
 
     @Override
+    public void updateUser(ExceptionsCreditRequest exceptionsCreditRequest) {
+        mapper.updateUser(exceptionsCreditRequest);
+    }
+
+    @Override
     @Transactional
     public void delete(UUID id) {
         mapper.delete(id);

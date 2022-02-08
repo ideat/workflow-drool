@@ -11,6 +11,8 @@ import com.mindware.workflow.core.service.data.contract.RepositoryContractCredit
 import com.mindware.workflow.core.service.data.contract.RepositoryTemplateContract;
 import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequest;
 import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestCompanySizeIndicatorDto;
+import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestEnabled;
+import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequestEnabledApplicantDto;
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
@@ -18,6 +20,9 @@ import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCr
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
 import com.mindware.workflow.core.service.data.exceptions.*;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsible;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsibleDto;
+import com.mindware.workflow.core.service.data.historyChangeResponsible.RepositoryHistoryChangeResponsibleReport;
 import com.mindware.workflow.core.service.data.kiosco.RepositoryProductKiosco;
 import com.mindware.workflow.core.service.data.kiosco.RepositorySummaryCreditRequestStage;
 import com.mindware.workflow.core.service.data.legal.RepositoryContractVariable;
@@ -214,6 +219,21 @@ public class AutoConfigurationWorkflow {
     @Autowired
     private RepositoryScoringCreditRequest repositoryScoringCreditRequest;
 
+    @Autowired
+    private RepositoryCreditRequestEnabled repositoryCreditRequestEnabled;
+
+    @Autowired
+    private RepositoryCreditRequestEnabledApplicantDto repositoryCreditRequestEnabledApplicantDto;
+
+    @Autowired
+    private RepositoryHistoryChangeResponsible repositoryHistoryChangeResponsible;
+
+    @Autowired
+    private RepositoryHistoryChangeResponsibleDto repositoryHistoryChangeResponsibleDto;
+
+    @Autowired
+    private RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport;
+
     @Bean
     @DependsOn({"repositoryOffice"})
     public ServiceUseCaseFactory serviceUseCaseFactory(){
@@ -274,6 +294,11 @@ public class AutoConfigurationWorkflow {
         factory.setRepositoryProductKiosco(repositoryProductKiosco);
         factory.setRepositoryScoringProduct(repositoryScoringProduct);
         factory.setRepositoryScoringCreditRequest(repositoryScoringCreditRequest);
+        factory.setRepositoryCreditRequestEnabled(repositoryCreditRequestEnabled);
+        factory.setRepositoryCreditRequestEnabledApplicantDto(repositoryCreditRequestEnabledApplicantDto);
+        factory.setRepositoryHistoryChangeResponsible(repositoryHistoryChangeResponsible);
+        factory.setRepositoryHistoryChangeResponsibleDto(repositoryHistoryChangeResponsibleDto);
+        factory.setRepositoryHistoryChangeResponsibleReport(repositoryHistoryChangeResponsibleReport);
         return factory;
     }
 }

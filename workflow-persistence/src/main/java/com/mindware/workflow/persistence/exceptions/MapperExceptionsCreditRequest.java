@@ -14,6 +14,8 @@ public interface MapperExceptionsCreditRequest {
 
     void update(ExceptionsCreditRequest exceptionsCreditRequest);
 
+    void updateUser(ExceptionsCreditRequest exceptionsCreditRequest);
+
     void delete(@Param("id") UUID id);
 
     List<ExceptionsCreditRequest> getByNumberRequest(@Param("numberRequest") Integer numberRequest);

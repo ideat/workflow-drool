@@ -6,5 +6,5 @@ public interface RepositoryLegalInformationCreditRequestDto {
 
     List<LegalInformationCreditRequestDto> getAll();
 
-
+    List<LegalInformationCreditRequestDto> getByCity(String city);
 }

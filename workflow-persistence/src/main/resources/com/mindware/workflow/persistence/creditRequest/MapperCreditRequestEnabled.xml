@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mindware.workflow.persistence.creditRequest.MapperCreditRequestEnabled">
+    <resultMap id="CreditRequestEnabledMap" type="com.mindware.workflow.core.entity.creditRequest.CreditRequestEnabled">
+        <id property="id" column="id" typeHandler="com.mindware.workflow.persistence.typehandler.UUIDTypeHandler"/>
+        <result property="numberRequest" column="number_request"/>
+        <result property="enabledDateTime" column="enabled_date_time"/>
+        <result property="hoursEnabled" column="hours_enabled"/>
+        <result property="finishedDateTime" column="finished_date_time"/>
+        <result property="enablingUser" column="enabling_user"/>
+        <result property="reasonToEnable" column="reason_to_enable"/>
+        <result property="descriptionReason" column="description_reason"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.mindware.workflow.core.entity.creditRequest.CreditRequestEnabled">
+
+        insert into workflow.creditrequest_enabled(
+        id,
+        number_request,
+        enabled_date_time,
+        hours_enabled,
+        finished_date_time,
+        enabling_user,
+        reason_to_enable,
+        description_reason)
+        VALUES(
+        #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
+        #{numberRequest},
+        #{enabledDateTime},
+        #{hoursEnabled},
+        #{finishedDateTime},
+        #{enablingUser},
+        #{reasonToEnable},
+        #{descriptionReason}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.mindware.workflow.core.entity.creditRequest.CreditRequestEnabled">
+        update workflow.creditrequest_enabled
+        set
+            hours_enabled= #{hoursEnabled},
+            finished_date_time = #{finishedDateTime},
+            reason_to_enable = #{reasonToEnable},
+            description_reason = #{descriptionReason}
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+
+    </update>
+
+    <select id="getAll" resultMap="CreditRequestEnabledMap">
+        select *
+        from workflow.creditrequest_enabled
+        order by number_request
+    </select>
+
+    <select id="getByNumberRequestOpen" resultMap="CreditRequestEnabledMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.creditrequest_enabled
+        where number_request = #{numberRequest}
+        and now()< creditrequest_enabled.finished_date_time
+        ]]>
+    </select>
+
+    <select id="getById" resultMap="CreditRequestEnabledMap" parameterType="map">
+        select *
+        from workflow.creditrequest_enabled
+        where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
+    </select>
+
+    <select id="getByOffice" resultMap="CreditRequestEnabledMap" parameterType="map">
+        <![CDATA[
+        select creditrequest_enabled.*
+        from workflow.creditrequest_enabled
+        inner join workflow.creditrequest on (creditrequest_enabled.number_request = creditrequest.number_request)
+        where creditrequest.id_office = #{codeOffice}
+        and now()< creditrequest_enabled.finished_date_time
+        order by number_request
+        ]]>
+    </select>
+
+    <select id="getByCity" resultMap="CreditRequestEnabledMap" parameterType="map">
+        <![CDATA[
+        select creditrequest_enabled.*
+        from workflow.creditrequest_enabled
+        inner join workflow.creditrequest on (creditrequest_enabled.number_request = creditrequest.number_request)
+        inner join public.office on (creditrequest.id_office = office.internal_code)
+        where office.city = #{city}
+        and now()< creditrequest_enabled.finished_date_time
+        order by number_request
+        ]]>
+    </select>
+
+    <select id="getAllOpen" resultMap="CreditRequestEnabledMap" parameterType="map">
+        <![CDATA[
+        select *
+        from workflow.creditrequest_enabled
+        where now()< creditrequest_enabled.finished_date_time
+        order by number_request
+        ]]>
+    </select>
+
+
+</mapper>

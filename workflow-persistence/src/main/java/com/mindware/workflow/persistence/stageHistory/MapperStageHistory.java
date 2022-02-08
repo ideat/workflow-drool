@@ -23,4 +23,6 @@ public interface MapperStageHistory {
     List<StageHistory> getByNumberRequest(@Param("numberRequest") Integer numberRequest);
 
     StageHistory getById(@Param("id") UUID id);
+
+    void updateUser(StageHistory stageHistory);
 }

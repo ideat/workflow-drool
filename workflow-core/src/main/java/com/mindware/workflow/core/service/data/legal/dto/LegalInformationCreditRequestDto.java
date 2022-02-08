@@ -34,6 +34,10 @@ public class LegalInformationCreditRequestDto {
 
     private boolean hasGuarantor;
 
+    private String legalAdvisorName;
+
+    private String legalAdvisorLogin;
+
     public String getFullName(){
         return Optional.ofNullable(this.lastName).orElse("")+" "
                 +Optional.ofNullable(this.firstName).orElse("");
