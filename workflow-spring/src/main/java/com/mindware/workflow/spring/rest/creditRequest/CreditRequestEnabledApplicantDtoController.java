@@ -100,11 +100,12 @@ public class CreditRequestEnabledApplicantDtoController {
             if(key.equals("to-date")) toDate = LocalDate.parse(value).atStartOfDay(ZoneId.systemDefault()).toInstant();
         });
 
+        toDate = toDate.plus(23,ChronoUnit.HOURS).plus(59,ChronoUnit.MINUTES);
         List<CreditRequestEnabledApplicantDto> result = complementInfo(repository.getEnabledReport(city,fromDate,toDate));
 
         InputStream stream = getClass().getResourceAsStream("/template-report/creditRequestEnabled/creditRequestEnabled.jrxml");
         String pathLogo =  getClass().getResource("/template-report/img/logo.png").getPath();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
                 .withZone(ZoneId.systemDefault());
         String fromDateFormat = formatter.format(fromDate);
         String toDateFormat = formatter.format(toDate);
@@ -132,7 +133,7 @@ public class CreditRequestEnabledApplicantDtoController {
                 c.setTimeLeft("");
             }else{
                 c.setState("ABIERTO");
-                Long seconds = current.getEpochSecond() - c.getEnabledDateTime().getEpochSecond();
+                Long seconds = c.getFinishedDateTime().getEpochSecond() - current.getEpochSecond() ;
                 String left = String.format("Dias: %s \n Horas: %s, Minutos: %s ",(seconds / 86400),(seconds / 3600 % 24),(seconds / 60 % 60));
                 c.setTimeLeft(left);
 

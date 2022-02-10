@@ -16,4 +16,5 @@ public interface MapperHistoryChangeResponsibleDto {
     List<HistoryChangeResponsibleDto> getDataByRolAuthorizer(@Param("loginUser") String loginUser);
 
     List<HistoryChangeResponsibleDto> getDataUserWorkflow(@Param("loginUser") String loginUser);
+
 }

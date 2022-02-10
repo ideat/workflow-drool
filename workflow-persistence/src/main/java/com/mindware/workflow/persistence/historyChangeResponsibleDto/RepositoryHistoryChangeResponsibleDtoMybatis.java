@@ -39,4 +39,5 @@ public class RepositoryHistoryChangeResponsibleDtoMybatis implements RepositoryH
     public List<HistoryChangeResponsibleDto> getDataUserWorkflow(String loginUser) {
         return mapper.getDataUserWorkflow(loginUser);
     }
+
 }

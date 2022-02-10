@@ -21,7 +21,7 @@
 
 
     <select id="getByCityAndRageDate" resultMap="HistoryChangeResponsibleReportMap">
-        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.login  as old_responsible_name, u2.login as new_responsible_name,
                hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
                a.last_name, a.mother_last_name, a.married_last_name
         from workflow.history_change_responsible hcr
@@ -38,7 +38,7 @@
     </select>
 
     <select id="getByAllByRageDate" resultMap="HistoryChangeResponsibleReportMap">
-        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.login  as old_responsible_name, u2.login as new_responsible_name,
                hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
                a.last_name, a.mother_last_name, a.married_last_name
         from workflow.history_change_responsible hcr
@@ -50,11 +50,11 @@
                  inner join workflow.creditrequest_applicant ca on (ca.number_request = hcr.number_request and ca.type_relation = 'deudor')
                  inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
         where  hcr.date_change between #{startDate} and #{endDate}
-        order by hcr.date_change
+        order by hcr.date_change, hcr.number_request
     </select>
 
     <select id="getByCity" resultMap="HistoryChangeResponsibleReportMap">
-        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.login  as old_responsible_name, u2.login as new_responsible_name,
                hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
                a.last_name, a.mother_last_name, a.married_last_name
         from workflow.history_change_responsible hcr
@@ -66,11 +66,11 @@
                  inner join workflow.creditrequest_applicant ca on (ca.number_request = hcr.number_request and ca.type_relation = 'deudor')
                  inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
         where  o.city = #{city}
-        order by hcr.date_change
+        order by hcr.date_change, hcr.number_request
     </select>
 
     <select id="getAll" resultMap="HistoryChangeResponsibleReportMap">
-        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.names  as old_responsible_name, u2.names as new_responsible_name,
+        SELECT hcr.number_request, hcr.date_change, hcr.rol_name,u.login  as old_responsible_name, u2.login as new_responsible_name,
                hcr.reason_change_responsible, o.name as old_office_name, o2.name as new_office_name, hcr.processed_by, a.first_name, a.second_name,
                a.last_name, a.mother_last_name, a.married_last_name
         from workflow.history_change_responsible hcr
@@ -81,6 +81,6 @@
                  inner join workflow.creditrequest c on (c.number_request = hcr.number_request)
                  inner join workflow.creditrequest_applicant ca on (ca.number_request = hcr.number_request and ca.type_relation = 'deudor')
                  inner join workflow.applicant a on (a.number_applicant = ca.number_applicant)
-        order by hcr.date_change
+        order by hcr.date_change, hcr.number_request
     </select>
 </mapper>

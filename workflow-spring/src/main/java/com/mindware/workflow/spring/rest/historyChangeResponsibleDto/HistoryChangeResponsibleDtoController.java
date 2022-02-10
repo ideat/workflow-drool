@@ -45,4 +45,10 @@ public class HistoryChangeResponsibleDtoController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+
+    @GetMapping(value = "/v1/historyChangeResponsibleDto/getDataUserWorkflow/{loginUser}",name = "Operaciones asignadas a un oficial")
+    ResponseEntity<List<HistoryChangeResponsibleDto>> getDataUserWorkflow(@PathVariable("loginUser") String loginuser){
+        List<HistoryChangeResponsibleDto> result = repositoryHistoryChangeResponsibleDto.getDataUserWorkflow(loginuser);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

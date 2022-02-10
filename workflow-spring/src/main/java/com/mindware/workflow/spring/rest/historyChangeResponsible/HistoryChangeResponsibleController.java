@@ -111,8 +111,9 @@ public class HistoryChangeResponsibleController {
 
     private void updateWorkflow(Integer numberRequest, String newUser, String currentUser) {
         stageHistoryList = repositoryStageHistory.getByNumberRequest(numberRequest);
+
         stageHistoryList = stageHistoryList.stream()
-                .filter(s -> s.getUserTask().equals(currentUser))
+                .filter(s -> s.getUserTask()!=null && s.getUserTask().equals(currentUser))
                 .collect(Collectors.toList());
         for(StageHistory sh:stageHistoryList){
             sh.setUserTask(newUser);

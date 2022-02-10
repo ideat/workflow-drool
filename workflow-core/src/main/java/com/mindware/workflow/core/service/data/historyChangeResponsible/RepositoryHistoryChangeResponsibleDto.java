@@ -13,4 +13,5 @@ public interface RepositoryHistoryChangeResponsibleDto {
     List<HistoryChangeResponsibleDto> getDataByRolAuthorizer(String loginUser);
 
     List<HistoryChangeResponsibleDto> getDataUserWorkflow(String loginUser);
+
 }
