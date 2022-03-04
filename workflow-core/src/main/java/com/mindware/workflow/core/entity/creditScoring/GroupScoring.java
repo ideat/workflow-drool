@@ -18,5 +18,5 @@ public class GroupScoring {
 
     private Integer position;
 
-    private String formula;
+    private String score; //score evaluation parameter scoring
 }

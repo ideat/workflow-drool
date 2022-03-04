@@ -11,11 +11,12 @@ public class RiskLevel {
 
     private UUID id;
 
-    private String name;
+    private String levelName;
 
     private String expression;
 
     private Integer position;
 
-    private String description;
+    private Integer score;
+
 }

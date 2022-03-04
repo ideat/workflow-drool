@@ -40,6 +40,8 @@ public class CreateScoringProduct extends UseCaseBase<ScoringProduct> implements
 
         if(isNew){
             this.register.setId(UUID.randomUUID());
+            this.register.setConfigurationScorings("[]");
+            this.register.setRiskLevel("[]");
             repository.add(this.register);
         }else{
             repository.update(this.register);

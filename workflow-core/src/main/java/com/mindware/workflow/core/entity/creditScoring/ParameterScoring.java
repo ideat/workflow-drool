@@ -11,13 +11,15 @@ public class ParameterScoring {
 
     private UUID id;
 
-    private Double value;
+    private Double score;
 
     private String criteria;
 
     private String typeCriteria;
 
-    private String type; //Bajo, Normal
+    private String level; //Bajo, Normal
 
     private String description;
+
+    private Integer position;
 }

@@ -257,4 +257,11 @@
     "name": "Historico Camb. Resp.",
     "read": "false",
     "write": "false"
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Credit Scoring",
+    "read": "false",
+    "write": "false"
   }]
