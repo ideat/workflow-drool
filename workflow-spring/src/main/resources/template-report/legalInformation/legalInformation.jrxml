@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="legalInformation" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c774e2d2-75fb-4b5f-9608-c01346af98c1">
 	<parameter name="path_subreport" class="java.lang.String"/>
 	<parameter name="logo" class="java.lang.String"/>
@@ -91,7 +91,7 @@
 				<textFieldExpression><![CDATA[$F{nameOfficer}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="70" width="185" height="10" uuid="e3740b99-b59c-4065-a31d-fe569f66507f">
+				<reportElement x="70" y="80" width="185" height="10" uuid="e3740b99-b59c-4065-a31d-fe569f66507f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -100,7 +100,7 @@
 				<textFieldExpression><![CDATA[$F{nameLegalAdviser}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="80" width="185" height="10" uuid="7497316f-cc4c-4d11-b7e9-80ddea8a9e0a">
+				<reportElement x="70" y="70" width="185" height="10" uuid="7497316f-cc4c-4d11-b7e9-80ddea8a9e0a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>

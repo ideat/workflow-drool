@@ -14,21 +14,21 @@
 
 
     <pluginRepositories>
-        <pluginRepository>
-            <id>vaadin-prereleases</id>
-            <url>https://maven.vaadin.com/vaadin-prereleases</url>
-        </pluginRepository>
+<!--        <pluginRepository>-->
+<!--            <id>vaadin-prereleases</id>-->
+<!--            <url>https://maven.vaadin.com/vaadin-prereleases</url>-->
+<!--        </pluginRepository>-->
     </pluginRepositories>
 
     <repositories>
-        <repository>
-            <id>vaadin-addons</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-        <repository>
-            <id>vaadin-prereleases</id>
-            <url>https://maven.vaadin.com/vaadin-prereleases</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>vaadin-addons</id>-->
+<!--            <url>http://maven.vaadin.com/vaadin-addons</url>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            <id>vaadin-prereleases</id>-->
+<!--            <url>https://maven.vaadin.com/vaadin-prereleases</url>-->
+<!--        </repository>-->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -45,7 +45,7 @@
         <version.junit>4.12</version.junit>
         <version.hamcrest>1.3</version.hamcrest>
         <version.rest-assured>3.3.0</version.rest-assured>
-        <vaadin.version>13.0.8</vaadin.version>
+<!--        <vaadin.version>13.0.8</vaadin.version>-->
         <drools.version>7.43.1.Final</drools.version>
     </properties>
 
@@ -259,19 +259,25 @@
             <version>${drools.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.mariuszgromada.math</groupId>
+            <artifactId>MathParser.org-mXparser</artifactId>
+            <version>5.0.6</version>
+        </dependency>
+
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-bom</artifactId>
-                <version>${vaadin.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>com.vaadin</groupId>-->
+<!--                <artifactId>vaadin-bom</artifactId>-->
+<!--                <version>${vaadin.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
 
     <build>
         <plugins>

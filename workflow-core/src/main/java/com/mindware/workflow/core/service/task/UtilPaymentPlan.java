@@ -280,7 +280,7 @@ public class UtilPaymentPlan {
         Double residueBeforeLastFee = beforeLast.getResidue();
         if(lastFee>fee){
             return 0.01;
-        }else if(residueBeforeLastFee < 0) {
+        }else if(residueBeforeLastFee.doubleValue() < 0.0) {
             return -0.01;
         }else return 0.0;
 

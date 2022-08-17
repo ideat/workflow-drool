@@ -13,7 +13,7 @@ public class RiskLevel {
 
     private String levelName;
 
-    private String expression;
+    private String expresion;
 
     private Integer position;
 

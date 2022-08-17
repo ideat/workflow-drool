@@ -18,7 +18,7 @@ public class ConfigurationScoring {
 
     private String riskLevel; //List<RiskLevel>
 
-    private Double score;
+    private Integer score;
 
     private Integer position;
 }

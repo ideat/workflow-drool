@@ -132,6 +132,11 @@ public class ScheduleTask {
                         ,ex.getCodeException(),ex.getRemainingDays());
                 mailList.add(mail);
             }
+
+            Mail mail = generateMail(ex.getEmail(),"Mail automatic",ex.getNumberRequest()
+                    ,ex.getCodeException(),ex.getRemainingDays());
+            mailList.add(mail);
+
         }
         return mailList;
     }

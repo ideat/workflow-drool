@@ -14,9 +14,9 @@ public class GroupScoring {
 
     private String evaluationName;
 
-    private List<ParameterScoring> parameterScoring;
+    private String parameterScoring; //List<ParameterScoring>
 
     private Integer position;
 
-    private String score; //score evaluation parameter scoring
+    private Integer score; //score evaluation parameter scoring
 }

@@ -19,7 +19,7 @@ public class ScoringCreditRequest {
 
     private Double score;
 
-    private LocalDate analysisDate;
+    private LocalDate analisysDate;
 
     private String riskOpinion;
 

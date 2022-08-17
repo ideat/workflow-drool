@@ -40,6 +40,7 @@ import com.mindware.workflow.core.service.data.creditRequest.*;
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryCreditScoringCreditRequestDto;
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCreditRequest;
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
@@ -161,6 +162,7 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
     private RepositoryHistoryChangeResponsible repositoryHistoryChangeResponsible;
     private RepositoryHistoryChangeResponsibleDto repositoryHistoryChangeResponsibleDto;
     private RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport;
+    private RepositoryCreditScoringCreditRequestDto repositoryCreditScoringCreditRequestDto;
     @SuppressWarnings("rawtypes")
     @Override
     public UseCase create(String useCase, Object input) {
@@ -443,5 +445,9 @@ public class ServiceUseCaseFactory implements UseCaseFactory {
 
     public void setRepositoryHistoryChangeResponsibleReport(RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport){
         this.repositoryHistoryChangeResponsibleReport = repositoryHistoryChangeResponsibleReport;
+    }
+
+    public void setRepositoryCreditScoringCreditRequestDto(RepositoryCreditScoringCreditRequestDto repositoryCreditScoringCreditRequestDto){
+        this.repositoryCreditScoringCreditRequestDto = repositoryCreditScoringCreditRequestDto;
     }
 }

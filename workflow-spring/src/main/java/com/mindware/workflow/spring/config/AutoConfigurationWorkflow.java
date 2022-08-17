@@ -16,6 +16,7 @@ import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditReq
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryCreditScoringCreditRequestDto;
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCreditRequest;
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
@@ -234,6 +235,9 @@ public class AutoConfigurationWorkflow {
     @Autowired
     private RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport;
 
+    @Autowired
+    private RepositoryCreditScoringCreditRequestDto repositoryCreditScoringCreditRequestDto;
+
     @Bean
     @DependsOn({"repositoryOffice"})
     public ServiceUseCaseFactory serviceUseCaseFactory(){
@@ -299,6 +303,7 @@ public class AutoConfigurationWorkflow {
         factory.setRepositoryHistoryChangeResponsible(repositoryHistoryChangeResponsible);
         factory.setRepositoryHistoryChangeResponsibleDto(repositoryHistoryChangeResponsibleDto);
         factory.setRepositoryHistoryChangeResponsibleReport(repositoryHistoryChangeResponsibleReport);
+        factory.setRepositoryCreditScoringCreditRequestDto(repositoryCreditScoringCreditRequestDto);
         return factory;
     }
 }

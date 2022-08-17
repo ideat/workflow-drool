@@ -19,7 +19,5 @@ public class ParameterScoring {
 
     private String level; //Bajo, Normal
 
-    private String description;
-
     private Integer position;
 }

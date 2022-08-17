@@ -264,4 +264,12 @@
     "name": "Credit Scoring",
     "read": "false",
     "write": "false"
-  }]
+  },
+  {
+    "assigned": "false",
+    "description": "",
+    "name": "Analisis 5C's",
+    "read": "false",
+    "write": "false"
+  }
+]

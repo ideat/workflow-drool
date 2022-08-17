@@ -506,6 +506,7 @@ create table if not exists scoring.scoring_product(
     configuration_scorings jsonb not null default '[]',
     state character varying (20) not null,
     risk_level jsonb not null default '[]',
+    category_guarantee character varying(100),
     constraint scoring_product_id primary key(id),
     constraint unique_name unique(name)
 );

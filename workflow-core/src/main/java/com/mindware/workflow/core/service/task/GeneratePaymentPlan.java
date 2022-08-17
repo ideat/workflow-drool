@@ -114,7 +114,7 @@ public class GeneratePaymentPlan {
                 BigDecimal feepay = new BigDecimal(0);
 
                 if (term == i) {
-                    paymentPlan.setCapital(amort.setScale(2, RoundingMode.UP).doubleValue() + amount.doubleValue());
+                    paymentPlan.setCapital(amort.setScale(2, RoundingMode.HALF_EVEN).doubleValue() + amount.doubleValue());
                     paymentPlan.setResidue(0.0);
                     feepay = interest.setScale(2, RoundingMode.UP)
                             .add(amort.setScale(2, RoundingMode.UP).add(amount))
@@ -171,7 +171,7 @@ public class GeneratePaymentPlan {
             nextDate = utilPaymentPlan.nextPaymentDate(creditRequest.getFixedDay(),currentDate,creditRequest.getPaymentPeriod(),minDays, maxDays);
             long days =  DAYS.between(currentDate,nextDate);
             BigDecimal interest = BigDecimal.ZERO;
-            if(creditRequest.getTypeTerm().equals("FIJA")) {
+            if(creditRequest.getTypeFee().equals("FIJA")) {
                 interest = utilPaymentPlan.getInterestFixedFee(amount, creditRequest.getRateInterest(),
                         days, creditRequest.getPaymentPeriod());
             }else{

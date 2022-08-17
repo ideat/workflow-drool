@@ -4,6 +4,7 @@ import com.mindware.workflow.core.entity.Applicant;
 import com.mindware.workflow.core.entity.creditRequest.CreditRequest;
 import com.mindware.workflow.core.entity.Users;
 import com.mindware.workflow.core.entity.legal.LegalInformation;
+import com.mindware.workflow.core.exception.UseCaseException;
 import com.mindware.workflow.core.service.data.applicant.RepositoryApplicant;
 import com.mindware.workflow.core.service.data.creditRequest.RepositoryCreditRequest;
 import com.mindware.workflow.core.service.data.legal.RepositoryLegalInformation;
@@ -56,36 +57,45 @@ public class LegalInformationReportController {
         });
 
         CreditRequest creditRequest = repositoryCreditRequest.getCreditRequestByNumberRequest(numberRequest).get();
-        LegalInformation legalInformation = repositoryLegalInformation.getByNumberRequest(numberRequest).get();
-        Applicant applicant = repositoryApplicant.getApplicantByNumberApplicant(numberApplicant).get();
-        Map<String,String> names = new HashMap<>();
-        loginOfficer = creditRequest.getLoginUser();
 
-        Users users = new Users();
-        users = repositoryUsers.getUserByIdUser(loginOfficer).get();
-        names.put("nameOfficer",users.getFullName());
-        users = repositoryUsers.getUserByIdUser(createdBy).get();
-        names.put("nameLegalAdviser",users.getFullName());
+        Optional<LegalInformation> legalInformation = repositoryLegalInformation.getByNumberRequest(numberRequest);
+        if(legalInformation.isPresent()) {
+            Applicant applicant = repositoryApplicant.getApplicantByNumberApplicant(numberApplicant).get();
+            Map<String, String> names = new HashMap<>();
+            loginOfficer = creditRequest.getLoginUser();
 
-        UsersOfficeDto usersOfficeDto = repositoryUsersOfficeDto.getByRol("LEGAL_NACIONAL").get(0);
-        names.put("legalAnalyst",usersOfficeDto.getFullName());
+            Users users = new Users();
+            users = repositoryUsers.getUserByIdUser(loginOfficer).get();
+            names.put("nameOfficer", users.getFullName());
+            users = repositoryUsers.getUserByIdUser(createdBy).get();
+            names.put("nameLegalAdviser", users.getFullName());
 
-        LegalInformationReportDto legalInformationReportDto = CreateLegalInformationReportDto.generate(legalInformation,
-                creditRequest,applicant,names);
+            List<UsersOfficeDto> auxList = repositoryUsersOfficeDto.getByRol("LEGAL_NACIONAL");
+            if (auxList.size() > 0) {
+                UsersOfficeDto usersOfficeDto = repositoryUsersOfficeDto.getByRol("LEGAL_NACIONAL").get(0);
+                names.put("legalAnalyst", usersOfficeDto.getFullName());
+            } else { //Not exit USER WITH ROL LEGAL_NACIONAL
+                names.put("legalAnalyst", "");
+            }
+            LegalInformationReportDto legalInformationReportDto = CreateLegalInformationReportDto.generate(legalInformation.get(),
+                    creditRequest, applicant, names);
 
 
-        InputStream stream = getClass().getResourceAsStream("/template-report/legalInformation/legalInformation.jrxml");
-        String pathLogo = getClass().getResource("/template-report/img/logo.png").getPath();
-        String pathSubreport = "template-report/legalInformation/";
-        Map<String,Object> params = new WeakHashMap<>();
-        params.put("logo",pathLogo);
-        params.put("path_subreport", pathSubreport);
+            InputStream stream = getClass().getResourceAsStream("/template-report/legalInformation/legalInformation.jrxml");
+            String pathLogo = getClass().getResource("/template-report/img/logo.png").getPath();
+            String pathSubreport = "template-report/legalInformation/";
+            Map<String, Object> params = new WeakHashMap<>();
+            params.put("logo", pathLogo);
+            params.put("path_subreport", pathSubreport);
 
-        Collection<LegalInformationReportDto> collection = new ArrayList<>();
-        collection.add(legalInformationReportDto);
-        byte[] b = PrinterReportJasper.imprimirComoPdf(stream,collection,params);
-        InputStream is = new ByteArrayInputStream(b);
-        return IOUtils.toByteArray(is);
+            Collection<LegalInformationReportDto> collection = new ArrayList<>();
+            collection.add(legalInformationReportDto);
+            byte[] b = PrinterReportJasper.imprimirComoPdf(stream, collection, params);
+            InputStream is = new ByteArrayInputStream(b);
+            return IOUtils.toByteArray(is);
+        }else{
+            throw new UseCaseException("Informe legal no registrado");
+        }
 
     }
 

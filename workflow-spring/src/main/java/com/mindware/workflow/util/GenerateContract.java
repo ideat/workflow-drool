@@ -132,7 +132,7 @@ public class GenerateContract {
         mapCreditRequestFields.put("ciudadOficina",office.getCity());
 
 
-        List<Signatories> signatoriesList = mapper.readValue(office.getSignatorie(),new TypeReference<Signatories>(){});
+        List<Signatories> signatoriesList = mapper.readValue(office.getSignatorie(),new TypeReference<List<Signatories>>(){});
         signatoriesList = signatoriesList.stream().filter(v -> v.getState().equals("ACTIVO")).collect(Collectors.toList());
         for(Signatories s:signatoriesList){
             mapCreditRequestFields.put("nombreRepresentante"+s.getPriority(),s.getName());
@@ -165,7 +165,7 @@ public class GenerateContract {
 
         mapCreditRequestFields.put("frecuenciaPago",paymentFrecuency);
 
-        List<Charge> chargeList = mapper.readValue(creditRequest.getCharge(),new TypeReference<Charge>(){});
+        List<Charge> chargeList = mapper.readValue(creditRequest.getCharge(),new TypeReference<List<Charge>>(){});
         chargeList = chargeList.stream().filter(c -> c.isSelected()==true).collect(Collectors.toList());
         for(Charge c : chargeList){
             if(c.getName().equals("SEGURO DESGRAVAMENT")) mapCreditRequestFields.put("seguroDesgravamen",c.getValue().toString());

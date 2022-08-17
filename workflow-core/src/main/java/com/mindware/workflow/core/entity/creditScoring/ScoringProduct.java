@@ -19,4 +19,6 @@ public class ScoringProduct {
     private String state;
 
     private String riskLevel; //Json List<RiskLevel>
+
+    private String categoryGuarantee;
 }

@@ -14,6 +14,7 @@ import com.mindware.workflow.core.service.data.creditRequest.*;
 import com.mindware.workflow.core.service.data.creditRequestApplicant.RepositoryCreditRequestApplicant;
 import com.mindware.workflow.core.service.data.creditResolution.RepositoryCreditResolution;
 import com.mindware.workflow.core.service.data.creditResolution.dto.RepositoryCreditResolutionCreditRequestDto;
+import com.mindware.workflow.core.service.data.creditScoring.RepositoryCreditScoringCreditRequestDto;
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringCreditRequest;
 import com.mindware.workflow.core.service.data.creditScoring.RepositoryScoringProduct;
 import com.mindware.workflow.core.service.data.email.RepositoryMail;
@@ -60,6 +61,7 @@ import com.mindware.workflow.persistence.creditResolution.RepositoryCreditResolu
 import com.mindware.workflow.persistence.creditResolution.dto.RepositoryCreditResolutionCreditRequestDtoMybatis;
 import com.mindware.workflow.persistence.creditScoring.RepositoryScoringCreditRequestMybatis;
 import com.mindware.workflow.persistence.creditScoring.RepositoryScoringProductMybatis;
+import com.mindware.workflow.persistence.creditScoringCreditRequestDto.RepositoryCreditScoringCreditRequestDtoMybatis;
 import com.mindware.workflow.persistence.email.RepositoryMailMybatis;
 import com.mindware.workflow.persistence.exceptions.*;
 import com.mindware.workflow.persistence.contract.RepositoryContractVariableMybatis;
@@ -415,6 +417,11 @@ public class ConfigurationBD {
     @Bean
     RepositoryHistoryChangeResponsibleReport repositoryHistoryChangeResponsibleReport(){
         return RepositoryHistoryChangeResponsibleReportMybatis.create(sqlSessionFactory);
+    }
+
+    @Bean
+    RepositoryCreditScoringCreditRequestDto repositoryCreditScoringCreditRequestDto(){
+        return RepositoryCreditScoringCreditRequestDtoMybatis.create(sqlSessionFactory);
     }
 
     @PostConstruct

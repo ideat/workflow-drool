@@ -8,6 +8,7 @@
         <result property="configurationScorings" column="configuration_scorings"/>
         <result property="riskLevel" column="risk_level"/>
         <result property="state" column="state"/>
+        <result property="categoryGuarantee" column="category_guarantee"/>
     </resultMap>
 
     <insert id="add" parameterType="com.mindware.workflow.core.entity.creditScoring.ScoringProduct">
@@ -16,13 +17,15 @@
             name,
             configuration_scorings,
             risk_level,
-            state)
+            state,
+            category_guarantee)
         values (
                    #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler},
                    #{name},
                    #{configurationScorings}::json,
                    #{riskLevel}::json,
-                   #{state}
+                   #{state},
+                   #{categoryGuarantee}
                )
     </insert>
 
@@ -32,7 +35,8 @@
             configuration_scorings = #{configurationScorings}::json,
             name = #{name},
             state = #{state},
-            risk_level = #{riskLevel}::json
+            risk_level = #{riskLevel}::json,
+            category_guarantee = #{categoryGuarantee}
         where id = #{id, typeHandler=com.mindware.workflow.persistence.typehandler.UUIDTypeHandler}
 
     </update>
